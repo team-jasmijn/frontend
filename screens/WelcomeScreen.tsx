@@ -18,9 +18,11 @@ export default function WelcomeScreen() {
             <View style={styles.main}>
                 <Pressable
                     style={styles.button}
-                    onPress={() => Alert.alert('Nee je mag niet inloggen!')}
-                ><SvgUri uri={"https://icons.getbootstrap.com/assets/icons/person.svg"} height={30} width={30} fill={"#334155"} style={styles.icon}/>
-                    <Text>Login voor studenten</Text>
+                    onPress={() => Alert.alert('Nee je mag niet inloggen!')}>
+                    <Text>
+                        <SvgUri uri={"https://icons.getbootstrap.com/assets/icons/person.svg"} height={25} width={25} fill={"#334155"} style={styles.icon}/>
+                        <Text style={styles.loginText}>Login voor studenten</Text>
+                    </Text>
                 </Pressable>
 
             </View>
@@ -30,18 +32,26 @@ export default function WelcomeScreen() {
 
 const styles = StyleSheet.create({
     main: {
-        alignItems: 'center',
+        // alignItems: 'center',
     },
     button: {
+        alignSelf: 'center',
         borderStyle: 'solid',
         borderColor: '#334155',
         borderWidth: 2,
         padding: 4,
         fontWeight: 'bold',
-        fontFamily: 'Poppins'
+        fontFamily: 'Poppins',
+        width: 200,
+
     },
     icon: {
         // color: '#334155',
+        alignSelf: 'flex-start',
+
+    },
+    loginText: {
+        fontSize: 16,
 
     }
 });
