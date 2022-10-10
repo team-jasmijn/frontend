@@ -5,7 +5,6 @@ import {Text, View} from '../components/Themed';
 import Svg, {SvgUri} from "react-native-svg";
 
 
-
 const image = require("../assets/images/background.png");
 
 
@@ -15,15 +14,39 @@ export default function WelcomeScreen() {
             flex: 1,
             justifyContent: "center"
         }}>
+            <Text style={{top: -220, fontSize: 69, color: "#fff", alignSelf: "center"}}>OnePlace</Text>
             <View style={styles.main}>
                 <Pressable
                     style={styles.button}
                     onPress={() => Alert.alert('Nee je mag niet inloggen!')}>
-                    <Text>
-                        <SvgUri uri={"https://icons.getbootstrap.com/assets/icons/person.svg"} height={25} width={25} fill={"#334155"} style={styles.icon}/>
-                        <Text style={styles.loginText}>Login voor studenten</Text>
-                    </Text>
+                    <View style={[{flex: 1, flexDirection: 'row'}]}>
+                        <SvgUri uri={"https://icons.getbootstrap.com/assets/icons/person.svg"} height={25} width={25}
+                                fill={"#334155"} style={styles.icon}/>
+                        <Text style={styles.loginText}> Login voor<Text
+                            style={{fontWeight: "bold"}}> studenten</Text></Text>
+                    </View>
                 </Pressable>
+
+                <Pressable
+                    style={styles.button}
+                    onPress={() => Alert.alert('Nee je mag niet inloggen!')}>
+                    <View style={[{flex: 1, flexDirection: 'row'}]}>
+                        <SvgUri uri={"https://icons.getbootstrap.com/assets/icons/building.svg"} height={25} width={25}
+                                fill={"#334155"} style={styles.icon}/>
+                        <Text style={styles.loginText}> Login voor<Text
+                            style={{fontWeight: "bold"}}> bedrijven</Text></Text>
+                    </View>
+                </Pressable>
+                <View style={styles.createView}>
+                    <Text style={styles.createText}>Nog geen account?</Text>
+                    <Pressable
+                        style={styles.createButton}
+                        onPress={() => Alert.alert('Nee je mag niet inloggen!')}>
+                        <View style={{alignSelf: "center"}}>
+                            <Text style={{fontWeight: "bold", fontSize: 20, color: "#334155"}}>Inschrijven</Text>
+                        </View>
+                    </Pressable>
+                </View>
 
             </View>
         </ImageBackground>
@@ -32,7 +55,8 @@ export default function WelcomeScreen() {
 
 const styles = StyleSheet.create({
     main: {
-        // alignItems: 'center',
+        top: -30,
+        backgroundColor: "#F1F5F9"
     },
     button: {
         alignSelf: 'center',
@@ -42,8 +66,9 @@ const styles = StyleSheet.create({
         padding: 4,
         fontWeight: 'bold',
         fontFamily: 'Poppins',
-        width: 200,
-
+        width: 240,
+        height: 40,
+        margin: 30,
     },
     icon: {
         // color: '#334155',
@@ -51,7 +76,26 @@ const styles = StyleSheet.create({
 
     },
     loginText: {
-        fontSize: 16,
+        fontSize: 20,
+        color: "#334155"
+    },
+    createView: {
+        marginTop: 80,
+        backgroundColor: "#F1F5F9"
 
+    },
+    createButton: {
+        alignSelf: 'center',
+        borderStyle: 'solid',
+        borderColor: '#334155',
+        borderWidth: 2,
+        padding: 4,
+        fontWeight: 'bold',
+        fontFamily: 'Poppins',
+        width: 230,
+        height: 35,
+    },
+    createText: {
+        alignSelf: 'center',
     }
 });
