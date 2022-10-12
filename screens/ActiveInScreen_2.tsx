@@ -7,9 +7,9 @@ import {
 } from "react-native";
 import StyledButton from "../components/StyledButton";
 
-const image = require("../assets/images/background-v3.png");
+const image = require("../assets/images/background.png");
 
-export default function ActiveInScreen() {
+export default function ActiveInScreen_2() {
   return (
     <ImageBackground
       source={image}
@@ -23,44 +23,23 @@ export default function ActiveInScreen() {
         <View>
           <View style={styles.inputContainer}>
             <Text style={styles.header}>Vertel ons wat over uw bedrijf:</Text>
-            <Text style={styles.textInputLabel}>Wij zijn:</Text>
+            <Text style={styles.textInputLabel}>Wij zijn actief in:</Text>
             <TextInput
               style={styles.textInputSmall}
-              placeholder="One Place B.V"
+              placeholder="ICT, Logistiek"
               placeholderTextColor="'rgba(51, 65, 85, 58)'"
               maxLength={20}
             />
-            <Text style={styles.textInputLabel}>Wij zijn gevestigd in:</Text>
-            <TextInput
-              style={styles.textInputSmall}
-              placeholder="Zwolle, Dronten"
-              placeholderTextColor="'rgba(51, 65, 85, 58)'"
-              maxLength={20}
-            />
-            <Text style={styles.textInputLabel}>Onze bedrijfscultuur is:</Text>
+            <Text style={styles.textInputLabel}>
+              Korte samenvatting van ons bedrijf:
+            </Text>
             <TextInput
               style={styles.textInputLarge}
-              placeholder="Mensgericht. Wij vinden onze medewerkers erg belangrijk"
-              placeholderTextColor="'rgba(51, 65, 85, 58)'"
-              maxLength={20}
-            />
-            <Text style={styles.textInputLabel}>Wij zoeken:</Text>
-            <TextInput
-              style={styles.textInputLarge}
-              placeholder="Eenn doorzetter die graag aan het Werk wilt in onze nieuwe omgeving"
+              placeholder="One place is een educatief bedrijf dat zich focust op software ontwikkeling."
               placeholderTextColor="'rgba(51, 65, 85, 58)'"
               maxLength={20}
               multiline
-              numberOfLines={2}
-            />
-            <Text style={styles.textInputLabel}>Onze werkwijze is:</Text>
-            <TextInput
-              style={styles.textInputLarge}
-              placeholder="Wij werken met scrum binnen ons bedrijf."
-              placeholderTextColor="'rgba(51, 65, 85, 58)'"
-              maxLength={20}
-              multiline
-              numberOfLines={1}
+              numberOfLines={5}
             />
             <StyledButton title="Volgende stap" />
           </View>
@@ -83,7 +62,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   inputContainer: {
-    paddingTop: 150,
+    paddingTop: 200,
     width: "90%",
 
     display: "flex",

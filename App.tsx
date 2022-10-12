@@ -8,6 +8,7 @@ import { ImageBackground } from "react-native";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import { useFonts } from "expo-font";
 import ActiveInScreen from "./screens/ActiveInScreen";
+import ActiveInScreen_2 from "./screens/ActiveInScreen_2";
 
 const image = require("./assets/images/background.png");
 
@@ -46,7 +47,7 @@ export default function App() {
         </ImageBackground>
       );
     } else {
-      return <ActiveInScreen />;
+      return <ActiveInScreen_2 />;
     }
   }
 }
