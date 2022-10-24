@@ -4,6 +4,7 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import {Text, View} from '../components/Themed';
 import Svg, {SvgUri} from "react-native-svg";
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
+import StyledInput from "../components/StyledInput";
 
 
 const image = require("../assets/images/background.png");
@@ -15,35 +16,25 @@ export default function LoginStudentScreen() {
             flex: 1,
             justifyContent: "center",
             flexGrow: 1,
+
         }}>
-            <Text style={{top: -220, fontSize: 69, color: "#fff", alignSelf: "center"}}>OnePlace</Text>
-            <View style={styles.main}>
-                <KeyboardAwareScrollView>
-                    <TextInput defaultValue={"deez nuts"} style={styles.button}>
-
-                    </TextInput>
-
-
-                    <View style={styles.createView}>
-                        <Text style={styles.createText}>Nog geen account?</Text>
-                        <Pressable
-                            style={styles.createButton}
-                            onPress={() => Alert.alert('Nee je mag niet inloggen!')}>
-                            <View style={{alignSelf: "center"}}>
-                                <Text style={{fontWeight: "bold", fontSize: 20, color: "#334155"}}>Inschrijven</Text>
-                            </View>
-                        </Pressable>
-                    </View>
-                </KeyboardAwareScrollView>
-            </View>
+            {/*<Text style={{top: -220, fontSize: 69, color: "#fff", alignSelf: "center"}}>OnePlace</Text>*/}
+            <KeyboardAwareScrollView>
+                <View style={styles.main}>
+                    <StyledInput labelText={"E-Mail Adres"}/>
+                    <StyledInput labelText={"Wachtwoord"}/>
+                    
+                </View>
+            </KeyboardAwareScrollView>
         </ImageBackground>
     );
 }
 
 const styles = StyleSheet.create({
     main: {
-        backgroundColor: "#F1F5F9",
-        // flexGrow: 1
+        backgroundColor: 'rgba(52, 52, 52, 0)',
+        marginTop: 300,
+
     },
     button: {
         alignSelf: 'center',
@@ -72,6 +63,7 @@ const styles = StyleSheet.create({
 
     },
     createButton: {
+        backgroundColor: '#F1F5F9',
         alignSelf: 'center',
         borderStyle: 'solid',
         borderColor: '#334155',

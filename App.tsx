@@ -7,6 +7,7 @@ import Navigation from './navigation';
 import {ImageBackground} from "react-native";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import {useFonts} from "expo-font";
+import LoginStudentScreen from "./screens/LoginStudentScreen";
 
 const image = require("./assets/images/background.png");
 
@@ -42,7 +43,7 @@ export default function App() {
               </ImageBackground>
           );
       } else {
-          return <WelcomeScreen/>
+          return <LoginStudentScreen/>
       }
   }
 }
