@@ -19,10 +19,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   appButtonText: {
-    fontSize: 15,
+    fontSize: 20,
     color: "#F1F5F9",
     fontWeight: "bold",
     textAlign: "center",
-    margin: 10,
+    margin: 7,
   },
 });
