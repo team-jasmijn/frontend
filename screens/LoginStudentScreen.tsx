@@ -23,8 +23,7 @@ export default function LoginStudentScreen() {
             flexGrow: 1,
 
         }}>
-            {/*<Text style={{top: -220, fontSize: 69, color: "#fff", alignSelf: "center"}}>OnePlace</Text>*/}
-            <KeyboardAwareScrollView>
+                    <KeyboardAwareScrollView>
                 <View style={styles.main}>
                     <StyledInput labelText={"E-Mail Adres"}/>
                     <StyledInput labelText={"Wachtwoord"}/>

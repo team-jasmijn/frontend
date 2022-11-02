@@ -10,7 +10,6 @@ const image = require("../assets/images/background.png");
 
 
 export default function WelcomeScreen({ navigation: { navigate } }) {
-    // const navigation = useNavigation();
 
     return (
         <ImageBackground source={image} resizeMode="stretch" style={{
