@@ -12,7 +12,8 @@ import LoginStudentScreen from "./screens/LoginStudentScreen";
 import {NavigationContainer, useNavigation} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
-
+import ActiveInScreen from "./screens/ActiveInScreen";
+import ActiveInScreen2 from "./screens/ActiveInScreen_2";
 const image = require("./assets/images/background.png");
 
 let isLoggedIn = false; // For testing, will require further programming
@@ -59,6 +60,5 @@ export default function App() {
                 </NavigationContainer>
             );
         }
-
     }
 }

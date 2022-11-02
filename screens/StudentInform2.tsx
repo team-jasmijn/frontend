@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import {
   View,
   StyleSheet,
@@ -8,10 +7,11 @@ import {
 } from "react-native";
 import StyledButton from "../components/StyledButton";
 
+import List from "../components/List";
+
 const image = require("../assets/images/background.png");
 
-export default function ActiveInScreen_2() {
-  const navigation = useNavigation();
+export default function StudentInform2() {
   return (
     <ImageBackground
       source={image}
@@ -24,26 +24,21 @@ export default function ActiveInScreen_2() {
       <View style={styles.container}>
         <View>
           <View style={styles.inputContainer}>
-            <Text style={styles.header}>Vertel ons wat over uw bedrijf:</Text>
-            <Text style={styles.textInputLabel}>Wij zijn actief in:</Text>
+            <Text style={styles.header}>Vertel ons wat over jezelf:</Text>
+            <Text style={styles.textInputLabel}>
+              Dit zijn mijn kwaliteiten:
+            </Text>
+            <List placeHoldeText="Vrolijk" height={70} />
+            <Text style={styles.textInputLabel}>Dit zijn mijn Hobbys:</Text>
+            <List placeHoldeText="Gamen" height={70} />
+            <Text style={styles.textInputLabel}>Ik volg de studie:</Text>
             <TextInput
               style={styles.textInputSmall}
-              placeholder="ICT, Logistiek"
+              placeholder="Software Developer"
               placeholderTextColor="'rgba(51, 65, 85, 58)'"
               maxLength={20}
             />
-            <Text style={styles.textInputLabel}>
-              Korte samenvatting van ons bedrijf:
-            </Text>
-            <TextInput
-              style={styles.textInputLarge}
-              placeholder="One place is een educatief bedrijf dat zich focust op software ontwikkeling."
-              placeholderTextColor="'rgba(51, 65, 85, 58)'"
-              maxLength={20}
-              multiline
-              numberOfLines={5}
-            />
-            <StyledButton title="Volgende stap" />
+            <StyledButton title="Begin met mijn zoektocht" />
           </View>
         </View>
       </View>
@@ -78,6 +73,7 @@ const styles = StyleSheet.create({
     height: 40,
     fontSize: 15,
     marginBottom: 10,
+    padding: 10,
   },
   textInputLarge: {
     borderColor: "#334155",
@@ -90,4 +86,14 @@ const styles = StyleSheet.create({
   textInputLabel: {
     marginTop: 10,
   },
+  dropDown: {
+    borderRadius: 0,
+    backgroundColor: "transparent",
+    width: "85%",
+    marginBottom: 10,
+  },
+  safeContianer: {
+    height: 70,
+  },
+  objectiveScrollview: {},
 });
