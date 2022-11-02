@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins',
         width: 240,
         height: 40,
+        backgroundColor: '#F1F5F9'
 
     },
     labelText: {
