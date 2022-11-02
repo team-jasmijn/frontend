@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   Text,
@@ -6,10 +6,10 @@ import {
   ScrollView,
   Pressable,
   TextInput,
-} from "react-native";
-import { useState } from "react";
-import { SvgUri } from "react-native-svg";
-import { StyleSheet } from "react-native";
+} from 'react-native';
+import { useState } from 'react';
+import { SvgUri } from 'react-native-svg';
+import { StyleSheet } from 'react-native';
 
 export default function List({
   placeHoldeText,
@@ -18,12 +18,12 @@ export default function List({
   placeHoldeText: string;
   height: number;
 }) {
-  const [data, setData] = useState([{ item: "Example", key: "Example" }]);
-  const [item, setItem] = useState("");
+  const [data, setData] = useState([{ item: 'Example', key: 'Example' }]);
+  const [item, setItem] = useState('');
 
   function remove(itemKey: string) {
-    setData((current) =>
-      current.filter((item) => {
+    setData(current =>
+      current.filter(item => {
         return item.key !== itemKey;
       })
     );
@@ -36,7 +36,7 @@ export default function List({
         placeholder={placeHoldeText}
         placeholderTextColor="'rgba(51, 65, 85, 58)'"
         maxLength={20}
-        onChangeText={(name) => setItem(name)}
+        onChangeText={name => setItem(name)}
         value={item}
         onSubmitEditing={() => {
           if (item) setData([...data, { item: item, key: item }]);
@@ -44,13 +44,13 @@ export default function List({
       />
 
       <SafeAreaView style={{ height: height }}>
-        <ScrollView style={styles.objectiveScrollview} indicatorStyle={"black"}>
-          {data.map((item) => {
+        <ScrollView style={styles.objectiveScrollview} indicatorStyle={'black'}>
+          {data.map(item => {
             return (
               <View
                 style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
                   padding: 5,
                 }}
               >
@@ -58,11 +58,11 @@ export default function List({
                 <Pressable style={{}} onPress={() => remove(item.key)}>
                   <SvgUri
                     uri={
-                      "https://icons.getbootstrap.com/assets/icons/trash.svg"
+                      'https://icons.getbootstrap.com/assets/icons/trash.svg'
                     }
                     height={25}
                     width={25}
-                    fill={"#334155"}
+                    fill={'#334155'}
                   />
                 </Pressable>
               </View>
@@ -77,8 +77,8 @@ export default function List({
 const styles = StyleSheet.create({
   objectiveScrollview: {},
   textInputSmall: {
-    borderColor: "#334155",
-    color: "#334155",
+    borderColor: '#334155',
+    color: '#334155',
     borderWidth: 1,
     height: 40,
     fontSize: 15,
