@@ -13,9 +13,7 @@ import {NavigationContainer, useNavigation} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
 import ActiveInScreen from "./screens/ActiveInScreen";
-import StudentInform from "./screens/StudentInform";
-import StudentInform2 from "./screens/StudentInform2";
-
+import ActiveInScreen2 from "./screens/ActiveInScreen_2";
 const image = require("./assets/images/background.png");
 
 let isLoggedIn = false; // For testing, will require further programming
