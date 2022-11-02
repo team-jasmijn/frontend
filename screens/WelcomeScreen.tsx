@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
         margin: 30,
     },
     icon: {
-        // color: '#334155',
         alignSelf: 'flex-start',
 
     },
