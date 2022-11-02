@@ -4,21 +4,21 @@ import {
   ImageBackground,
   Text,
   TextInput,
-} from "react-native";
-import StyledButton from "../components/StyledButton";
+} from 'react-native';
+import StyledButton from '../components/StyledButton';
 
-import List from "../components/List";
+import List from '../components/List';
 
-const image = require("../assets/images/background.png");
+const image = require('../assets/images/background.png');
 
 export default function StudentInform2() {
   return (
     <ImageBackground
       source={image}
-      resizeMode="stretch"
+      resizeMode='stretch'
       style={{
         flex: 1,
-        justifyContent: "center",
+        justifyContent: 'center',
       }}
     >
       <View style={styles.container}>
@@ -28,17 +28,17 @@ export default function StudentInform2() {
             <Text style={styles.textInputLabel}>
               Dit zijn mijn kwaliteiten:
             </Text>
-            <List placeHoldeText="Vrolijk" height={70} />
+            <List placeHoldeText='Vrolijk' height={70} />
             <Text style={styles.textInputLabel}>Dit zijn mijn Hobbys:</Text>
-            <List placeHoldeText="Gamen" height={70} />
+            <List placeHoldeText='Gamen' height={70} />
             <Text style={styles.textInputLabel}>Ik volg de studie:</Text>
             <TextInput
               style={styles.textInputSmall}
-              placeholder="Software Developer"
+              placeholder='Software Developer'
               placeholderTextColor="'rgba(51, 65, 85, 58)'"
               maxLength={20}
             />
-            <StyledButton title="Begin met mijn zoektocht" />
+            <StyledButton title='Begin met mijn zoektocht' />
           </View>
         </View>
       </View>
@@ -50,25 +50,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 45,
-    alignItems: "center",
+    alignItems: 'center',
   },
   header: {
     fontSize: 25,
-    textAlign: "center",
+    textAlign: 'center',
     margin: 10,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   inputContainer: {
     paddingTop: 200,
-    width: "90%",
+    width: '90%',
 
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   textInputSmall: {
-    borderColor: "#334155",
-    color: "#334155",
+    borderColor: '#334155',
+    color: '#334155',
     borderWidth: 1,
     height: 40,
     fontSize: 15,
@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   textInputLarge: {
-    borderColor: "#334155",
-    color: "#334155",
+    borderColor: '#334155',
+    color: '#334155',
     borderWidth: 1,
     height: 60,
     fontSize: 15,
@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
   },
   dropDown: {
     borderRadius: 0,
-    backgroundColor: "transparent",
-    width: "85%",
+    backgroundColor: 'transparent',
+    width: '85%',
     marginBottom: 10,
   },
   safeContianer: {

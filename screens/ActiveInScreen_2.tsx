@@ -1,24 +1,24 @@
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from '@react-navigation/native';
 import {
   View,
   StyleSheet,
   ImageBackground,
   Text,
   TextInput,
-} from "react-native";
-import StyledButton from "../components/StyledButton";
+} from 'react-native';
+import StyledButton from '../components/StyledButton';
 
-const image = require("../assets/images/background.png");
+const image = require('../assets/images/background.png');
 
 export default function ActiveInScreen_2() {
   const navigation = useNavigation();
   return (
     <ImageBackground
       source={image}
-      resizeMode="stretch"
+      resizeMode='stretch'
       style={{
         flex: 1,
-        justifyContent: "center",
+        justifyContent: 'center',
       }}
     >
       <View style={styles.container}>
@@ -28,7 +28,7 @@ export default function ActiveInScreen_2() {
             <Text style={styles.textInputLabel}>Wij zijn actief in:</Text>
             <TextInput
               style={styles.textInputSmall}
-              placeholder="ICT, Logistiek"
+              placeholder='ICT, Logistiek'
               placeholderTextColor="'rgba(51, 65, 85, 58)'"
               maxLength={20}
             />
@@ -37,13 +37,13 @@ export default function ActiveInScreen_2() {
             </Text>
             <TextInput
               style={styles.textInputLarge}
-              placeholder="One place is een educatief bedrijf dat zich focust op software ontwikkeling."
+              placeholder='One place is een educatief bedrijf dat zich focust op software ontwikkeling.'
               placeholderTextColor="'rgba(51, 65, 85, 58)'"
               maxLength={20}
               multiline
               numberOfLines={5}
             />
-            <StyledButton title="Volgende stap" />
+            <StyledButton title='Volgende stap' />
           </View>
         </View>
       </View>
@@ -55,33 +55,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 45,
-    alignItems: "center",
+    alignItems: 'center',
   },
   header: {
     fontSize: 25,
-    textAlign: "center",
+    textAlign: 'center',
     margin: 10,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   inputContainer: {
     paddingTop: 200,
-    width: "90%",
+    width: '90%',
 
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   textInputSmall: {
-    borderColor: "#334155",
-    color: "#334155",
+    borderColor: '#334155',
+    color: '#334155',
     borderWidth: 1,
     height: 40,
     fontSize: 15,
     marginBottom: 10,
   },
   textInputLarge: {
-    borderColor: "#334155",
-    color: "#334155",
+    borderColor: '#334155',
+    color: '#334155',
     borderWidth: 1,
     height: 60,
     fontSize: 15,

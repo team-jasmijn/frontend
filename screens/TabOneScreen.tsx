@@ -5,12 +5,13 @@ import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 import { useWindowDimensions } from 'react-native';
 
-export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function TabOneScreen({
+  navigation,
+}: RootTabScreenProps<'TabOne'>) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Home screen</Text>
-      <View style={styles.separator} lightColor="#F1F5F9"  />
-
+      <View style={styles.separator} lightColor='#F1F5F9' />
     </View>
   );
 }
