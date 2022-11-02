@@ -3,7 +3,6 @@ import React from "react";
 import {View} from "./Themed";
 import {SvgUri} from "react-native-svg";
 
-// "https://icons.getbootstrap.com/assets/icons/person.svg"
 export default class StyledButton extends React.Component {
     render(onPress, title, svg, titleBold) {
         return (
