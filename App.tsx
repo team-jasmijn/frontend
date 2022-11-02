@@ -50,7 +50,6 @@ export default function App() {
                 </ImageBackground>
             );
         } else {
-
             return (
                 <NavigationContainer>
                     <Stack.Navigator initialRouteName="WelcomeScreen">
