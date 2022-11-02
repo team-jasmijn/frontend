@@ -3,12 +3,15 @@ import {Alert, Button, ImageBackground, Pressable, StyleSheet} from 'react-nativ
 import EditScreenInfo from '../components/EditScreenInfo';
 import {Text, View} from '../components/Themed';
 import Svg, {SvgUri} from "react-native-svg";
+import {useNavigation} from "@react-navigation/native";
 
 
 const image = require("../assets/images/background.png");
 
 
-export default function WelcomeScreen() {
+export default function WelcomeScreen({ navigation: { navigate } }) {
+    // const navigation = useNavigation();
+
     return (
         <ImageBackground source={image} resizeMode="stretch" style={{
             flex: 1,
@@ -18,7 +21,7 @@ export default function WelcomeScreen() {
             <View style={styles.main}>
                 <Pressable
                     style={styles.button}
-                    onPress={() => Alert.alert('Nee je mag niet inloggen!')}>
+                    onPress={() => navigate('LoginStudentScreen') }>
                     <View style={[{flex: 1, flexDirection: 'row'}]}>
                         <SvgUri uri={"https://icons.getbootstrap.com/assets/icons/person.svg"} height={25} width={25}
                                 fill={"#334155"} style={styles.icon}/>
@@ -29,7 +32,7 @@ export default function WelcomeScreen() {
 
                 <Pressable
                     style={styles.button}
-                    onPress={() => Alert.alert('Nee je mag niet inloggen!')}>
+                    onPress={() => Alert.alert('Werkt nog niet!')}>
                     <View style={[{flex: 1, flexDirection: 'row'}]}>
                         <SvgUri uri={"https://icons.getbootstrap.com/assets/icons/building.svg"} height={25} width={25}
                                 fill={"#334155"} style={styles.icon}/>
@@ -41,17 +44,23 @@ export default function WelcomeScreen() {
                     <Text style={styles.createText}>Nog geen account?</Text>
                     <Pressable
                         style={styles.createButton}
-                        onPress={() => Alert.alert('Nee je mag niet inloggen!')}>
+                        onPress={() => Alert.alert('Werkt nog niet!')}>
                         <View style={{alignSelf: "center"}}>
                             <Text style={{fontWeight: "bold", fontSize: 20, color: "#334155"}}>Inschrijven</Text>
                         </View>
                     </Pressable>
                 </View>
 
+
             </View>
+
         </ImageBackground>
+
     );
+
+
 }
+
 
 const styles = StyleSheet.create({
     main: {
