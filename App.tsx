@@ -12,6 +12,9 @@ import LoginStudentScreen from "./screens/LoginStudentScreen";
 import {NavigationContainer, useNavigation} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
+import ActiveInScreen from "./screens/ActiveInScreen";
+import StudentInform from "./screens/StudentInform";
+import StudentInform2 from "./screens/StudentInform2";
 
 const image = require("./assets/images/background.png");
 
@@ -59,6 +62,5 @@ export default function App() {
                 </NavigationContainer>
             );
         }
-
     }
 }

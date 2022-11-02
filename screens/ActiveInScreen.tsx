@@ -6,6 +6,7 @@ import {
   TextInput,
 } from "react-native";
 import StyledButton from "../components/StyledButton";
+import * as React from "react";
 
 const image = require("../assets/images/background-v3.png");
 
