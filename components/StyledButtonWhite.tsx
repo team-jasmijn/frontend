@@ -9,30 +9,38 @@ import React from 'react';
 import { View } from './Themed';
 import { SvgUri } from 'react-native-svg';
 
-export default class StyledButton extends React.Component {
-  render(onPress, title, svg, titleBold) {
-    return (
-      <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
-        <View style={[{ flex: 1, flexDirection: 'row' }]}>
-          <SvgUri
-            uri={this.props.svg}
-            height={25}
-            width={25}
-            fill={'#334155'}
-            style={styles.icon}
-          />
-          <Text style={styles.appButtonText}>
-            {' '}
-            {this.props.title}
-            <Text style={{ fontWeight: 'bold' }}>
-              {' '}
-              {this.props.titleBold}
-            </Text>{' '}
-          </Text>
-        </View>
-      </TouchableOpacity>
-    );
-  }
+export interface StyledButtonWhiteProps {
+  // onPress, title, svg, titleBold
+  onPress?: () => void;
+  title: string;
+  svg: string;
+  titleBold?: string;
+}
+
+export default function StyledButton({
+  onPress,
+  title,
+  svg,
+  titleBold,
+}: StyledButtonWhiteProps) {
+  return (
+    <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
+      <View style={[{ flex: 1, flexDirection: 'row' }]}>
+        <SvgUri
+          uri={svg}
+          height={25}
+          width={25}
+          fill={'#334155'}
+          style={styles.icon}
+        />
+        <Text style={styles.appButtonText}>
+          {' '}
+          {title}
+          <Text style={{ fontWeight: 'bold' }}> {titleBold}</Text>{' '}
+        </Text>
+      </View>
+    </TouchableOpacity>
+  );
 }
 
 const styles = StyleSheet.create({

@@ -14,11 +14,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import ActiveInScreen from './screens/ActiveInScreen';
 import ActiveInScreen2 from './screens/ActiveInScreen_2';
+import { RootStackParamList } from './types';
 const image = require('./assets/images/background.png');
 
 let isLoggedIn = false; // For testing, will require further programming
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   const isLoadingComplete = useCachedResources();

@@ -1,18 +1,16 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import React from 'react';
 
-export default class StyledInput extends React.Component {
-  constructor(props: { labelText: String }) {
-    super(props);
-  }
-  render() {
-    return (
-      <View style={styles.view}>
-        <Text style={styles.labelText}>{this.props.labelText}</Text>
-        <TextInput defaultValue={''} style={styles.input}></TextInput>
-      </View>
-    );
-  }
+export interface StyledInputProps {
+  labelText: string;
+}
+export default function StyledInput({ labelText }: StyledInputProps) {
+  return (
+    <View style={styles.view}>
+      <Text style={styles.labelText}>{labelText}</Text>
+      <TextInput defaultValue={''} style={styles.input}></TextInput>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
