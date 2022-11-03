@@ -1,19 +1,10 @@
-import {
-  Alert,
-  Button,
-  ImageBackground,
-  Pressable,
-  StyleSheet,
-} from 'react-native';
+import { Alert, ImageBackground, Pressable, StyleSheet } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import Svg, { SvgUri } from 'react-native-svg';
-import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
-const image = require('../assets/images/background.png');
+import SetupWrapper from '../components/SetupWrapper';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -28,19 +19,7 @@ export default function WelcomeScreen({
   navigation: { navigate },
 }: WelcomeScreenProps) {
   return (
-    <ImageBackground
-      source={image}
-      resizeMode='stretch'
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-      }}
-    >
-      <Text
-        style={{ top: -220, fontSize: 69, color: '#fff', alignSelf: 'center' }}
-      >
-        OnePlace
-      </Text>
+    <SetupWrapper>
       <View style={styles.main}>
         <Pressable
           style={styles.button}
@@ -83,7 +62,7 @@ export default function WelcomeScreen({
           <Text style={styles.createText}>Nog geen account?</Text>
           <Pressable
             style={styles.createButton}
-            onPress={() => Alert.alert('Werkt nog niet!')}
+            onPress={() => navigate('SignupStudentOrCompanyScreen')}
           >
             <View style={{ alignSelf: 'center' }}>
               <Text
@@ -95,7 +74,7 @@ export default function WelcomeScreen({
           </Pressable>
         </View>
       </View>
-    </ImageBackground>
+    </SetupWrapper>
   );
 }
 

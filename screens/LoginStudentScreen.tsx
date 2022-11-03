@@ -1,37 +1,19 @@
-import {
-  Alert,
-  Button,
-  ImageBackground,
-  Pressable,
-  StyleSheet,
-  TextInput,
-} from 'react-native';
+import { Button, StyleSheet } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import Svg, { SvgUri } from 'react-native-svg';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import StyledInput from '../components/StyledInput';
 import StyledButton from '../components/StyledButton';
 import StyledButtonWhite from '../components/StyledButtonWhite';
 import { useNavigation } from '@react-navigation/native';
-
-const image = require('../assets/images/background.png');
+import SetupWrapper from '../components/SetupWrapper';
 
 export default function LoginStudentScreen() {
   const navigation = useNavigation();
 
   return (
-    <ImageBackground
-      source={image}
-      resizeMode='stretch'
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        flexGrow: 1,
-      }}
-    >
-      <KeyboardAwareScrollView style={{}}>
+    <SetupWrapper>
+      <KeyboardAwareScrollView>
         <View style={styles.main}>
           <StyledInput labelText={'E-Mail Adres'} />
           <StyledInput labelText={'Wachtwoord'} />
@@ -63,14 +45,13 @@ export default function LoginStudentScreen() {
           }}
         />
       </KeyboardAwareScrollView>
-    </ImageBackground>
+    </SetupWrapper>
   );
 }
 
 const styles = StyleSheet.create({
   main: {
     backgroundColor: 'rgba(52, 52, 52, 0)',
-    marginTop: 300,
   },
   UnderText: {
     alignSelf: 'center',
