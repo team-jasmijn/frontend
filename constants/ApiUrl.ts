@@ -1,10 +1,10 @@
 const ApiUrl =
-  process.env.API_URL || "https://bami-backend.preview.marnixah.com/";
+  process.env.API_URL || 'https://bami-backend.preview.marnixah.com/';
 
 // If last character is not a slash, raise an error
-if (ApiUrl.slice(-1) !== "/")
+if (ApiUrl.slice(-1) !== '/')
   throw new Error(
-    "API_URL environment variable must end with a slash. Please update your environment."
+    'API_URL environment variable must end with a slash. Please update your environment.'
   );
 
 export default ApiUrl;

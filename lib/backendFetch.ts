@@ -1,13 +1,13 @@
-import ApiUrl from "../constants/ApiUrl";
+import ApiUrl from '../constants/ApiUrl';
 
 export default async function backendFetch(
-  method: "POST" | "GET" | "PUT" | "PATCH" | "DELETE",
+  method: 'POST' | 'GET' | 'PUT' | 'PATCH' | 'DELETE',
   endpoint: string,
   data?: any,
   additionalHeaders?: any
 ) {
   const headers = {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
     ...additionalHeaders,
   };
 
