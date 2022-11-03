@@ -10,10 +10,23 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import Svg, { SvgUri } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../types';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const image = require('../assets/images/background.png');
 
-export default function WelcomeScreen({ navigation: { navigate } }) {
+type ProfileScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'WelcomeScreen'
+>;
+
+export interface WelcomeScreenProps {
+  navigation: ProfileScreenNavigationProp;
+}
+
+export default function WelcomeScreen({
+  navigation: { navigate },
+}: WelcomeScreenProps) {
   return (
     <ImageBackground
       source={image}

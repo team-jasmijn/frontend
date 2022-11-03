@@ -1,14 +1,16 @@
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import React from 'react';
 
-export default class StyledButton extends React.Component {
-  render(onPress, title) {
-    return (
-      <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
-        <Text style={styles.appButtonText}>{this.props.title}</Text>
-      </TouchableOpacity>
-    );
-  }
+export interface StyledButtonProps {
+  onPress?: () => void;
+  title: string;
+}
+
+export default function StyledButton({ onPress, title }: StyledButtonProps) {
+  return (
+    <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
+      <Text style={styles.appButtonText}>{title}</Text>
+    </TouchableOpacity>
+  );
 }
 
 const styles = StyleSheet.create({

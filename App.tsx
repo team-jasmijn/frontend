@@ -14,11 +14,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import ActiveInScreen from './screens/ActiveInScreen';
 import ActiveInScreen2 from './screens/ActiveInScreen_2';
+import { RootStackParamList } from './types';
+import StudentInform from './screens/StudentInform';
+import StudentInform2 from './screens/StudentInform2';
 const image = require('./assets/images/background.png');
 
 let isLoggedIn = false; // For testing, will require further programming
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -64,6 +67,16 @@ export default function App() {
             <Stack.Screen
               name='LoginStudentScreen'
               component={LoginStudentScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name='StudentInform'
+              component={StudentInform}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name='StudentInform2'
+              component={StudentInform2}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
