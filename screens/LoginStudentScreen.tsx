@@ -15,11 +15,49 @@ import StyledInput from '../components/StyledInput';
 import StyledButton from '../components/StyledButton';
 import StyledButtonWhite from '../components/StyledButtonWhite';
 import { useNavigation } from '@react-navigation/native';
+import backendFetch from '../lib/backendFetch';
+import { useState } from 'react';
+import * as SecureStore from 'expo-secure-store';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types';
+
+type ProfileScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'LoginStudentScreen'
+>;
+
+export interface LoginScreenProps {
+  navigation: ProfileScreenNavigationProp;
+}
 
 const image = require('../assets/images/background.png');
 
-export default function LoginStudentScreen() {
+export default function LoginStudentScreen({
+  navigation: { navigate },
+}: LoginScreenProps) {
   const navigation = useNavigation();
+  const [textMail, setTextMail] = useState('');
+  const [textPass, setTextPass] = useState('');
+
+  const setToken = async (token: string) => {
+    console.log(token)
+    console.log("aaa")
+    let token2 = JSON.stringify(token)
+    console.log(token2)
+    await SecureStore.setItemAsync('login-token', token2);
+  };
+
+  async function sendLogin() {
+    let bdata = await backendFetch('POST', 'api-token-auth/', {
+      username: textMail,
+      password: textPass,
+    });
+    setToken(bdata).catch( (err) => {
+      console.error(err);
+    });
+      console.log("hi");
+      navigate('HomeScreen');
+  }
 
   return (
     <ImageBackground
@@ -33,8 +71,16 @@ export default function LoginStudentScreen() {
     >
       <KeyboardAwareScrollView style={{}}>
         <View style={styles.main}>
-          <StyledInput labelText={'E-Mail Adres'} />
-          <StyledInput labelText={'Wachtwoord'} />
+          <StyledInput
+            labelText={'E-Mail Adres'}
+            valueText={textMail}
+            valueTextSetter={setTextMail}
+          />
+          <StyledInput
+            labelText={'Wachtwoord'}
+            valueText={textPass}
+            valueTextSetter={setTextPass}
+          />
           <View
             style={{
               width: 240,
@@ -42,7 +88,13 @@ export default function LoginStudentScreen() {
               backgroundColor: 'rgba(52, 52, 52, 0)',
             }}
           >
-            <StyledButton title={'Login als student'} />
+            <StyledButton
+              title={'Login als student'}
+              onPress={() => {
+                sendLogin().catch(function (err) {
+                });
+              }}
+            />
             <Text style={styles.UnderText}>OF</Text>
             <StyledButtonWhite
               title={'Login with'}

@@ -1,14 +1,26 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native';
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 export interface StyledInputProps {
   labelText: string;
+  valueText: string;
+  valueTextSetter: Dispatch<SetStateAction<string>>;
 }
-export default function StyledInput({ labelText }: StyledInputProps) {
+
+export default function StyledInput({
+  labelText,
+  valueText,
+  valueTextSetter,
+}: StyledInputProps) {
   return (
     <View style={styles.view}>
       <Text style={styles.labelText}>{labelText}</Text>
-      <TextInput defaultValue={''} style={styles.input}></TextInput>
+      <TextInput
+        defaultValue={''}
+        style={styles.input}
+        onChangeText={valueText => valueTextSetter(valueText)}
+        value={valueText}
+      />
     </View>
   );
 }
