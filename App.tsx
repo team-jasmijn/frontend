@@ -17,6 +17,7 @@ import ActiveInScreen2 from './screens/ActiveInScreen_2';
 import { RootStackParamList } from './types';
 import StudentInform from './screens/StudentInform';
 import StudentInform2 from './screens/StudentInform2';
+import SignUp from './screens/SignUpScreen';
 const image = require('./assets/images/background.png');
 
 let isLoggedIn = false; // For testing, will require further programming
@@ -67,6 +68,11 @@ export default function App() {
             <Stack.Screen
               name='LoginStudentScreen'
               component={LoginStudentScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name='SignupStudentOrCompanyScreen'
+              component={SignUp}
               options={{ headerShown: false }}
             />
             <Stack.Screen

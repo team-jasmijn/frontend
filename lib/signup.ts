@@ -15,12 +15,14 @@ export default async function signup({
   username,
   type,
 }: SignupOptions): Promise<UserCreatedDTO> {
-  const response = await backendFetch('POST', 'users/', {
+  const response = await backendFetch<UserCreatedDTO>('POST', 'users/', {
     email,
     password,
     username,
     type,
   });
+
+  // @TODO: Make a login request here
 
   return response;
 }

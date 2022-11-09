@@ -3,11 +3,20 @@ import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 export interface StyledButtonProps {
   onPress?: () => void;
   title: string;
+  disabled?: boolean;
 }
 
-export default function StyledButton({ onPress, title }: StyledButtonProps) {
+export default function StyledButton({
+  onPress,
+  title,
+  disabled,
+}: StyledButtonProps) {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.appButtonContainer, disabled && styles.disabled]}
+      disabled={disabled}
+    >
       <Text style={styles.appButtonText}>{title}</Text>
     </TouchableOpacity>
   );
@@ -19,6 +28,9 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: '#334155',
     borderWidth: 1,
+  },
+  disabled: {
+    backgroundColor: '#A0AEC0',
   },
   appButtonText: {
     fontSize: 20,

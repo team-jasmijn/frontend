@@ -17,7 +17,13 @@ export default function SetupWrapper({ children }: SetupWrapperProps) {
       }}
     >
       <Text
-        style={{ top: -220, fontSize: 69, color: '#fff', alignSelf: 'center' }}
+        style={{
+          top: 30,
+          fontSize: 69,
+          color: '#fff',
+          alignSelf: 'center',
+          position: 'absolute',
+        }}
       >
         OnePlace
       </Text>

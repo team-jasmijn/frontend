@@ -1,6 +1,13 @@
 import ApiUrl from '../constants/ApiUrl';
 
-export default async function backendFetch(
+export class BackendError extends Error {
+  constructor(message: { [key: string]: string[] }) {
+    super(JSON.stringify(message));
+    this.name = 'BackendError';
+  }
+}
+
+export default async function backendFetch<T>(
   method: 'POST' | 'GET' | 'PUT' | 'PATCH' | 'DELETE',
   endpoint: string,
   data?: any,
@@ -20,8 +27,8 @@ export default async function backendFetch(
   const resData = await res.json();
 
   if (!res.ok) {
-    throw new Error(resData);
+    throw new BackendError(resData);
   }
 
-  return resData;
+  return resData as T;
 }
