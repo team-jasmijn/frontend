@@ -1,36 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
 import { ImageBackground } from 'react-native';
 import WelcomeScreen from './screens/WelcomeScreen';
-
 import { useFonts } from 'expo-font';
 import LoginStudentScreen from './screens/LoginStudentScreen';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import ActiveInScreen from './screens/ActiveInScreen';
-import ActiveInScreen2 from './screens/ActiveInScreen_2';
 import { RootStackParamList } from './types';
 import StudentInform from './screens/StudentInform';
 import StudentInform2 from './screens/StudentInform2';
-const image = require('./assets/images/background.png');
+import HomeScreen from './screens/HomeScreen';
 
-let isLoggedIn = false; // For testing, will require further programming
+import * as SecureStore from 'expo-secure-store';
+import backendFetch from './lib/backendFetch';
+import { useEffect, useState } from 'react';
+import {DefaultRouterOptions} from "@react-navigation/routers/src/types";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
+  const [isLoggedIn, setLoggedIn] = useState(false);
   const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
-
   const [fontsLoaded] = useFonts({
     Poppins: require('./assets/fonts/Poppins-Regular.ttf'),
     'Poppins-bold': require('./assets/fonts/Poppins-Bold.ttf'),
   });
+
+  useEffect(() => {
+    async function getToken() {
+      let token = await SecureStore.getItemAsync('login-token');
+      if (token) {
+        setLoggedIn(true);
+      }
+      return token
+    };
+
+    getToken().then(r => console.log("token " + r)); // Consider keeping this for debug purposes until there's a real homescreen with data
+  }, []);
 
   if (!fontsLoaded) {
     return null;
@@ -39,49 +46,39 @@ export default function App() {
   if (!isLoadingComplete) {
     return null;
   } else {
-    if (isLoggedIn) {
-      return (
-        <ImageBackground
-          source={image}
-          resizeMode='stretch'
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-          }}
+    return (
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName={isLoggedIn ?
+              "HomeScreen" : "WelcomeScreen" }
         >
-          <SafeAreaProvider>
-            {/*<Navigation colorScheme={colorScheme} />*/}
-            {/*<StatusBar />*/}
-          </SafeAreaProvider>
-        </ImageBackground>
-      );
-    } else {
-      return (
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName='WelcomeScreen'>
-            <Stack.Screen
-              name='WelcomeScreen'
-              component={WelcomeScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name='LoginStudentScreen'
-              component={LoginStudentScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name='StudentInform'
-              component={StudentInform}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name='StudentInform2'
-              component={StudentInform2}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      );
-    }
+          <Stack.Screen
+            name='WelcomeScreen'
+            component={WelcomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='LoginStudentScreen'
+            component={LoginStudentScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='StudentInform'
+            component={StudentInform}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='StudentInform2'
+            component={StudentInform2}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='HomeScreen'
+            component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
   }
 }
