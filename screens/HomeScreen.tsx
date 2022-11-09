@@ -1,4 +1,4 @@
-import {Button, ImageBackground, StyleSheet} from 'react-native';
+import { Button, ImageBackground, StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
@@ -41,17 +41,19 @@ export default function HomeScreen({
       </Text>
 
       <Button
-          title='Back'
-          onPress={() => {
-            navigation.goBack();
-          }}
+        title='Back'
+        onPress={() => {
+          navigation.goBack();
+        }}
       />
 
       <Button
-          title='Delete token '
-          onPress={async () => {
-            await SecureStore.deleteItemAsync('login-token').then(r => navigate('WelcomeScreen') )
-          }}
+        title='Delete token '
+        onPress={async () => {
+          await SecureStore.deleteItemAsync('login-token').then(r =>
+            navigate('WelcomeScreen')
+          );
+        }}
       />
       <View style={styles.main}></View>
     </ImageBackground>

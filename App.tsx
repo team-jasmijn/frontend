@@ -31,7 +31,7 @@ const validateToken = () => {
 
 let isLoggedIn = false;
 getToken().then(token => {
-  console.log("hi2")
+  console.log('hi2');
   if (token) {
     isLoggedIn = true;
   }
@@ -50,10 +50,10 @@ export default function App() {
   useEffect(() => {
     if (isLoggedIn) {
       setInitialRoute('HomeScreen');
-      console.log("logged in!!!!")
+      console.log('logged in!!!!');
     } else {
       setInitialRoute('WelcomeScreen');
-      console.log("Not logged in!!")
+      console.log('Not logged in!!');
     }
   }, []);
 
@@ -64,12 +64,11 @@ export default function App() {
   if (!isLoadingComplete) {
     return null;
   } else {
-
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={initialRoute ? undefined : 'WelcomeScreen'}>
-
+          initialRouteName={initialRoute ? undefined : 'WelcomeScreen'}
+        >
           <Stack.Screen
             name='WelcomeScreen'
             component={WelcomeScreen}

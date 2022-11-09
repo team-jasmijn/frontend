@@ -5,12 +5,14 @@ export interface StyledInputProps {
   labelText: string;
   valueText: string;
   valueTextSetter: Dispatch<SetStateAction<string>>;
+  secureTextEntry: boolean;
 }
 
 export default function StyledInput({
   labelText,
   valueText,
   valueTextSetter,
+    secureTextEntry,
 }: StyledInputProps) {
   return (
     <View style={styles.view}>
@@ -20,6 +22,7 @@ export default function StyledInput({
         style={styles.input}
         onChangeText={valueText => valueTextSetter(valueText)}
         value={valueText}
+        secureTextEntry={secureTextEntry}
       />
     </View>
   );

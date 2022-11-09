@@ -40,10 +40,8 @@ export default function LoginStudentScreen({
   const [textPass, setTextPass] = useState('');
 
   const setToken = async (token: string) => {
-    console.log(token)
-    console.log("aaa")
-    let token2 = JSON.stringify(token)
-    console.log(token2)
+    let token2 = JSON.stringify(token);
+    console.log(token2);
     await SecureStore.setItemAsync('login-token', token2);
   };
 
@@ -52,11 +50,11 @@ export default function LoginStudentScreen({
       username: textMail,
       password: textPass,
     });
-    setToken(bdata).catch( (err) => {
+    setToken(bdata).catch(err => {
       console.error(err);
     });
-      console.log("hi");
-      navigate('HomeScreen');
+    console.log('hi');
+    navigate('HomeScreen');
   }
 
   return (
@@ -75,11 +73,13 @@ export default function LoginStudentScreen({
             labelText={'E-Mail Adres'}
             valueText={textMail}
             valueTextSetter={setTextMail}
+            secureTextEntry={false}
           />
           <StyledInput
             labelText={'Wachtwoord'}
             valueText={textPass}
             valueTextSetter={setTextPass}
+            secureTextEntry={true}
           />
           <View
             style={{
@@ -91,8 +91,7 @@ export default function LoginStudentScreen({
             <StyledButton
               title={'Login als student'}
               onPress={() => {
-                sendLogin().catch(function (err) {
-                });
+                sendLogin().catch(function (err) {});
               }}
             />
             <Text style={styles.UnderText}>OF</Text>
