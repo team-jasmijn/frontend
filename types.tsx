@@ -29,6 +29,7 @@ export type RootStackParamList = {
   TabOneScreen: undefined;
   TabTwoScreen: undefined;
   WelcomeScreen: undefined;
+  HomeScreen: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

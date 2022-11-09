@@ -155,3 +155,6 @@ fabric.properties
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,visualstudiocode
+
+
+.env

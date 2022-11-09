@@ -1,5 +1,4 @@
-const ApiUrl =
-  process.env.API_URL || 'https://bami-backend.preview.marnixah.com/';
+const ApiUrl = process.env.API_URL || 'http://localhost:8000/';
 
 // If last character is not a slash, raise an error
 if (ApiUrl.slice(-1) !== '/')
