@@ -17,34 +17,27 @@ import backendFetch from './lib/backendFetch';
 import { useEffect, useState } from 'react';
 import {DefaultRouterOptions} from "@react-navigation/routers/src/types";
 
-const getToken = () => {
-  return SecureStore.getItemAsync('login-token');
-};
-
-// Still TBD on how we do this
-// and if its needed.
-const validateToken = () => {
-  getToken().then(async token => {
-    if (token == (await backendFetch('GET', 'api-auth-token'))) {
-    }
-  });
-};
-
-let isLoggedIn = false;
-getToken().then(token => {
-  if (token) {
-    isLoggedIn = true;
-  }
-});
-
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
+  const [isLoggedIn, setLoggedIn] = useState(false);
   const isLoadingComplete = useCachedResources();
   const [fontsLoaded] = useFonts({
     Poppins: require('./assets/fonts/Poppins-Regular.ttf'),
     'Poppins-bold': require('./assets/fonts/Poppins-Bold.ttf'),
   });
+
+  useEffect(() => {
+    async function getToken() {
+      let token = await SecureStore.getItemAsync('login-token');
+      if (token) {
+        setLoggedIn(true);
+      }
+      return token
+    };
+
+    getToken().then(r => console.log("token " + r)); // Consider keeping this for debug purposes until there's a real homescreen with data
+  }, []);
 
   if (!fontsLoaded) {
     return null;
