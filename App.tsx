@@ -1,7 +1,4 @@
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
-import { ImageBackground } from 'react-native';
 import WelcomeScreen from './screens/WelcomeScreen';
 import { useFonts } from 'expo-font';
 import LoginStudentScreen from './screens/LoginStudentScreen';
@@ -13,9 +10,7 @@ import StudentInform2 from './screens/StudentInform2';
 import HomeScreen from './screens/HomeScreen';
 
 import * as SecureStore from 'expo-secure-store';
-import backendFetch from './lib/backendFetch';
 import { useEffect, useState } from 'react';
-import { DefaultRouterOptions } from '@react-navigation/routers/src/types';
 import SignUp from './screens/SignUpScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

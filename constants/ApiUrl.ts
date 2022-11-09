@@ -1,4 +1,4 @@
-const ApiUrl = process.env.API_URL || 'http://localhost:8000/';
+const ApiUrl = 'http://10.0.2.134:8000/';
 
 // If last character is not a slash, raise an error
 if (ApiUrl.slice(-1) !== '/')

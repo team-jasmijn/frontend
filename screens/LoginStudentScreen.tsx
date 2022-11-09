@@ -7,11 +7,10 @@ import StyledButton from '../components/StyledButton';
 import StyledButtonWhite from '../components/StyledButtonWhite';
 import { useNavigation } from '@react-navigation/native';
 import SetupWrapper from '../components/SetupWrapper';
-import backendFetch from '../lib/backendFetch';
 import { useState } from 'react';
-import * as SecureStore from 'expo-secure-store';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
+import signin from '../lib/signin';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -26,24 +25,11 @@ export default function LoginStudentScreen({
   navigation: { navigate },
 }: LoginScreenProps) {
   const navigation = useNavigation();
-  const [textMail, setTextMail] = useState('');
-  const [textPass, setTextPass] = useState('');
-
-  const setToken = async (token: string) => {
-    let token2 = JSON.stringify(token);
-    console.log(token2);
-    await SecureStore.setItemAsync('login-token', token2);
-  };
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   async function sendLogin() {
-    let bdata = await backendFetch('POST', 'api-token-auth/', {
-      username: textMail,
-      password: textPass,
-    });
-    setToken(bdata).catch(err => {
-      console.error(err);
-    });
-    console.log('hi');
+    await signin(username, password);
     navigate('HomeScreen');
   }
 
@@ -52,15 +38,15 @@ export default function LoginStudentScreen({
       <KeyboardAwareScrollView>
         <View style={styles.main}>
           <StyledInput
-            labelText={'E-Mail Adres'}
-            value={textMail}
-            onChangeText={setTextMail}
+            labelText={'Username'}
+            value={username}
+            onChangeText={setUsername}
             secureTextEntry={false}
           />
           <StyledInput
             labelText={'Wachtwoord'}
-            value={textPass}
-            onChangeText={setTextPass}
+            value={password}
+            onChangeText={setPassword}
             secureTextEntry={true}
           />
           <View
