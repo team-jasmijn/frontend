@@ -8,8 +8,21 @@ import SocialLogin from '../components/SocialLogin';
 import signup from '../lib/signup';
 import UserType from '../types/UserType';
 import { BackendError } from '../lib/backendFetch';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types';
 
-export default function SignUp() {
+type ProfileScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'SignupStudentOrCompanyScreen'
+>;
+
+export interface SignupStudentOrCompanyScreenProps {
+  navigation: ProfileScreenNavigationProp;
+}
+
+export default function SignUp({
+  navigation: { navigate },
+}: SignupStudentOrCompanyScreenProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,6 +42,7 @@ export default function SignUp() {
 
     try {
       await signup({ username: name, email, password, type: UserType.STUDENT });
+      navigate('HomeScreen');
       alert('Account created successfully');
     } catch (err: any) {
       const errJson: { [key: string]: string[] } = JSON.parse(
