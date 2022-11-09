@@ -15,6 +15,7 @@ import HomeScreen from './screens/HomeScreen';
 import * as SecureStore from 'expo-secure-store';
 import backendFetch from './lib/backendFetch';
 import { useEffect, useState } from 'react';
+import {DefaultRouterOptions} from "@react-navigation/routers/src/types";
 
 const getToken = () => {
   return SecureStore.getItemAsync('login-token');
@@ -31,7 +32,6 @@ const validateToken = () => {
 
 let isLoggedIn = false;
 getToken().then(token => {
-  console.log('hi2');
   if (token) {
     isLoggedIn = true;
   }
@@ -40,22 +40,11 @@ getToken().then(token => {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
-  const [initialRoute, setInitialRoute] = useState<string>('WelcomeScreen');
   const isLoadingComplete = useCachedResources();
   const [fontsLoaded] = useFonts({
     Poppins: require('./assets/fonts/Poppins-Regular.ttf'),
     'Poppins-bold': require('./assets/fonts/Poppins-Bold.ttf'),
   });
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      setInitialRoute('HomeScreen');
-      console.log('logged in!!!!');
-    } else {
-      setInitialRoute('WelcomeScreen');
-      console.log('Not logged in!!');
-    }
-  }, []);
 
   if (!fontsLoaded) {
     return null;
@@ -67,7 +56,8 @@ export default function App() {
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={initialRoute ? undefined : 'WelcomeScreen'}
+          initialRouteName={isLoggedIn ?
+              "HomeScreen" : "WelcomeScreen" }
         >
           <Stack.Screen
             name='WelcomeScreen'
