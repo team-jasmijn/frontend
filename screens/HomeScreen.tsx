@@ -1,15 +1,15 @@
 import { Button, ImageBackground, StyleSheet } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import Svg, { SvgUri } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import * as SecureStore from 'expo-secure-store';
-
-const image = require('../assets/images/background.png');
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import NavBar from '../components/NavigationBar';
+import Notification from '../components/Notification';
+import TopBar from '../components/TopBar';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -20,51 +20,50 @@ export interface HomeScreenProps {
   navigation: ProfileScreenNavigationProp;
 }
 
+const Tab = createBottomTabNavigator();
+
 export default function HomeScreen({
   navigation: { navigate },
 }: HomeScreenProps) {
   const navigation = useNavigation();
 
   return (
-    <ImageBackground
-      source={image}
-      resizeMode='stretch'
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-      }}
-    >
-      <Text
-        style={{ top: -220, fontSize: 69, color: '#fff', alignSelf: 'center' }}
-      >
-        OnePlace
-      </Text>
-
-      <Button
-        title='Back'
-        onPress={() => {
-          navigation.goBack();
-        }}
-      />
-
-      <Button
-        title='Delete token '
-        onPress={async () => {
+    <View style={styles.main}>
+      <TopBar
+        ScreenName='Home'
+        Press={async () => {
           await SecureStore.deleteItemAsync('login-token').then(r =>
             navigate('WelcomeScreen')
           );
         }}
       />
-      <View style={styles.main}></View>
-    </ImageBackground>
+      <View style={styles.content}>
+        <Notification
+          title='Nieuwe stage Plek'
+          message='Er is heeft zich een nieuwe stage plek bij jou in de buurt aangemeld.'
+        />
+        <Notification
+          title='Tip !'
+          message='Voeg een foto toe aan je profiel om meer kans te krijgen op een stage plek.'
+        />
+        <Notification
+          title='Je hebt een match'
+          message='Er is heeft zich een nieuwe stage plek bij jou in de buurt aangemeld'
+        />
+      </View>
+      <NavBar />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   main: {
-    top: -30,
-    backgroundColor: '#F1F5F9',
+    flex: 1,
+    paddingTop: 45,
+    alignItems: 'center',
+    flexDirection: 'column',
   },
+  content: { flex: 5 },
   button: {
     alignSelf: 'center',
     borderStyle: 'solid',
@@ -103,3 +102,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
+
+{
+}
