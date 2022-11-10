@@ -29,15 +29,14 @@ export default function HomeScreen({
 
   return (
     <View style={styles.main}>
-      <Button
-        title='Delete token '
-        onPress={async () => {
+      <TopBar
+        ScreenName='Home'
+        Press={async () => {
           await SecureStore.deleteItemAsync('login-token').then(r =>
             navigate('WelcomeScreen')
           );
         }}
       />
-      <TopBar ScreenName='Home' />
       <View style={styles.content}>
         <Notification
           title='Nieuwe stage Plek'

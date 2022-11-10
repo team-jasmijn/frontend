@@ -1,24 +1,18 @@
 import { useNavigation } from '@react-navigation/native';
-import {
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  Button,
-  Pressable,
-} from 'react-native';
+import { StyleSheet, Text, Pressable, Button } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 import { View } from './Themed';
-import * as SecureStore from 'expo-secure-store';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export interface TopBarProps {
+  Press: () => void;
   ScreenName: string;
 }
-export default function TopBar({ ScreenName }: TopBarProps) {
+
+export default function TopBar(props: TopBarProps) {
   return (
     <View style={styles.main}>
-      <Text style={styles.Title}>{ScreenName}</Text>
-      <Pressable style={styles.Button}>
+      <Text style={styles.Title}>{props.ScreenName}</Text>
+      <Pressable style={styles.Button} onPress={props.Press}>
         <SvgUri
           uri='https://icons.getbootstrap.com/assets/icons/person.svg'
           height={40}
