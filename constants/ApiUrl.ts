@@ -1,3 +1,4 @@
+//@ts-expect-error
 import { API_URL } from '@env';
 
 let ApiEnv;
