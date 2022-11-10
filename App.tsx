@@ -8,7 +8,6 @@ import { RootStackParamList } from './types';
 import StudentInform from './screens/StudentInform';
 import StudentInform2 from './screens/StudentInform2';
 import HomeScreen from './screens/HomeScreen';
-
 import * as SecureStore from 'expo-secure-store';
 import { useEffect, useState } from 'react';
 import SignUp from './screens/SignUpScreen';

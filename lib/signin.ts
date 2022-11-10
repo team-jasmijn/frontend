@@ -4,7 +4,6 @@ import backendFetch from './backendFetch';
 
 export const setToken = async (token: string) => {
   let token2 = JSON.stringify(token);
-  console.log(token2);
   await SecureStore.setItemAsync('login-token', token2);
 };
 
