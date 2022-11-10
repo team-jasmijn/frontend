@@ -9,11 +9,13 @@ export const setToken = async (token: string) => {
 };
 
 export default async function signin(username: string, password: string) {
+  console.log(username, password)
   let bdata = await backendFetch<SignInDTO>('POST', 'api-token-auth/', {
     username: username,
     password: password,
   });
 
+  console.log(bdata)
   await setToken(bdata.token);
 
   return bdata;
