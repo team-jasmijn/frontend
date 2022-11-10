@@ -3,10 +3,10 @@ import { API_URL } from '@env';
 
 let ApiEnv;
 
-if ({ API_URL }.API_URL == undefined) {
+if ( API_URL == undefined) {
   ApiEnv = 'https://bami-backend.preview.marnixah.com/';
 } else {
-  ApiEnv = { API_URL }.API_URL;
+  ApiEnv = API_URL;
 }
 
 const ApiUrl = ApiEnv.toString();
