@@ -1,6 +1,7 @@
 import UserCreatedDTO from '../types/UserCreatedDTO';
 import UserType from '../types/UserType';
 import backendFetch from './backendFetch';
+import signin from './signin';
 
 export interface SignupOptions {
   email: string;
@@ -15,12 +16,14 @@ export default async function signup({
   username,
   type,
 }: SignupOptions): Promise<UserCreatedDTO> {
-  const response = await backendFetch('POST', 'users/', {
+  const response = await backendFetch<UserCreatedDTO>('POST', 'users/', {
     email,
     password,
     username,
     type,
   });
+
+  await signin(username, password);
 
   return response;
 }

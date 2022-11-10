@@ -1,25 +1,16 @@
-import {
-  Alert,
-  Button,
-  ImageBackground,
-  Pressable,
-  StyleSheet,
-  TextInput,
-} from 'react-native';
+import { Button, StyleSheet } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import Svg, { SvgUri } from 'react-native-svg';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import StyledInput from '../components/StyledInput';
 import StyledButton from '../components/StyledButton';
 import StyledButtonWhite from '../components/StyledButtonWhite';
 import { useNavigation } from '@react-navigation/native';
-import backendFetch from '../lib/backendFetch';
+import SetupWrapper from '../components/SetupWrapper';
 import { useState } from 'react';
-import * as SecureStore from 'expo-secure-store';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
+import signin from '../lib/signin';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -30,55 +21,32 @@ export interface LoginScreenProps {
   navigation: ProfileScreenNavigationProp;
 }
 
-const image = require('../assets/images/background.png');
-
 export default function LoginStudentScreen({
   navigation: { navigate },
 }: LoginScreenProps) {
   const navigation = useNavigation();
-  const [textMail, setTextMail] = useState('');
-  const [textPass, setTextPass] = useState('');
-
-  const setToken = async (token: string) => {
-    let token2 = JSON.stringify(token);
-    console.log(token2);
-    await SecureStore.setItemAsync('login-token', token2);
-  };
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   async function sendLogin() {
-    let bdata = await backendFetch('POST', 'api-token-auth/', {
-      username: textMail,
-      password: textPass,
-    });
-    setToken(bdata).catch(err => {
-      console.error(err);
-    });
-    console.log('hi');
+    await signin(username, password);
     navigate('HomeScreen');
   }
 
   return (
-    <ImageBackground
-      source={image}
-      resizeMode='stretch'
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        flexGrow: 1,
-      }}
-    >
-      <KeyboardAwareScrollView style={{}}>
+    <SetupWrapper>
+      <KeyboardAwareScrollView>
         <View style={styles.main}>
           <StyledInput
-            labelText={'E-Mail Adres'}
-            valueText={textMail}
-            valueTextSetter={setTextMail}
+            labelText={'Username'}
+            value={username}
+            onChangeText={setUsername}
             secureTextEntry={false}
           />
           <StyledInput
             labelText={'Wachtwoord'}
-            valueText={textPass}
-            valueTextSetter={setTextPass}
+            value={password}
+            onChangeText={setPassword}
             secureTextEntry={true}
           />
           <View
@@ -114,14 +82,13 @@ export default function LoginStudentScreen({
           }}
         />
       </KeyboardAwareScrollView>
-    </ImageBackground>
+    </SetupWrapper>
   );
 }
 
 const styles = StyleSheet.create({
   main: {
     backgroundColor: 'rgba(52, 52, 52, 0)',
-    marginTop: 300,
   },
   UnderText: {
     alignSelf: 'center',

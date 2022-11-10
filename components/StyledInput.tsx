@@ -1,27 +1,35 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-import React, { Dispatch, SetStateAction } from 'react';
+import {
+  KeyboardTypeOptions,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
+import React from 'react';
 
 export interface StyledInputProps {
   labelText: string;
-  valueText: string;
-  valueTextSetter: Dispatch<SetStateAction<string>>;
-  secureTextEntry: boolean;
+  value: string;
+  onChangeText: (text: string) => void;
+  keyboardType?: KeyboardTypeOptions;
+  secureTextEntry?: boolean;
 }
 
 export default function StyledInput({
   labelText,
-  valueText,
-  valueTextSetter,
-    secureTextEntry,
+  value,
+  onChangeText,
+  keyboardType,
+  secureTextEntry,
 }: StyledInputProps) {
   return (
     <View style={styles.view}>
       <Text style={styles.labelText}>{labelText}</Text>
       <TextInput
-        defaultValue={''}
         style={styles.input}
-        onChangeText={valueText => valueTextSetter(valueText)}
-        value={valueText}
+        onChangeText={onChangeText}
+        value={value}
+        keyboardType={keyboardType}
         secureTextEntry={secureTextEntry}
       />
     </View>

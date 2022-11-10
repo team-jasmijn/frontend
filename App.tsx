@@ -1,7 +1,4 @@
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
-import { ImageBackground } from 'react-native';
 import WelcomeScreen from './screens/WelcomeScreen';
 import { useFonts } from 'expo-font';
 import LoginStudentScreen from './screens/LoginStudentScreen';
@@ -13,9 +10,8 @@ import StudentInform2 from './screens/StudentInform2';
 import HomeScreen from './screens/HomeScreen';
 
 import * as SecureStore from 'expo-secure-store';
-import backendFetch from './lib/backendFetch';
 import { useEffect, useState } from 'react';
-import {DefaultRouterOptions} from "@react-navigation/routers/src/types";
+import SignUp from './screens/SignUpScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -33,10 +29,10 @@ export default function App() {
       if (token) {
         setLoggedIn(true);
       }
-      return token
-    };
+      return token;
+    }
 
-    getToken().then(r => console.log("token " + r)); // Consider keeping this for debug purposes until there's a real homescreen with data
+    getToken().then(r => console.log('token ' + r)); // Consider keeping this for debug purposes until there's a real homescreen with data
   }, []);
 
   if (!fontsLoaded) {
@@ -49,8 +45,7 @@ export default function App() {
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={isLoggedIn ?
-              "HomeScreen" : "WelcomeScreen" }
+          initialRouteName={isLoggedIn ? 'HomeScreen' : 'WelcomeScreen'}
         >
           <Stack.Screen
             name='WelcomeScreen'
@@ -70,6 +65,11 @@ export default function App() {
           <Stack.Screen
             name='StudentInform2'
             component={StudentInform2}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='SignupStudentOrCompanyScreen'
+            component={SignUp}
             options={{ headerShown: false }}
           />
           <Stack.Screen

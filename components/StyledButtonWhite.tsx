@@ -9,7 +9,7 @@ import React from 'react';
 import { View } from './Themed';
 import { SvgUri } from 'react-native-svg';
 
-export interface StyledButtonWhiteProps {
+export interface WhiteButtonWithIconProps {
   // onPress, title, svg, titleBold
   onPress?: () => void;
   title: string;
@@ -17,12 +17,12 @@ export interface StyledButtonWhiteProps {
   titleBold?: string;
 }
 
-export default function StyledButton({
+export default function WhiteButtonWithIcon({
   onPress,
   title,
   svg,
   titleBold,
-}: StyledButtonWhiteProps) {
+}: WhiteButtonWithIconProps) {
   return (
     <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
       <View style={[{ flex: 1, flexDirection: 'row' }]}>
