@@ -26,16 +26,15 @@ export default function StyledInput({
     <View style={styles.view}>
       <Text style={styles.textInputLabel}>{labelText}</Text>
       <TextInput
-          onChangeText={onChangeText}
-          value={value}
-          style={styles.textInputSmall}
+        onChangeText={onChangeText}
+        value={value}
+        style={styles.textInputSmall}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-
   textInputSmall: {
     borderColor: '#334155',
     color: '#334155',

@@ -1,23 +1,16 @@
-import {
-  View,
-  StyleSheet,
-  ImageBackground,
-  Text,
-  Button,
-} from 'react-native';
+import { View, StyleSheet, ImageBackground, Text, Button } from 'react-native';
 import StyledButton from '../components/StyledButton';
 import React, { useState } from 'react';
 import List from '../components/List';
-import {HomeScreenProps} from "./HomeScreen";
+import { HomeScreenProps } from './HomeScreen';
 import StyledAlternativeInput from '../components/StyledAlternativeInput';
 import StyledDropDown from '../components/StyledDropDown';
 
 const image = require('../assets/images/background.png');
 
 export default function StudentInform({
-    navigation: { navigate },
-}: HomeScreenProps
-) {
+  navigation: { navigate },
+}: HomeScreenProps) {
   const [goals, setGoals] = useState([{ item: 'Example', key: 'Example' }]);
   const [study, setStudy] = useState('');
   const [items, setItems] = useState([
@@ -40,33 +33,40 @@ export default function StudentInform({
           <View style={styles.inputContainer}>
             <Text style={styles.header}>Vertel ons wat over jezelf:</Text>
             <StyledAlternativeInput
-                value={study}
-                onChangeText={setStudy}
-                labelText={"Ik volg de studie:"}
+              value={study}
+              onChangeText={setStudy}
+              labelText={'Ik volg de studie:'}
             />
-            <StyledDropDown labelText={"Ik zit mijn:"} options={items} setOptions={setItems} />
+            <StyledDropDown
+              labelText={'Ik zit mijn:'}
+              options={items}
+              setOptions={setItems}
+            />
             <Text style={styles.textInputLabel}>Dit zijn mijn leerdoelen:</Text>
-            <List placeHoldeText='Leerdoelen' height={110} setter={setGoals} getter={goals} />
+            <List
+              placeHoldeText='Leerdoelen'
+              height={110}
+              setter={setGoals}
+              getter={goals}
+            />
 
-            <StyledButton title='Volgende stap' onPress={() => {sendInfo(study, goals)} } />
-            <Button title={"debug"}/>
+            <StyledButton
+              title='Volgende stap'
+              onPress={() => {
+                sendInfo(study, goals);
+              }}
+            />
+            <Button title={'debug'} />
           </View>
         </View>
       </View>
     </ImageBackground>
   );
 
-
-
-
-  function sendInfo(studyInfo : any, goalInfo : any) {
-
-
-
-    navigate('StudentInform2')
+  function sendInfo(studyInfo: any, goalInfo: any) {
+    navigate('StudentInform2');
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {

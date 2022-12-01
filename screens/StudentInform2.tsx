@@ -1,21 +1,18 @@
-import {
-  View,
-  StyleSheet,
-  ImageBackground,
-  Text,
-} from 'react-native';
+import { View, StyleSheet, ImageBackground, Text } from 'react-native';
 import StyledButton from '../components/StyledButton';
 
 import List from '../components/List';
-import {HomeScreenProps} from "./HomeScreen";
-import {useState} from "react";
+import { HomeScreenProps } from './HomeScreen';
+import { useState } from 'react';
 
 const image = require('../assets/images/background.png');
 
 export default function StudentInform2({
-navigation: { navigate },
+  navigation: { navigate },
 }: HomeScreenProps) {
-  const [qualities, setQualities] = useState([{ item: 'Example', key: 'Example' }]);
+  const [qualities, setQualities] = useState([
+    { item: 'Example', key: 'Example' },
+  ]);
   const [hobbies, setHobbies] = useState([{ item: 'Example', key: 'Example' }]);
   return (
     <ImageBackground
@@ -33,10 +30,25 @@ navigation: { navigate },
             <Text style={styles.textInputLabel}>
               Dit zijn mijn kwaliteiten:
             </Text>
-            <List getter={qualities} setter={setQualities} placeHoldeText='Vrolijk' height={70} />
+            <List
+              getter={qualities}
+              setter={setQualities}
+              placeHoldeText='Vrolijk'
+              height={70}
+            />
             <Text style={styles.textInputLabel}>Dit zijn mijn Hobbys:</Text>
-            <List getter={hobbies} setter={setHobbies} placeHoldeText='Gamen' height={70} />
-            <StyledButton title='Begin met mijn zoektocht' onPress={() => {navigate('StudentInform'); } } />
+            <List
+              getter={hobbies}
+              setter={setHobbies}
+              placeHoldeText='Gamen'
+              height={70}
+            />
+            <StyledButton
+              title='Begin met mijn zoektocht'
+              onPress={() => {
+                navigate('StudentInform');
+              }}
+            />
           </View>
         </View>
       </View>

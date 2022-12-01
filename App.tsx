@@ -43,13 +43,7 @@ export default function App() {
   } else {
     return (
       <NavigationContainer>
-        {/*<Stack.Navigator*/}
-        {/*  initialRouteName={isLoggedIn ? 'HomeScreen' : 'WelcomeScreen'}*/}
-        {/*>*/}
-
-          <Stack.Navigator
-          initialRouteName={'StudentInform'}
-          >
+        <Stack.Navigator initialRouteName={'StudentInform'}>
           <Stack.Screen
             name='WelcomeScreen'
             component={WelcomeScreen}

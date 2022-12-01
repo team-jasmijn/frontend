@@ -5,8 +5,8 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
-import DropDownPicker from "react-native-dropdown-picker";
+import React, { useState } from 'react';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 export interface StyledInputProps {
   labelText: string;
@@ -16,8 +16,8 @@ export interface StyledInputProps {
 
 export default function StyledInput({
   labelText,
-                                      options,
-                                      setOptions,
+  options,
+  setOptions,
 }: StyledInputProps) {
   const [open, setOpen] = useState(false); // Dropdown internal
   const [value, setValue] = useState(null);
@@ -26,15 +26,15 @@ export default function StyledInput({
     <View style={styles.view}>
       <Text style={styles.textInputLabel}>{labelText}</Text>
       <DropDownPicker
-          open={open}
-          value={value}
-          items={options}
-          setOpen={setOpen}
-          setValue={setValue}
-          setItems={setOptions}
-          placeholder='Selecteer een leerjaar'
-          style={styles.dropDown}
-          dropDownContainerStyle={{zIndex: 5000, elevation: 5000}}
+        open={open}
+        value={value}
+        items={options}
+        setOpen={setOpen}
+        setValue={setValue}
+        setItems={setOptions}
+        placeholder='Selecteer een leerjaar'
+        style={styles.dropDown}
+        dropDownContainerStyle={{ zIndex: 5000, elevation: 5000 }}
       />
     </View>
   );

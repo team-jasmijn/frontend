@@ -14,8 +14,8 @@ import { StyleSheet } from 'react-native';
 export default function List({
   placeHoldeText,
   height,
-    getter,
-    setter
+  getter,
+  setter,
 }: {
   placeHoldeText: string;
   height: number;
@@ -33,7 +33,7 @@ export default function List({
   }
 
   return (
-    <View style={{zIndex: -500, }}>
+    <View style={{ zIndex: -500 }}>
       <TextInput
         style={styles.textInputSmall}
         placeholder={placeHoldeText}
@@ -48,29 +48,45 @@ export default function List({
 
       <SafeAreaView style={{ height: height }}>
         <ScrollView style={styles.objectiveScrollview} indicatorStyle={'black'}>
-          {getter.map((item: { item: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; key: any; }) => {
-            return (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  padding: 5,
-                }}
-              >
-                <Text>{item.item}</Text>
-                <Pressable style={{}} onPress={() => remove(item.key)}>
-                  <SvgUri
-                    uri={
-                      'https://icons.getbootstrap.com/assets/icons/trash.svg'
-                    }
-                    height={25}
-                    width={25}
-                    fill={'#334155'}
-                  />
-                </Pressable>
-              </View>
-            );
-          })}
+          {getter.map(
+            (item: {
+              item:
+                | string
+                | number
+                | boolean
+                | React.ReactElement<
+                    any,
+                    string | React.JSXElementConstructor<any>
+                  >
+                | React.ReactFragment
+                | React.ReactPortal
+                | null
+                | undefined;
+              key: any;
+            }) => {
+              return (
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    padding: 5,
+                  }}
+                >
+                  <Text>{item.item}</Text>
+                  <Pressable style={{}} onPress={() => remove(item.key)}>
+                    <SvgUri
+                      uri={
+                        'https://icons.getbootstrap.com/assets/icons/trash.svg'
+                      }
+                      height={25}
+                      width={25}
+                      fill={'#334155'}
+                    />
+                  </Pressable>
+                </View>
+              );
+            }
+          )}
         </ScrollView>
       </SafeAreaView>
     </View>
