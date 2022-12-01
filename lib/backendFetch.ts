@@ -22,16 +22,17 @@ export default async function backendFetch<T>(
     body: JSON.stringify(data),
   });
 
-  let resData = await res.text();
+  let resText = await res.text();
+  let resData: T | string;
 
   try {
-    resData = JSON.parse(resData);
+    resData = JSON.parse(resText);
   } catch (e) {
-    // Do nothing, since the response is not JSON
+    resData = resText;
   }
 
   if (!res.ok) {
-    throw new BackendError(resData);
+    throw new BackendError(resData as BackendErrors);
   }
 
   return resData as T;
