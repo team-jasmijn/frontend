@@ -25,11 +25,11 @@ export default function LoginStudentScreen({
   navigation: { navigate },
 }: LoginScreenProps) {
   const navigation = useNavigation();
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   async function sendLogin() {
-    await signin(username, password);
+    await signin(email, password);
     navigate('HomeScreen');
   }
 
@@ -38,10 +38,11 @@ export default function LoginStudentScreen({
       <KeyboardAwareScrollView>
         <View style={styles.main}>
           <StyledInput
-            labelText={'Username'}
-            value={username}
-            onChangeText={setUsername}
+            labelText={'Email'}
+            value={email}
+            onChangeText={setEmail}
             secureTextEntry={false}
+            keyboardType={'email-address'}
           />
           <StyledInput
             labelText={'Wachtwoord'}

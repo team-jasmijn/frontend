@@ -8,9 +8,9 @@ import { RootStackParamList } from './types';
 import StudentInform from './screens/StudentInform';
 import StudentInform2 from './screens/StudentInform2';
 import HomeScreen from './screens/HomeScreen';
-import * as SecureStore from 'expo-secure-store';
 import { useEffect, useState } from 'react';
 import SignUp from './screens/SignUpScreen';
+import getToken from './lib/getToken';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -23,15 +23,10 @@ export default function App() {
   });
 
   useEffect(() => {
-    async function getToken() {
-      let token = await SecureStore.getItemAsync('login-token');
-      if (token) {
-        setLoggedIn(true);
-      }
-      return token;
-    }
-
-    getToken().then(r => console.log('token ' + r)); // Consider keeping this for debug purposes until there's a real homescreen with data
+    getToken().then(token => {
+      setLoggedIn(!!token);
+      console.log('token', token); // Consider keeping this for debug purposes until there's a real homescreen with data
+    });
   }, []);
 
   if (!fontsLoaded) {
