@@ -26,6 +26,7 @@ export default function NavBar({}) {
           height={40}
           width={40}
           fill={'#38BDF8'}
+
         />
       </Pressable>
       <Pressable>
