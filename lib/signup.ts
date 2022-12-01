@@ -6,6 +6,7 @@ import signin from './signin';
 export interface SignupOptions {
   email: string;
   password: string;
+  repeatPassword: string;
   username: string;
   type: UserType;
 }
@@ -13,17 +14,17 @@ export interface SignupOptions {
 export default async function signup({
   email,
   password,
+  repeatPassword,
   username,
   type,
-}: SignupOptions): Promise<UserCreatedDTO> {
-  const response = await backendFetch<UserCreatedDTO>('POST', 'users/', {
+}: SignupOptions): Promise<void> {
+  await backendFetch<null>('POST', 'account/register-company', {
     email,
     password,
+    repeatPassword,
     username,
     type,
   });
 
-  await signin(username, password);
-
-  return response;
+  await signin(email, password);
 }

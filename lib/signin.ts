@@ -7,13 +7,13 @@ export const setToken = async (token: string) => {
   await SecureStore.setItemAsync('login-token', token2);
 };
 
-export default async function signin(username: string, password: string) {
-  let bdata = await backendFetch<SignInDTO>('POST', 'api-token-auth/', {
-    username: username,
+export default async function signin(email: string, password: string) {
+  let token = await backendFetch<SignInDTO>('POST', 'account/login', {
+    email: email,
     password: password,
   });
 
-  await setToken(bdata.token);
+  await setToken(token);
 
-  return bdata;
+  return token;
 }
