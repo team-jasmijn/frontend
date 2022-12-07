@@ -18,13 +18,25 @@ export default async function signup({
   username,
   type,
 }: SignupOptions): Promise<void> {
-  await backendFetch<null>('POST', 'account/register-company', {
-    email,
-    password,
-    repeatPassword,
-    username,
-    type,
-  });
+  if (type === UserType.Business) {
+    await backendFetch<null>('POST', 'account/register-company', {
+      email,
+      password,
+      repeatPassword,
+      companyName: username,
+      type,
+    });
+  } else if (type === UserType.Student) {
+    await backendFetch<UserCreatedDTO>('POST', 'account/register-student', {
+      email,
+      password,
+      repeatPassword,
+      username,
+      type,
+    });
+  } else {
+    throw new Error('Invalid user type');
+  }
 
   await signin(email, password);
 }
