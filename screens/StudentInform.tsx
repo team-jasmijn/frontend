@@ -5,6 +5,7 @@ import List from '../components/List';
 import { HomeScreenProps } from './HomeScreen';
 import StyledAlternativeInput from '../components/StyledAlternativeInput';
 import StyledDropDown from '../components/StyledDropDown';
+import backendFetch from '../lib/backendFetch';
 
 const image = require('../assets/images/background.png');
 
@@ -56,7 +57,13 @@ export default function StudentInform({
                 sendInfo(study, goals);
               }}
             />
-            <Button title={'debug'} />
+
+            <Button
+              title={'debug'}
+              onPress={() => {
+                sendInfo(study, goals);
+              }}
+            />
           </View>
         </View>
       </View>
@@ -64,7 +71,10 @@ export default function StudentInform({
   );
 
   function sendInfo(studyInfo: any, goalInfo: any) {
-    navigate('StudentInform2');
+    console.log(studyInfo);
+    console.log(goalInfo);
+    backendFetch('POST', '/', [studyInfo, goalInfo]);
+    // navigate('StudentInform2');
   }
 }
 

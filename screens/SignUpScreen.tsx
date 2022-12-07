@@ -52,7 +52,7 @@ export default function SignUp({
       alert('Account created successfully');
     } catch (err: any) {
       let humanFriendlyError = 'There was an error creating your account';
-
+      console.log(err);
       if (err instanceof BackendError) {
         humanFriendlyError += '\n\n' + err.toString();
       }
