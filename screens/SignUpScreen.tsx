@@ -7,9 +7,9 @@ import StyledButton from '../components/StyledButton';
 import SocialLogin from '../components/SocialLogin';
 import signup from '../lib/signup';
 import UserType from '../types/UserType';
-import { BackendError } from '../lib/backendFetch';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
+import BackendError from '../lib/backendError';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -41,17 +41,20 @@ export default function SignUp({
     // await new Promise(resolve => setTimeout(resolve, 10 * 1000));
 
     try {
-      await signup({ username: name, email, password, type: UserType.STUDENT });
+      await signup({
+        username: name,
+        email,
+        password,
+        repeatPassword: passwordConfirm,
+        type: UserType.Student,
+      });
       navigate('HomeScreen');
       alert('Account created successfully');
     } catch (err: any) {
-      const errJson: { [key: string]: string[] } = JSON.parse(
-        (err as BackendError).message
-      );
-
       let humanFriendlyError = 'There was an error creating your account';
-      for (const key in errJson) {
-        humanFriendlyError += `\n${key}: ${errJson[key].join(', ')}`;
+
+      if (err instanceof BackendError) {
+        humanFriendlyError += '\n\n' + err.toString();
       }
 
       alert(humanFriendlyError);

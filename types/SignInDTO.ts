@@ -1,3 +1,3 @@
-export default interface SignInDTO {
-  token: string;
-}
+type SignInDTO = string;
+
+export default SignInDTO;

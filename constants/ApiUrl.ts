@@ -9,8 +9,7 @@ if (API_URL == undefined) {
   ApiEnv = API_URL;
 }
 
-const ApiUrl = ApiEnv
-
+const ApiUrl = ApiEnv;
 
 if (ApiUrl.slice(-1) !== '/')
   throw new Error(
