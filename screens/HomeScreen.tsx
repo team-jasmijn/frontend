@@ -32,9 +32,7 @@ export default function HomeScreen({
       <TopBar
         ScreenName='Home'
         Press={async () => {
-          await SecureStore.deleteItemAsync('login-token').then(r =>
-            navigate('WelcomeScreen')
-          );
+            navigate('OptionScreen')
         }}
       />
       <View style={styles.content}>

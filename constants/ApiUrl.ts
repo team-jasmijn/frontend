@@ -4,7 +4,7 @@ import { API_URL } from '@env';
 let ApiEnv;
 
 if (API_URL == undefined) {
-  ApiEnv = 'https://bami-backend.preview.marnixah.com/';
+  ApiEnv = 'http://10.0.3.20:5114/';
 } else {
   ApiEnv = API_URL;
 }

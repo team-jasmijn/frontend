@@ -8,6 +8,7 @@ import { RootStackParamList } from './types';
 import StudentInform from './screens/StudentInform';
 import StudentInform2 from './screens/StudentInform2';
 import HomeScreen from './screens/HomeScreen';
+import OptionScreen from './screens/OptionScreen';
 import { useEffect, useState } from 'react';
 import SignUp from './screens/SignUpScreen';
 import getToken from './lib/getToken';
@@ -69,6 +70,11 @@ export default function App() {
           <Stack.Screen
             name='HomeScreen'
             component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='OptionScreen'
+            component={OptionScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

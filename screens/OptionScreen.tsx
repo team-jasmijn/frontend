@@ -5,7 +5,6 @@ export default function ProfileScreen() {
   return (
     <View style={styles.main}>
       <Text>ProfileScreen</Text>
-      //
     </View>
   )
 }
