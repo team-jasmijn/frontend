@@ -32,7 +32,7 @@ export default function HomeScreen({
       <TopBar
         ScreenName='Home'
         Press={async () => {
-            navigate('OptionScreen')
+          navigate('OptionScreen');
         }}
       />
       <View style={styles.content}>
