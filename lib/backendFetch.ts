@@ -8,7 +8,6 @@ export default async function backendFetch<T>(
   data?: any,
   additionalHeaders?: any
 ): Promise<T | string> {
-
   const token = await getToken();
   console.log('token2', token);
 

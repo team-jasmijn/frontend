@@ -5,7 +5,7 @@ import Svg, { SvgUri } from 'react-native-svg';
 import { RootStackParamList } from '../types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import SetupWrapper from '../components/SetupWrapper';
-import React from "react";
+import React from 'react';
 
 type SelectSignUpTypeScreenProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -22,46 +22,49 @@ export default function SelectSignUpTypeScreen({
   return (
     <SetupWrapper>
       <View style={styles.main}>
-       <Pressable style={styles.blueButton} onPress={ () => {
-         //@ts-expect-error
-         navigate('SignUpScreen',
-         {
-           Type: 'Student'
-         });
-       }}>
-         <SvgUri
-             uri={'https://icons.getbootstrap.com/assets/icons/person.svg'}
-             height={100}
-             width={100}
-             fill={'#ffffff'}
-             style={styles.icon}
-         />
-
-        <Text style={styles.boxText}>
-          Ik ben een <Text style={styles.boldText}>Student</Text>
-        </Text>
-       </Pressable>
-
-        <Pressable style={styles.blueButton} onPress={ () => {
-          //@ts-expect-error
-          navigate('SignUpScreen',
-              {
-                Type: 'Company'
-              });
-        }}>
+        <Pressable
+          style={styles.blueButton}
+          onPress={() => {
+            //@ts-expect-error
+            navigate('SignUpScreen', {
+              Type: 'Student',
+            });
+          }}
+        >
           <SvgUri
-              uri={'https://icons.getbootstrap.com/assets/icons/building.svg'}
-              height={100}
-              width={100}
-              fill={'#ffffff'}
-              style={styles.icon}
+            uri={'https://icons.getbootstrap.com/assets/icons/person.svg'}
+            height={100}
+            width={100}
+            fill={'#ffffff'}
+            style={styles.icon}
+          />
+
+          <Text style={styles.boxText}>
+            Ik ben een <Text style={styles.boldText}>Student</Text>
+          </Text>
+        </Pressable>
+
+        <Pressable
+          style={styles.blueButton}
+          onPress={() => {
+            //@ts-expect-error
+            navigate('SignUpScreen', {
+              Type: 'Company',
+            });
+          }}
+        >
+          <SvgUri
+            uri={'https://icons.getbootstrap.com/assets/icons/building.svg'}
+            height={100}
+            width={100}
+            fill={'#ffffff'}
+            style={styles.icon}
           />
 
           <Text style={styles.boxText}>
             Ik ben een <Text style={styles.boldText}>Bedrijf</Text>
           </Text>
         </Pressable>
-
       </View>
     </SetupWrapper>
   );
@@ -70,7 +73,7 @@ export default function SelectSignUpTypeScreen({
 const styles = StyleSheet.create({
   main: {
     top: 15,
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
     alignItems: 'center',
   },
 
@@ -83,19 +86,16 @@ const styles = StyleSheet.create({
     shadowColor: '#000000',
     shadowRadius: 10,
     shadowOpacity: 1,
-    alignItems: "center",
+    alignItems: 'center',
     marginVertical: 30,
-
   },
   boxText: {
     fontSize: 20,
   },
   boldText: {
-  color: '#FFF',
+    color: '#FFF',
     fontWeight: 'bold',
     fontSize: 20,
   },
-  icon: {
-
-  }
+  icon: {},
 });

@@ -20,11 +20,10 @@ export default function StyledInput({
   labelText,
   options,
   setOptions,
-    value,
-    setValue,
+  value,
+  setValue,
 }: StyledInputProps) {
   const [open, setOpen] = useState(false); // Dropdown internal
-
 
   return (
     <View style={styles.view}>

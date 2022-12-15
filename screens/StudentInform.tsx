@@ -6,7 +6,7 @@ import { HomeScreenProps } from './HomeScreen';
 import StyledAlternativeInput from '../components/StyledAlternativeInput';
 import StyledDropDown from '../components/StyledDropDown';
 import backendFetch from '../lib/backendFetch';
-import getToken from "../lib/setToken";
+import getToken from '../lib/setToken';
 
 const image = require('../assets/images/background.png');
 
@@ -77,10 +77,11 @@ export default function StudentInform({
   function sendInfo(studyInfo: any, goalInfo: any, yearInfo: any) {
     console.log(studyInfo);
     console.log(goalInfo);
-    backendFetch('POST', 'account/update', {education: studyInfo, goals: JSON.stringify(goalInfo),  educationLevel: yearInfo})
-        .then( r =>
-        navigate('StudentInform2')
-    );
+    backendFetch('POST', 'account/update', {
+      education: studyInfo,
+      goals: JSON.stringify(goalInfo),
+      educationLevel: yearInfo,
+    }).then(r => navigate('StudentInform2'));
     // navigate('StudentInform2');
   }
 }

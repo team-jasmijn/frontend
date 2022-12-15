@@ -11,9 +11,9 @@ import { useState } from 'react';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
 import signin from '../lib/signin';
-import signup from "../lib/signup";
-import UserType from "../types/UserType";
-import BackendError from "../lib/backendError";
+import signup from '../lib/signup';
+import UserType from '../types/UserType';
+import BackendError from '../lib/backendError';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -42,7 +42,7 @@ export default function LoginStudentScreen({
       if (err instanceof BackendError) {
         humanFriendlyError += '\n\n' + err.toString();
       }
-      alert("Failed to sign in.");
+      alert('Failed to sign in.');
     } finally {
     }
   }

@@ -10,7 +10,7 @@ import UserType from '../types/UserType';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
 import BackendError from '../lib/backendError';
-import {RouteProp} from "@react-navigation/native";
+import { RouteProp } from '@react-navigation/native';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -22,15 +22,16 @@ export interface SignUpScreen {
   route: RouteProp<any>;
 }
 
-export default function SignUpScreen( {
-  navigation: { navigate }, route,
+export default function SignUpScreen({
+  navigation: { navigate },
+  route,
 }: SignUpScreen) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   //@ts-expect-error
-  const { Type } = route.params
+  const { Type } = route.params;
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async () => {
@@ -85,7 +86,7 @@ export default function SignUpScreen( {
         }
         break;
     }
-  }
+  };
 
   return (
     <SetupWrapper>

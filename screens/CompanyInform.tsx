@@ -5,17 +5,17 @@ import List from '../components/List';
 import StyledAlternativeInput from '../components/StyledAlternativeInput';
 import StyledDropDown from '../components/StyledDropDown';
 import backendFetch from '../lib/backendFetch';
-import {NativeStackNavigationProp} from "@react-navigation/native-stack";
-import {RootStackParamList} from "../types";
-import {RouteProp} from "@react-navigation/native";
-import getToken from "../lib/getToken";
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types';
+import { RouteProp } from '@react-navigation/native';
+import getToken from '../lib/getToken';
 
 const image = require('../assets/images/background-v5.png');
 
 type CompanyScreenProp = NativeStackNavigationProp<
-    RootStackParamList,
-    'CompanyInform'
-    >;
+  RootStackParamList,
+  'CompanyInform'
+>;
 
 export interface CompanyInformProps {
   navigation: CompanyScreenProp;
@@ -51,33 +51,33 @@ export default function CompanyInform({
             />
 
             <StyledAlternativeInput
-                value={town}
-                onChangeText={setTown}
-                labelText={'Wij zijn gevestigd in:'}
+              value={town}
+              onChangeText={setTown}
+              labelText={'Wij zijn gevestigd in:'}
             />
 
             <StyledAlternativeInput
-                value={culture}
-                onChangeText={setCulture}
-                labelText={'Onze bedrijfscultuur is:'}
+              value={culture}
+              onChangeText={setCulture}
+              labelText={'Onze bedrijfscultuur is:'}
             />
 
             <StyledAlternativeInput
-                value={lookingFor}
-                onChangeText={setLookingFor}
-                labelText={'Wij zoeken een:'}
+              value={lookingFor}
+              onChangeText={setLookingFor}
+              labelText={'Wij zoeken een:'}
             />
 
             <StyledAlternativeInput
-                value={workWise}
-                onChangeText={setWorkWise}
-                labelText={'Onze werkwijze is:'}
+              value={workWise}
+              onChangeText={setWorkWise}
+              labelText={'Onze werkwijze is:'}
             />
 
             <StyledButton
               title='Volgende stap'
               onPress={async () => {
-                console.log(await getToken())
+                console.log(await getToken());
                 // sendInfo(study, goals);
                 // navigate('');
               }}
