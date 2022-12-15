@@ -14,12 +14,6 @@ export default async function signin(email: string, password: string) {
         password: password,
     });
     
-    console.log("Incoming token", token)
-
     await setToken(token);
-    
-    console.log("Set token", await getToken())
-
-
     return token;
 }

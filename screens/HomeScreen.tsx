@@ -1,21 +1,17 @@
-import {Button, ImageBackground, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
 import {Text, View} from '../components/Themed';
-import {useNavigation} from '@react-navigation/native';
 import {RootStackParamList} from '../types';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import * as SecureStore from 'expo-secure-store';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import NavBar from '../components/NavigationBar';
 import Notification from '../components/Notification';
 import TopBar from '../components/TopBar';
 import backendFetch from '../lib/backendFetch';
 import User from '../types/User';
-import getLoggedInUser from "../lib/GetLoggedInUser";
-import getToken from "../lib/getToken";
-
+import getLoggedInUser from "../lib/getLoggedInUser";
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
     'HomeScreen'
@@ -32,7 +28,7 @@ export default function HomeScreen({
     const [companies, setCompanies] = useState<User[]>();
 
     useEffect(() => {
-        getLoggedInUser().then(setUser)
+        getLoggedInUser().then(setUser);
         backendFetch<User[]>('GET', 'company')
             .then(e => {
                 setCompanies(e as User[]);
