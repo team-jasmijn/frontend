@@ -1,4 +1,5 @@
 import { Button, ImageBackground, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
 
 import { Text, View } from '../components/Themed';
 import { useNavigation } from '@react-navigation/native';
@@ -10,6 +11,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NavBar from '../components/NavigationBar';
 import Notification from '../components/Notification';
 import TopBar from '../components/TopBar';
+import backendFetch from '../lib/backendFetch';
+import User from '../types/User';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -26,11 +29,50 @@ export default function HomeScreen({
   navigation: { navigate },
 }: HomeScreenProps) {
   const navigation = useNavigation();
+  const [user, setUser] = useState<User>();
 
+  const [companies, setCompanies] = useState<User[]>();
+
+  if (!user) {
+    backendFetch<User>('GET', 'account')
+      .then(e => {
+        setUser(e as User);
+      })
+      .catch(console.log);
+  }
+
+  if (!companies) {
+    backendFetch<User[]>('GET', 'company')
+      .then(e => {
+        setCompanies(e as User[]);
+      })
+      .catch(console.log);
+  }
+
+  if (user?.isAdmin == true) {
+    return (
+      <View style={styles.main}>
+        <TopBar
+          ScreenName={'Welkom'}
+          Press={async () => {
+            await SecureStore.deleteItemAsync('login-token').then(r =>
+              navigate('WelcomeScreen')
+            );
+          }}
+        />
+
+        <View style={styles.content}>
+          {companies?.map(e => (
+            <Notification title={e.name} message={e.email} />
+          ))}
+        </View>
+      </View>
+    );
+  }
   return (
     <View style={styles.main}>
       <TopBar
-        ScreenName='Home'
+        ScreenName='Logout'
         Press={async () => {
           await SecureStore.deleteItemAsync('login-token').then(r =>
             navigate('WelcomeScreen')
@@ -102,6 +144,3 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
-
-{
-}
