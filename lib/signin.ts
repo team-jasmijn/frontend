@@ -12,8 +12,13 @@ export default async function signin(email: string, password: string) {
     email: email,
     password: password,
   });
-
-  await setToken(token);
+  try {
+    const error = JSON.parse(token) as BackendError;
+    alert(error.errorMessage.toString());
+    return;
+  } catch (e) {
+    await setToken(token);
+  }
 
   return token;
 }

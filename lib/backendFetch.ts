@@ -8,7 +8,11 @@ export default async function backendFetch<T>(
   data?: any,
   additionalHeaders?: any
 ): Promise<T | string> {
-  const token = await getToken();
+  let token = await getToken();
+  if (token?.startsWith('"') && token?.endsWith('"')) {
+    //if token == "{token}" remove the '"' quotes
+    token = token.substring(1, token.length - 1);
+  }
 
   const headers = {
     'Content-Type': 'application/json',
@@ -24,7 +28,6 @@ export default async function backendFetch<T>(
 
   let resText = await res.text();
   let resData: T | string;
-
   try {
     resData = JSON.parse(resText);
   } catch (e) {
