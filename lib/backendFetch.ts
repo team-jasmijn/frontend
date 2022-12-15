@@ -9,11 +9,6 @@ export default async function backendFetch<T>(
   additionalHeaders?: any
 ): Promise<T | string> {
   let token = await getToken();
-  if (token?.startsWith('"') && token?.endsWith('"')) {
-    //if token == "{token}" remove the '"' quotes
-    token = token.substring(1, token.length - 1);
-  }
-
   const headers = {
     'Content-Type': 'application/json',
     ...(token && { Authorization: `Bearer ${token}` }),
