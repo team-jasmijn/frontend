@@ -10,24 +10,27 @@ import UserType from '../types/UserType';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
 import BackendError from '../lib/backendError';
+import {RouteProp} from "@react-navigation/native";
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  'SignupStudentOrCompanyScreen'
+  'SignUpScreen'
 >;
 
-export interface SignupStudentOrCompanyScreenProps {
+export interface SignUpScreen {
   navigation: ProfileScreenNavigationProp;
+  route: RouteProp<any>;
 }
 
-export default function SignUp({
-  navigation: { navigate },
-}: SignupStudentOrCompanyScreenProps) {
+export default function SignUpScreen( {
+  navigation: { navigate }, route,
+}: SignUpScreen) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-
+  //@ts-expect-error
+  const { Type } = route.params
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async () => {
@@ -38,30 +41,51 @@ export default function SignUp({
 
     setIsSubmitting(true);
 
-    // await new Promise(resolve => setTimeout(resolve, 10 * 1000));
-
-    try {
-      await signup({
-        username: name,
-        email,
-        password,
-        repeatPassword: passwordConfirm,
-        type: UserType.Student,
-      });
-      navigate('HomeScreen');
-      alert('Account created successfully');
-    } catch (err: any) {
-      let humanFriendlyError = 'There was an error creating your account';
-      console.log(err);
-      if (err instanceof BackendError) {
-        humanFriendlyError += '\n\n' + err.toString();
-      }
-
-      alert(humanFriendlyError);
-    } finally {
-      setIsSubmitting(false);
+    switch (Type) {
+      case 'Student':
+        try {
+          await signup({
+            username: name,
+            email,
+            password,
+            repeatPassword: passwordConfirm,
+            type: UserType.Student,
+          });
+          navigate('StudentInform');
+        } catch (err: any) {
+          let humanFriendlyError = 'There was an error creating your account';
+          console.log(err);
+          if (err instanceof BackendError) {
+            humanFriendlyError += '\n\n' + err.toString();
+          }
+          alert(humanFriendlyError);
+        } finally {
+          setIsSubmitting(false);
+        }
+        break;
+      case 'Company':
+        try {
+          await signup({
+            username: name,
+            email,
+            password,
+            repeatPassword: passwordConfirm,
+            type: UserType.Business,
+          });
+          navigate('CompanyInform');
+        } catch (err: any) {
+          let humanFriendlyError = 'There was an error creating your account';
+          console.log(err);
+          if (err instanceof BackendError) {
+            humanFriendlyError += '\n\n' + err.toString();
+          }
+          alert(humanFriendlyError);
+        } finally {
+          setIsSubmitting(false);
+        }
+        break;
     }
-  };
+  }
 
   return (
     <SetupWrapper>

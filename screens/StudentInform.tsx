@@ -6,6 +6,7 @@ import { HomeScreenProps } from './HomeScreen';
 import StyledAlternativeInput from '../components/StyledAlternativeInput';
 import StyledDropDown from '../components/StyledDropDown';
 import backendFetch from '../lib/backendFetch';
+import getToken from "../lib/setToken";
 
 const image = require('../assets/images/background.png');
 
@@ -20,6 +21,7 @@ export default function StudentInform({
     { label: 'Derde jaar', value: 'Derde jaar' },
     { label: 'Vierde jaar', value: 'Vierde jaar' },
   ]);
+  const [year, setYear] = useState(null);
   return (
     <ImageBackground
       source={image}
@@ -41,6 +43,8 @@ export default function StudentInform({
             <StyledDropDown
               labelText={'Ik zit mijn:'}
               options={items}
+              value={year}
+              setValue={setYear}
               setOptions={setItems}
             />
             <Text style={styles.textInputLabel}>Dit zijn mijn leerdoelen:</Text>
@@ -54,14 +58,14 @@ export default function StudentInform({
             <StyledButton
               title='Volgende stap'
               onPress={() => {
-                sendInfo(study, goals);
+                sendInfo(study, goals, year);
               }}
             />
 
             <Button
               title={'debug'}
               onPress={() => {
-                sendInfo(study, goals);
+                sendInfo(study, goals, year);
               }}
             />
           </View>
@@ -70,10 +74,13 @@ export default function StudentInform({
     </ImageBackground>
   );
 
-  function sendInfo(studyInfo: any, goalInfo: any) {
+  function sendInfo(studyInfo: any, goalInfo: any, yearInfo: any) {
     console.log(studyInfo);
     console.log(goalInfo);
-    backendFetch('POST', '/', [studyInfo, goalInfo]);
+    backendFetch('POST', 'account/update', {education: studyInfo, goals: JSON.stringify(goalInfo),  educationLevel: yearInfo})
+        .then( r =>
+        navigate('StudentInform2')
+    );
     // navigate('StudentInform2');
   }
 }

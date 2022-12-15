@@ -11,6 +11,9 @@ import HomeScreen from './screens/HomeScreen';
 import { useEffect, useState } from 'react';
 import SignUp from './screens/SignUpScreen';
 import getToken from './lib/getToken';
+import SelectSignUpTypeScreen from "./screens/SelectSignUpTypeScreen";
+import SignUpScreen from "./screens/SignUpScreen";
+import CompanyInform from "./screens/CompanyInform";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -41,7 +44,7 @@ export default function App() {
         <Stack.Navigator
           initialRouteName={isLoggedIn ? 'HomeScreen' : 'WelcomeScreen'}
         >
-          {/*<Stack.Navigator initialRouteName={'StudentInform'}>*/}
+          {/*<Stack.Navigator initialRouteName={'SelectSignUpTypeScreen'}>*/}
           <Stack.Screen
             name='WelcomeScreen'
             component={WelcomeScreen}
@@ -63,14 +66,24 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name='SignupStudentOrCompanyScreen'
-            component={SignUp}
+            name='SignUpScreen'
+            component={SignUpScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen
             name='HomeScreen'
             component={HomeScreen}
             options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='SelectSignUpTypeScreen'
+            component={SelectSignUpTypeScreen}
+            options={{ headerShown: false}}
+            />
+          <Stack.Screen
+              name='CompanyInform'
+              component={CompanyInform}
+              options={{ headerShown: false}}
           />
         </Stack.Navigator>
       </NavigationContainer>

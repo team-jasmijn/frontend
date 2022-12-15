@@ -62,7 +62,7 @@ export default function WelcomeScreen({
           <Text style={styles.createText}>Nog geen account?</Text>
           <Pressable
             style={styles.createButton}
-            onPress={() => navigate('SignupStudentOrCompanyScreen')}
+            onPress={() => navigate('SelectSignUpTypeScreen')}
           >
             <View style={{ alignSelf: 'center' }}>
               <Text

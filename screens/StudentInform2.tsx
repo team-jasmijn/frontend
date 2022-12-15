@@ -4,6 +4,7 @@ import StyledButton from '../components/StyledButton';
 import List from '../components/List';
 import { HomeScreenProps } from './HomeScreen';
 import { useState } from 'react';
+import backendFetch from "../lib/backendFetch";
 
 const image = require('../assets/images/background.png');
 
@@ -46,7 +47,7 @@ export default function StudentInform2({
             <StyledButton
               title='Begin met mijn zoektocht'
               onPress={() => {
-                navigate('StudentInform');
+                sendInfo(qualities, hobbies);
               }}
             />
           </View>
@@ -54,7 +55,17 @@ export default function StudentInform2({
       </View>
     </ImageBackground>
   );
+
+
+  function sendInfo(qualities: any, hobbies: any) {
+
+    backendFetch('POST', 'account/update', {qualities: JSON.stringify(qualities), hobbies: JSON.stringify(hobbies) })
+        .then( r =>
+            navigate('HomeScreen')
+        );
+  }
 }
+
 
 const styles = StyleSheet.create({
   container: {

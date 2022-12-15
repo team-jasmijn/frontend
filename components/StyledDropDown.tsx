@@ -12,15 +12,19 @@ export interface StyledInputProps {
   labelText: string;
   options: any;
   setOptions: any;
+  value: any;
+  setValue: any;
 }
 
 export default function StyledInput({
   labelText,
   options,
   setOptions,
+    value,
+    setValue,
 }: StyledInputProps) {
   const [open, setOpen] = useState(false); // Dropdown internal
-  const [value, setValue] = useState(null);
+
 
   return (
     <View style={styles.view}>

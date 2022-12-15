@@ -39,7 +39,7 @@ export default function SetupWrapper({ children }: SetupWrapperProps) {
             position: 'absolute',
           }}
         >
-          {ApiUrl}
+          {/*{ApiUrl}*/}
         </Text>
       )}
       <View>{children}</View>

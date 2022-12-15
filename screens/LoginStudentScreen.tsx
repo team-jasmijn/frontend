@@ -11,6 +11,9 @@ import { useState } from 'react';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
 import signin from '../lib/signin';
+import signup from "../lib/signup";
+import UserType from "../types/UserType";
+import BackendError from "../lib/backendError";
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -29,8 +32,19 @@ export default function LoginStudentScreen({
   const [password, setPassword] = useState('');
 
   async function sendLogin() {
-    await signin(email, password);
-    navigate('HomeScreen');
+    try {
+      await signin(email, password);
+      navigate('HomeScreen');
+      alert('Logged in successfully');
+    } catch (err: any) {
+      let humanFriendlyError = 'There was an error creating your account';
+      console.log(err);
+      if (err instanceof BackendError) {
+        humanFriendlyError += '\n\n' + err.toString();
+      }
+      alert("Failed to sign in.");
+    } finally {
+    }
   }
 
   return (
@@ -60,7 +74,7 @@ export default function LoginStudentScreen({
             <StyledButton
               title={'Login als student'}
               onPress={() => {
-                sendLogin().catch(function (err) {});
+                sendLogin();
               }}
             />
             <Text style={styles.UnderText}>OF</Text>
