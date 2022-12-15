@@ -29,7 +29,11 @@ export default function LoginStudentScreen({
   const [password, setPassword] = useState('');
 
   async function sendLogin() {
-    await signin(email, password);
+    try {
+      await signin(email, password);
+    } catch (e) {
+      alert(e);
+    }
     navigate('HomeScreen');
   }
 

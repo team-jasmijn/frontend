@@ -8,8 +8,7 @@ export default async function backendFetch<T>(
   data?: any,
   additionalHeaders?: any
 ): Promise<T | string> {
-  const token = await getToken();
-
+  let token = await getToken();
   const headers = {
     'Content-Type': 'application/json',
     ...(token && { Authorization: `Bearer ${token}` }),
@@ -24,7 +23,6 @@ export default async function backendFetch<T>(
 
   let resText = await res.text();
   let resData: T | string;
-
   try {
     resData = JSON.parse(resText);
   } catch (e) {
