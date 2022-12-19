@@ -34,17 +34,10 @@ export default function LoginStudentScreen({
   async function sendLogin() {
     try {
       await signin(email, password);
-      navigate('HomeScreen');
-      alert('Logged in successfully');
-    } catch (err: any) {
-      let humanFriendlyError = 'There was an error creating your account';
-      console.log(err);
-      if (err instanceof BackendError) {
-        humanFriendlyError += '\n\n' + err.toString();
-      }
-      alert('Failed to sign in.');
-    } finally {
+    } catch (e) {
+      alert(e);
     }
+    navigate('HomeScreen');
   }
 
   return (
@@ -74,7 +67,7 @@ export default function LoginStudentScreen({
             <StyledButton
               title={'Login als student'}
               onPress={() => {
-                sendLogin();
+                sendLogin().catch(function (err) {});
               }}
             />
             <Text style={styles.UnderText}>OF</Text>

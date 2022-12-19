@@ -26,7 +26,7 @@ export default function CompanyInform({
   navigation: { navigate },
 }: CompanyInformProps) {
   const [name, setName] = useState('');
-  const [town, setTown] = useState('');
+  const [city, setCity] = useState('');
   const [culture, setCulture] = useState('');
   const [lookingFor, setLookingFor] = useState('');
   const [workWise, setWorkWise] = useState('');
@@ -47,12 +47,12 @@ export default function CompanyInform({
             <StyledAlternativeInput
               value={name}
               onChangeText={setName}
-              labelText={'Ik volg de studie:'}
+              labelText={'Ons bedrijf heet:'}
             />
 
             <StyledAlternativeInput
-              value={town}
-              onChangeText={setTown}
+              value={city}
+              onChangeText={setCity}
               labelText={'Wij zijn gevestigd in:'}
             />
 
