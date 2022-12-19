@@ -5,6 +5,7 @@ import {
   Text,
   Button,
   Pressable,
+  GestureResponderEvent,
 } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 import { View } from './Themed';
@@ -12,13 +13,25 @@ import { View } from './Themed';
 export interface NotificationProps {
   title: string;
   message: string;
+  action?: (event: GestureResponderEvent) => void;
+  buttonMessage?: string;
 }
 
-export default function Notification({ title, message }: NotificationProps) {
+export default function Notification({
+  title,
+  message,
+  action,
+  buttonMessage,
+}: NotificationProps) {
   return (
     <View style={styles.main}>
       <Text style={styles.title}>{title}</Text>
       <Text>{message}</Text>
+      {action && buttonMessage && (
+        <Pressable onPress={action}>
+          <Text style={styles.button}>{buttonMessage}</Text>
+        </Pressable>
+      )}
     </View>
   );
 }
@@ -36,5 +49,10 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     marginBottom: 5,
+  },
+  button: {
+    width: 200,
+    height: 20,
+    backgroundColor: '#0000',
   },
 });
