@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
 import { Text, View } from '../components/Themed';
@@ -12,6 +12,7 @@ import TopBar from '../components/TopBar';
 import backendFetch from '../lib/backendFetch';
 import User from '../types/User';
 import getLoggedInUser from '../lib/getLoggedInUser';
+
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'HomeScreen'
@@ -28,7 +29,7 @@ export default function HomeScreen({
   const [companies, setCompanies] = useState<User[]>();
 
   useEffect(() => {
-    getLoggedInUser().then(setUser);
+    getLoggedInUser().then(setUser).catch(alert);
     backendFetch<User[]>('GET', 'company')
       .then(e => {
         setCompanies(e as User[]);
@@ -50,7 +51,6 @@ export default function HomeScreen({
         />
       </View>
     );
-
   if (!user.isAdmin)
     return (
       <View style={styles.main}>
@@ -91,11 +91,24 @@ export default function HomeScreen({
         }}
       />
 
-      <View style={styles.content}>
+      <ScrollView style={styles.content}>
         {companies?.map(e => (
-          <Notification title={e.name} message={e.email} />
+          <Notification
+            title={e.name}
+            message={e.email + (e.approved ? ' (approved)' : ' (unapproved)')}
+            key={e.name}
+            action={async o => {
+              backendFetch('POST', 'company/approve/' + e.id)
+                .then(o => {
+                  e.approved = !e.approved;
+                  setCompanies([...companies]);
+                })
+                .catch(alert);
+            }}
+            buttonMessage={e.approved ? 'unapprove' : 'approve'}
+          />
         ))}
-      </View>
+      </ScrollView>
     </View>
   );
 }

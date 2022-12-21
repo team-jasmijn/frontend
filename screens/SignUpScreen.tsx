@@ -41,7 +41,7 @@ export default function SignUpScreen({
     }
 
     setIsSubmitting(true);
-
+    console.log(Type);
     switch (Type) {
       case 'Student':
         try {
@@ -61,6 +61,7 @@ export default function SignUpScreen({
           }
           alert(humanFriendlyError);
         } finally {
+
           setIsSubmitting(false);
         }
         break;

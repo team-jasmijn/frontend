@@ -61,13 +61,6 @@ export default function StudentInform({
                 sendInfo(study, goals, year);
               }}
             />
-
-            <Button
-              title={'debug'}
-              onPress={() => {
-                sendInfo(study, goals, year);
-              }}
-            />
           </View>
         </View>
       </View>

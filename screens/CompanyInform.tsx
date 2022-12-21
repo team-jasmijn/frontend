@@ -76,10 +76,8 @@ export default function CompanyInform({
 
             <StyledButton
               title='Volgende stap'
-              onPress={async () => {
-                console.log(await getToken());
-                // sendInfo(study, goals);
-                // navigate('');
+              onPress={ () => {
+                sendInfo(name, city, culture, lookingFor, workWise)
               }}
             />
           </View>
@@ -88,10 +86,14 @@ export default function CompanyInform({
     </ImageBackground>
   );
 
-  function sendInfo(studyInfo: any, goalInfo: any) {
-    console.log(studyInfo);
-    console.log(goalInfo);
-    backendFetch('POST', '/', [studyInfo, goalInfo]);
+  function sendInfo(name: any, city: any, culture: any, lookingFor: any, workWise: any) {
+    backendFetch('POST', 'account/update', {
+      name: name,
+      city: city,
+      workCulture: culture,
+      lookingFor: lookingFor,
+      workWise: workWise
+    }).then(r => navigate('CompanyInform2'));
     // navigate('StudentInform2');
   }
 }
