@@ -5,5 +5,7 @@ export default interface User {
   goals: string;
   name: string;
   email: string;
-  isAdmin: boolean;
+  isAdmin?: boolean;
+  id?: number;
+  approved?: boolean;
 }
