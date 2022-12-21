@@ -61,7 +61,6 @@ export default function SignUpScreen({
           }
           alert(humanFriendlyError);
         } finally {
-
           setIsSubmitting(false);
         }
         break;

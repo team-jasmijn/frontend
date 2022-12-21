@@ -76,8 +76,8 @@ export default function CompanyInform({
 
             <StyledButton
               title='Volgende stap'
-              onPress={ () => {
-                sendInfo(name, city, culture, lookingFor, workWise)
+              onPress={() => {
+                sendInfo(name, city, culture, lookingFor, workWise);
               }}
             />
           </View>
@@ -86,13 +86,19 @@ export default function CompanyInform({
     </ImageBackground>
   );
 
-  function sendInfo(name: any, city: any, culture: any, lookingFor: any, workWise: any) {
+  function sendInfo(
+    name: any,
+    city: any,
+    culture: any,
+    lookingFor: any,
+    workWise: any
+  ) {
     backendFetch('POST', 'account/update', {
       name: name,
       city: city,
       workCulture: culture,
       lookingFor: lookingFor,
-      workWise: workWise
+      workWise: workWise,
     }).then(r => navigate('CompanyInform2'));
     // navigate('StudentInform2');
   }

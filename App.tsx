@@ -14,7 +14,7 @@ import getToken from './lib/getToken';
 import SelectSignUpTypeScreen from './screens/SelectSignUpTypeScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import CompanyInform from './screens/CompanyInform';
-import CompanyInform2 from "./screens/CompanyInform2";
+import CompanyInform2 from './screens/CompanyInform2';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -82,16 +82,15 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-              name='CompanyInform'
-              component={CompanyInform}
-              options={{ headerShown: false }}
+            name='CompanyInform'
+            component={CompanyInform}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name='CompanyInform2'
             component={CompanyInform2}
             options={{ headerShown: false }}
-        />
-
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
