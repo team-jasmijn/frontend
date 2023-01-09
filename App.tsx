@@ -45,7 +45,6 @@ export default function App() {
         <Stack.Navigator
           initialRouteName={isLoggedIn ? 'HomeScreen' : 'WelcomeScreen'}
         >
-          {/*<Stack.Navigator initialRouteName={'SelectSignUpTypeScreen'}>*/}
           <Stack.Screen
             name='WelcomeScreen'
             component={WelcomeScreen}
