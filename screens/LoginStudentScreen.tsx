@@ -11,6 +11,9 @@ import { useState } from 'react';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
 import signin from '../lib/signin';
+import signup from '../lib/signup';
+import UserType from '../types/UserType';
+import BackendError from '../lib/backendError';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,

@@ -14,15 +14,18 @@ import { StyleSheet } from 'react-native';
 export default function List({
   placeHoldeText,
   height,
+  getter,
+  setter,
 }: {
   placeHoldeText: string;
   height: number;
+  getter: any;
+  setter: any;
 }) {
-  const [data, setData] = useState([{ item: 'Example', key: 'Example' }]);
   const [item, setItem] = useState('');
 
-  function remove(itemKey: string) {
-    setData(current =>
+  function remove(itemKey: any) {
+    setter((current: any[]) =>
       current.filter(item => {
         return item.key !== itemKey;
       })
@@ -30,7 +33,7 @@ export default function List({
   }
 
   return (
-    <View>
+    <View style={{ zIndex: -500 }}>
       <TextInput
         style={styles.textInputSmall}
         placeholder={placeHoldeText}
@@ -39,35 +42,51 @@ export default function List({
         onChangeText={name => setItem(name)}
         value={item}
         onSubmitEditing={() => {
-          if (item) setData([...data, { item: item, key: item }]);
+          if (item) setter([...getter, { item: item, key: item }]);
         }}
       />
 
       <SafeAreaView style={{ height: height }}>
         <ScrollView style={styles.objectiveScrollview} indicatorStyle={'black'}>
-          {data.map(item => {
-            return (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  padding: 5,
-                }}
-              >
-                <Text>{item.item}</Text>
-                <Pressable style={{}} onPress={() => remove(item.key)}>
-                  <SvgUri
-                    uri={
-                      'https://icons.getbootstrap.com/assets/icons/trash.svg'
-                    }
-                    height={25}
-                    width={25}
-                    fill={'#334155'}
-                  />
-                </Pressable>
-              </View>
-            );
-          })}
+          {getter.map(
+            (item: {
+              item:
+                | string
+                | number
+                | boolean
+                | React.ReactElement<
+                    any,
+                    string | React.JSXElementConstructor<any>
+                  >
+                | React.ReactFragment
+                | React.ReactPortal
+                | null
+                | undefined;
+              key: any;
+            }) => {
+              return (
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    padding: 5,
+                  }}
+                >
+                  <Text>{item.item}</Text>
+                  <Pressable style={{}} onPress={() => remove(item.key)}>
+                    <SvgUri
+                      uri={
+                        'https://icons.getbootstrap.com/assets/icons/trash.svg'
+                      }
+                      height={25}
+                      width={25}
+                      fill={'#334155'}
+                    />
+                  </Pressable>
+                </View>
+              );
+            }
+          )}
         </ScrollView>
       </SafeAreaView>
     </View>

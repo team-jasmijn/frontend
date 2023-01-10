@@ -23,13 +23,16 @@ export type RootStackParamList = {
   LoginStudentScreen: undefined;
   ModalScreen: undefined;
   NotFoundScreen: undefined;
-  SignupStudentOrCompanyScreen: undefined;
   StudentInform: undefined;
   StudentInform2: undefined;
   TabOneScreen: undefined;
   TabTwoScreen: undefined;
   WelcomeScreen: undefined;
   HomeScreen: undefined;
+  SelectSignUpTypeScreen: undefined;
+  SignUpScreen: undefined;
+  CompanyInform: undefined;
+  CompanyInform2: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

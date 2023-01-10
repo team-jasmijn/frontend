@@ -11,6 +11,10 @@ import HomeScreen from './screens/HomeScreen';
 import { useEffect, useState } from 'react';
 import SignUp from './screens/SignUpScreen';
 import getToken from './lib/getToken';
+import SelectSignUpTypeScreen from './screens/SelectSignUpTypeScreen';
+import SignUpScreen from './screens/SignUpScreen';
+import CompanyInform from './screens/CompanyInform';
+import CompanyInform2 from './screens/CompanyInform2';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -62,13 +66,28 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name='SignupStudentOrCompanyScreen'
-            component={SignUp}
+            name='SignUpScreen'
+            component={SignUpScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen
             name='HomeScreen'
             component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='SelectSignUpTypeScreen'
+            component={SelectSignUpTypeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='CompanyInform'
+            component={CompanyInform}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='CompanyInform2'
+            component={CompanyInform2}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
