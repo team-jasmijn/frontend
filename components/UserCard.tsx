@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 import User from '../types/User';
 import { Text, View } from './Themed';
+import Company from "../types/Company";
 
 export interface UserCardProps {
   children?: JSX.Element;
-  user: User;
+  user: Company | User;
 }
 
 export default function UserCard({ user, children }: UserCardProps) {

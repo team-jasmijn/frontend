@@ -8,6 +8,7 @@ import UserCard from '../components/UserCard';
 import getMatchUser from '../lib/getMatchUser';
 import { RootStackParamList } from '../types';
 import User from '../types/User';
+import Company from "../types/Company";
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -21,7 +22,7 @@ export interface MatchingScreenProps {
 export default function MatchingScreen({
   navigation: { navigate },
 }: MatchingScreenProps) {
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<Company>();
 
   const refresh = () => getMatchUser().then(setUser).catch(alert);
 

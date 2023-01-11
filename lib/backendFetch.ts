@@ -7,7 +7,7 @@ export default async function backendFetch<T>(
   endpoint: string,
   data?: any,
   additionalHeaders?: any
-): Promise<T | string> {
+): Promise<T> {
   let token = await getToken();
   const headers = {
     'Content-Type': 'application/json',

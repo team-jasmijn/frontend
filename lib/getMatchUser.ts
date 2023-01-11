@@ -1,13 +1,14 @@
-import User from '../types/User';
+import backendFetch from "./backendFetch";
+import Company from "../types/Company";
 
-export default async function getMatchUser(): Promise<User> {
+export default async function getMatchUser(): Promise<Company> {
+
+  let profileData = await backendFetch<Company>('GET', 'company/match') // returns 'random' company
+
   return {
-    id: 1,
-    name: 'John Doe',
-    email: 'gaming@gaming.co.uk',
-    education: 'University',
-    educationLevel: "What's a school?",
-    goals: 'I wanna be cool',
-    skills: 'programming!!',
-  };
+    name: profileData.name,
+    email: profileData.email,
+  }
+
+
 }

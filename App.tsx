@@ -96,7 +96,8 @@ export default function App() {
           <Stack.Screen
             name='MatchingScreen'
             component={MatchingScreen}
-            options={{ headerShown: false }}
+            options={{ headerShown: false, animation: 'none'  }}
+
           />
         </Stack.Navigator>
       </NavigationContainer>
