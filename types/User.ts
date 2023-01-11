@@ -1,4 +1,4 @@
-import Role from "./Role";
+import Role from './Role';
 
 export default interface User {
   education: string;

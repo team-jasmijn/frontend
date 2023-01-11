@@ -1,7 +1,7 @@
 enum Role {
-    Company = 'Company',
-    Student = 'Student',
-    Moderator = 'Moderator'
+  Company = 'Company',
+  Student = 'Student',
+  Moderator = 'Moderator',
 }
 
 export default Role;
