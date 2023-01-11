@@ -1,7 +1,6 @@
-import Student from "./Student";
+import Student from './Student';
 
 export default interface Flirt {
-    id : number,
-    student : Student,
-    
+  id: number;
+  student: Student;
 }

@@ -5,7 +5,7 @@ export default interface User {
   goals: string;
   name: string;
   email: string;
-  role?: "Moderator" | "Company" | 'Student';
+  role?: 'Moderator' | 'Company' | 'Student';
   id?: number;
   approved?: boolean;
 }
