@@ -1,5 +1,6 @@
 {
   "expo": {
+    "owner": "jasmijn",
     "name": "frontend",
     "slug": "frontend",
     "version": "1.0.0",
@@ -23,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.jasmijn.frontend"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1f3f8b09-4bae-4d58-aaab-d6a4b7e18688"
+      }
     }
   }
 }
