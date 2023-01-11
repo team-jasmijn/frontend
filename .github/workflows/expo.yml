@@ -13,7 +13,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: yarn
+          cache: npm ci
 
       - name: 🏗 Setup Expo
         uses: expo/expo-github-action@v7
@@ -22,7 +22,7 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: 📦 Install dependencies
-        run: yarn install
+        run: npm ci
 
       - name: 🚀 Publish app
         run: expo publish --non-interactive
