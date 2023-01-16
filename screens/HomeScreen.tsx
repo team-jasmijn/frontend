@@ -6,7 +6,7 @@ import { RootStackParamList } from '../types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import * as SecureStore from 'expo-secure-store';
-import NavBar from '../components/NavigationBar';
+import NavBar from '../components/NavBar';
 import Notification from '../components/Notification';
 import TopBar from '../components/TopBar';
 import backendFetch from '../lib/backendFetch';
@@ -76,7 +76,7 @@ export default function HomeScreen({
             message='Er is heeft zich een nieuwe stage plek bij jou in de buurt aangemeld'
           />
         </View>
-        <NavBar />
+        <NavBar active='HomeScreen' navigate={navigate} />
       </View>
     );
 

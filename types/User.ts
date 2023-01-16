@@ -8,4 +8,5 @@ export default interface User {
   isAdmin?: boolean;
   id?: number;
   approved?: boolean;
+  hobbies: string;
 }
