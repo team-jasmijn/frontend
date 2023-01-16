@@ -19,7 +19,7 @@ export default function NavBar({ active, navigate }: NavBarProps) {
       <NavBarItem
         active={active === 'MatchingScreen'}
         svgUri='https://icons.getbootstrap.com/assets/icons/search.svg'
-        onPress={() => navigate('MatchingScreen', )}
+        onPress={() => navigate('MatchingScreen')}
       />
       <NavBarItem
         active={active === 'ChatScreen'}
