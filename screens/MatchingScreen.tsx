@@ -9,6 +9,7 @@ import { RootStackParamList } from '../types';
 import User from '../types/User';
 import Company from '../types/Company';
 import { SvgUri } from 'react-native-svg';
+import sendFlirt from "../lib/sendFlirt";
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'MatchingScreen'
@@ -55,7 +56,9 @@ export default function MatchingScreen({
             </Pressable>
             <Pressable
               onPress={() => {
-                refresh();
+                sendFlirt(user.id).then(() => {
+                  refresh();
+                });
               }}
             >
               {/* Accept flirt */}
