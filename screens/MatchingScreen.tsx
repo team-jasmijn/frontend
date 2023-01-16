@@ -1,6 +1,6 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useEffect, useState } from 'react';
-import {Pressable, StyleSheet} from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import NavBar from '../components/NavBar';
 import { Text, View } from '../components/Themed';
 import TopBar from '../components/TopBar';
@@ -8,7 +8,7 @@ import getMatchUser from '../lib/getMatchUser';
 import { RootStackParamList } from '../types';
 import User from '../types/User';
 import Company from '../types/Company';
-import {SvgUri} from "react-native-svg";
+import { SvgUri } from 'react-native-svg';
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'MatchingScreen'
@@ -23,47 +23,57 @@ export default function MatchingScreen({
 
   const refresh = () => getMatchUser().then(setUser).catch(alert);
   useEffect(() => {
-        refresh();
+    refresh();
   }, []);
 
   if (!user) return <></>;
   return (
     <View style={styles.main}>
-      <Text>
-      </Text>
+      <Text></Text>
       <TopBar ScreenName='Matching' Press={() => {}} />
       <View style={styles.content}>
         <View style={styles.container}>
           <Text style={styles.title}>{user.name}</Text>
           {/* Skills */}
-          <Text style={styles.mail}>
-            {user.email}
-          </Text>
+          <Text style={styles.mail}>{user.email}</Text>
 
           <View style={styles.buttons}>
-            <Pressable onPress={() => { refresh()  }}>
+            <Pressable
+              onPress={() => {
+                refresh();
+              }}
+            >
               {/* Deny Flirt */}
               <SvgUri
-                  style={styles.buttonElemement}
-                  height={75}
-                  width={75}
-                  uri={'https://cdn.discordapp.com/attachments/1044904535015043082/1064466866132758548/svgviewer-output_1.svg'}
+                style={styles.buttonElemement}
+                height={75}
+                width={75}
+                uri={
+                  'https://cdn.discordapp.com/attachments/1044904535015043082/1064466866132758548/svgviewer-output_1.svg'
+                }
               />
             </Pressable>
-            <Pressable onPress={() => { refresh()  }}>
+            <Pressable
+              onPress={() => {
+                refresh();
+              }}
+            >
               {/* Accept flirt */}
               {/* TODO: Write acceptation *here* */}
               <SvgUri
-                  style={styles.buttonElemement}
-                  height={75}
-                  width={75}
-                  uri={'https://cdn.discordapp.com/attachments/1044904535015043082/1064466866434756618/svgviewer-output.svg'}/>
+                style={styles.buttonElemement}
+                height={75}
+                width={75}
+                uri={
+                  'https://cdn.discordapp.com/attachments/1044904535015043082/1064466866434756618/svgviewer-output.svg'
+                }
+              />
             </Pressable>
           </View>
           <View
-              style={styles.separator}
-              lightColor='#eee'
-              darkColor='rgba(255,255,255,0.1)'
+            style={styles.separator}
+            lightColor='#eee'
+            darkColor='rgba(255,255,255,0.1)'
           />
         </View>
       </View>
