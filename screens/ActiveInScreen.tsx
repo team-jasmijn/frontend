@@ -1,13 +1,12 @@
 import {
   View,
   StyleSheet,
-  ImageBackground,   Text,
-
-
+  ImageBackground,
+  Text,
   TextInput,
-} from "react-native";
+} from 'react-native';
 import StyledButton from '../components/StyledButton';
-import * as   React from 'react';
+import * as React from 'react';
 
 const image = require('../assets/images/background-v3.png');
 
