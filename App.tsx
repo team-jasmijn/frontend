@@ -15,11 +15,13 @@ import SelectSignUpTypeScreen from './screens/SelectSignUpTypeScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import CompanyInform from './screens/CompanyInform';
 import CompanyInform2 from './screens/CompanyInform2';
+import MatchingScreen from './screens/MatchingScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedInChecked, setLoggedInChecked] = useState(false);
   const isLoadingComplete = useCachedResources();
   const [fontsLoaded] = useFonts({
     Poppins: require('./assets/fonts/Poppins-Regular.ttf'),
@@ -29,6 +31,7 @@ export default function App() {
   useEffect(() => {
     getToken().then(token => {
       setLoggedIn(!!token);
+      setLoggedInChecked(true);
       console.log('token', token); // Consider keeping this for debug purposes until there's a real homescreen with data
     });
   }, []);
@@ -37,7 +40,7 @@ export default function App() {
     return null;
   }
 
-  if (!isLoadingComplete) {
+  if (!isLoadingComplete || !isLoggedInChecked) {
     return null;
   } else {
     return (
@@ -89,6 +92,11 @@ export default function App() {
             name='CompanyInform2'
             component={CompanyInform2}
             options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='MatchingScreen'
+            component={MatchingScreen}
+            options={{ headerShown: false, animation: 'none' }}
           />
         </Stack.Navigator>
       </NavigationContainer>

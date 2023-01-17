@@ -10,4 +10,5 @@ export default interface User {
   role: Role;
   id?: number;
   approved?: boolean;
+  hobbies: string;
 }
