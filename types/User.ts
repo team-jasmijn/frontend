@@ -1,5 +1,3 @@
-import Role from './Role';
-
 export default interface User {
   education: string;
   educationLevel: string;
@@ -7,7 +5,7 @@ export default interface User {
   goals: string;
   name: string;
   email: string;
-  role: Role;
+  isAdmin?: boolean;
   id?: number;
   approved?: boolean;
   hobbies: string;
