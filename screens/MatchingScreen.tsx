@@ -20,7 +20,7 @@ export interface MatchingScreenProps {
 export default function MatchingScreen({
   navigation: { navigate },
 }: MatchingScreenProps) {
-  const [user, setUser] = useState<Company>();
+  const [user, setUser] = useState<Company | null>(null);
 
   const refresh = () => getMatchUser().then(setUser).catch(alert);
   useEffect(() => {
@@ -78,7 +78,7 @@ export default function MatchingScreen({
           />
         </View>
       </View>
-      <NavBar active='MatchingScreen' navigate={navigate} />
+      <NavBar />
     </View>
   );
 }
