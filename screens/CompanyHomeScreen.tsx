@@ -8,26 +8,13 @@ import backendFetch from '../lib/backendFetch';
 import Loading from '../components/Loading';
 
 export default function CompanyHomeScreen() {
-  const [flirts, setFlirts] = useState<Flirt[]>();
-  useEffect(() => {
-    backendFetch<Flirt[]>('GET', 'flirts')
-      .then(flirts => setFlirts(flirts as Flirt[]))
-      .catch();
-  }, []);
-
-  if (!flirts) {
-    return <Loading />;
-  }
-
   return (
     <ScrollView style={styles.content}>
-      {flirts.map(flirt => (
-        <Notification
-          title={flirt.student.name}
-          key={flirt.id}
-          message={flirt.student.profileSettings.description}
-        />
-      ))}
+      <Notification
+        title={'You received new flirts'}
+        key={'flirts'}
+        message={'Een student heeft u een flirt gestuurd!'}
+      />
     </ScrollView>
   );
 }

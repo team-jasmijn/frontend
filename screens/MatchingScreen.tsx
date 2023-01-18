@@ -1,6 +1,6 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useEffect, useState } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Pressable, ScrollView, StyleSheet } from 'react-native';
 import NavBar from '../components/NavBar';
 import { Text, View } from '../components/Themed';
 import TopBar from '../components/TopBar';
@@ -11,6 +11,11 @@ import Company from '../types/Company';
 import { SvgUri } from 'react-native-svg';
 import sendFlirt from '../lib/sendFlirt';
 import Loading from '../components/Loading';
+import getLoggedInUser from '../lib/getLoggedInUser';
+import Role from '../types/Role';
+import Notification from '../components/Notification';
+import backendFetch from '../lib/backendFetch';
+import Flirt from '../types/Flirt';
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'MatchingScreen'
@@ -21,67 +26,92 @@ export interface MatchingScreenProps {
 export default function MatchingScreen({
   navigation: { navigate },
 }: MatchingScreenProps) {
-  const [user, setUser] = useState<Company | null>(null);
+  const [matchingCompany, setMatchingCompany] = useState<Company | null>(null);
+  const [user, setUser] = useState<User>();
+  const [flirts, setFlirts] = useState<Flirt[]>();
 
-  const refresh = () => getMatchUser().then(setUser).catch(alert);
+  const refresh = () => getMatchUser().then(setMatchingCompany).catch(alert);
   useEffect(() => {
     refresh();
+    getLoggedInUser().then(setUser).catch(alert);
+    backendFetch<Flirt[]>('GET', 'flirts').then(flirts => setFlirts(flirts as Flirt[])).catch(alert);
   }, []);
 
   if (!user) return <Loading />;
-  return (
-    <View style={styles.main}>
-      <Text></Text>
-      <TopBar ScreenName='Matching' Press={() => {}} />
-      <View style={styles.content}>
-        <View style={styles.container}>
-          <Text style={styles.title}>{user.name}</Text>
-          {/* Skills */}
-          <Text style={styles.mail}>{user.email}</Text>
+  switch (user.role) {
+    case Role.Company:
+      if (!flirts) return <Loading />;
+      return (
+        <ScrollView style={styles.content}>
+          {flirts.map(flirt => (
+            <Notification
+              title={flirt.student.name}
+              key={flirt.id}
+              message={flirt.student.profileSettings.description}
+            />
+          ))}
+        </ScrollView>
+      );
+    case Role.Student:
+      if (!matchingCompany) return <Loading />;
 
-          <View style={styles.buttons}>
-            <Pressable
-              onPress={() => {
-                refresh();
-              }}
-            >
-              {/* Deny Flirt */}
-              <SvgUri
-                style={styles.buttonElemement}
-                height={75}
-                width={75}
-                uri={
-                  'https://cdn.discordapp.com/attachments/1044904535015043082/1064466866132758548/svgviewer-output_1.svg'
-                }
+      return (
+        <View style={styles.main}>
+          <Text></Text>
+          <TopBar ScreenName='Matching' Press={() => {}} />
+          <View style={styles.content}>
+            <View style={styles.container}>
+              <Text style={styles.title}>{matchingCompany.name}</Text>
+              {/* Skills */}
+              <Text style={styles.mail}>{matchingCompany.email}</Text>
+
+              <View style={styles.buttons}>
+                <Pressable
+                  onPress={() => {
+                    refresh();
+                  }}
+                >
+                  {/* Deny Flirt */}
+                  <SvgUri
+                    style={styles.buttonElemement}
+                    height={75}
+                    width={75}
+                    uri={
+                      'https://cdn.discordapp.com/attachments/1044904535015043082/1064466866132758548/svgviewer-output_1.svg'
+                    }
+                  />
+                </Pressable>
+                <Pressable
+                  onPress={() => {
+                    sendFlirt(matchingCompany.id).then(refresh);
+                  }}
+                >
+                  {/* Accept flirt */}
+                  {/* TODO: Write acceptation *here* */}
+                  <SvgUri
+                    style={styles.buttonElemement}
+                    height={75}
+                    width={75}
+                    uri={
+                      'https://cdn.discordapp.com/attachments/1044904535015043082/1064466866434756618/svgviewer-output.svg'
+                    }
+                  />
+                </Pressable>
+              </View>
+              <View
+                style={styles.separator}
+                lightColor='#eee'
+                darkColor='rgba(255,255,255,0.1)'
               />
-            </Pressable>
-            <Pressable
-              onPress={() => {
-                sendFlirt(user.id).then(refresh);
-              }}
-            >
-              {/* Accept flirt */}
-              {/* TODO: Write acceptation *here* */}
-              <SvgUri
-                style={styles.buttonElemement}
-                height={75}
-                width={75}
-                uri={
-                  'https://cdn.discordapp.com/attachments/1044904535015043082/1064466866434756618/svgviewer-output.svg'
-                }
-              />
-            </Pressable>
+            </View>
           </View>
-          <View
-            style={styles.separator}
-            lightColor='#eee'
-            darkColor='rgba(255,255,255,0.1)'
-          />
+          <NavBar />
         </View>
-      </View>
-      <NavBar />
-    </View>
-  );
+      );
+      break;
+  }
+
+  return <Loading />;
 }
 
 const styles = StyleSheet.create({
