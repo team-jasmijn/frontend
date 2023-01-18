@@ -34,7 +34,9 @@ export default function MatchingScreen({
   useEffect(() => {
     refresh();
     getLoggedInUser().then(setUser).catch(alert);
-    backendFetch<Flirt[]>('GET', 'flirts').then(flirts => setFlirts(flirts as Flirt[])).catch(alert);
+    backendFetch<Flirt[]>('GET', 'flirts')
+      .then(flirts => setFlirts(flirts as Flirt[]))
+      .catch(alert);
   }, []);
 
   if (!user) return <Loading />;
