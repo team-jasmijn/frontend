@@ -56,9 +56,7 @@ export default function MatchingScreen({
             </Pressable>
             <Pressable
               onPress={() => {
-                sendFlirt(user.id).then(() => {
-                  refresh();
-                });
+                sendFlirt(user.id).then(refresh);
               }}
             >
               {/* Accept flirt */}
