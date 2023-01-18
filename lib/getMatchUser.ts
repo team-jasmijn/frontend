@@ -7,5 +7,6 @@ export default async function getMatchUser(): Promise<Company> {
   return {
     name: profileData.name,
     email: profileData.email,
+    id: profileData.id,
   };
 }
