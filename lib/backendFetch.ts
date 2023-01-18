@@ -33,5 +33,9 @@ export default async function backendFetch<T>(
     throw new BackendError(resData as BackendErrors);
   }
 
+  if (resData === 'null') {
+    return null as any;
+  }
+
   return resData as T;
 }
