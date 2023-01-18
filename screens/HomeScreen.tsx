@@ -12,6 +12,8 @@ import TopBar from '../components/TopBar';
 import backendFetch from '../lib/backendFetch';
 import User from '../types/User';
 import getLoggedInUser from '../lib/getLoggedInUser';
+import Flirt from '../types/Flirt';
+import Logout from '../lib/Logout';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -26,89 +28,93 @@ export default function HomeScreen({
   navigation: { navigate },
 }: HomeScreenProps) {
   const [user, setUser] = useState<User>();
-  const [companies, setCompanies] = useState<User[]>();
+  const [companies, setCompanies] = useState<User[]>([]);
+  const [flirts, setFlirts] = useState<Flirt[]>([]);
+  const [refresh, setRefresh] = useState(Math.random());
 
   useEffect(() => {
     getLoggedInUser().then(setUser).catch(alert);
     backendFetch<User[]>('GET', 'company')
-      .then(e => {
-        setCompanies(e as User[]);
-      })
-      .catch(alert);
-  }, []);
+      .then(companies => setCompanies(companies as User[]))
+      .catch();
+    backendFetch<Flirt[]>('GET', 'flirts')
+      .then(flirts => setFlirts(flirts as Flirt[]))
+      .catch();
+  }, [refresh]);
 
-  if (!user)
-    return (
-      <View style={styles.main}>
-        <Text>loading...</Text>
-        <TopBar
-          ScreenName='Logout'
-          Press={async () => {
-            await SecureStore.deleteItemAsync('login-token').then(r =>
-              navigate('WelcomeScreen')
-            );
-          }}
-        />
-      </View>
-    );
-  if (!user.isAdmin)
-    return (
-      <View style={styles.main}>
-        <TopBar
-          ScreenName='Logout'
-          Press={async () => {
-            await SecureStore.deleteItemAsync('login-token').then(r =>
-              navigate('WelcomeScreen')
-            );
-          }}
-        />
-        <View style={styles.content}>
-          <Notification
-            title='Nieuwe stage Plek'
-            message='Er is heeft zich een nieuwe stage plek bij jou in de buurt aangemeld.'
-          />
-          <Notification
-            title='Tip !'
-            message='Voeg een foto toe aan je profiel om meer kans te krijgen op een stage plek.'
-          />
-          <Notification
-            title='Je hebt een match'
-            message='Er is heeft zich een nieuwe stage plek bij jou in de buurt aangemeld'
-          />
+  async function CustomLogout() {
+    await Logout(navigate);
+    setRefresh(Math.random());
+  }
+
+  switch (user?.role) {
+    case 'Student':
+      return (
+        <View style={styles.main}>
+          <TopBar ScreenName='Logout' Press={CustomLogout} />
+          <View style={styles.content}>
+            <Notification
+              title='Nieuwe stage Plek'
+              message='Er is heeft zich een nieuwe stage plek bij jou in de buurt aangemeld.'
+            />
+            <Notification
+              title='Tip !'
+              message='Voeg een foto toe aan je profiel om meer kans te krijgen op een stage plek.'
+            />
+            <Notification
+              title='Je hebt een match'
+              message='Er is heeft zich een nieuwe stage plek bij jou in de buurt aangemeld'
+            />
+          </View>
         </View>
-        <NavBar active='HomeScreen' navigate={navigate} />
-      </View>
-    );
-
+      );
+    case 'Moderator':
+      return (
+        <View style={styles.main}>
+          <TopBar ScreenName={'Companies'} Press={CustomLogout} />
+          <ScrollView style={styles.content}>
+            {companies?.map(company => (
+              <Notification
+                title={company.name}
+                message={
+                  company.email +
+                  (company.approved ? ' (approved)' : ' (unapproved)')
+                }
+                key={company.name}
+                action={async () => {
+                  backendFetch('POST', 'company/approve/' + company.id)
+                    .then(() => {
+                      company.approved = !company.approved;
+                      setCompanies([...companies]);
+                    })
+                    .catch(alert);
+                }}
+                buttonMessage={company.approved ? 'unapprove' : 'approve'}
+              />
+            ))}
+          </ScrollView>
+        </View>
+      );
+    case 'Company':
+      return (
+        <View style={styles.main}>
+          <TopBar ScreenName='Logout' Press={CustomLogout} />
+          <ScrollView style={styles.content}>
+            {flirts?.map(flirt => (
+              <Notification
+                title={flirt.student.name}
+                key={flirt.id}
+                message={flirt.student.profileSettings.description}
+              />
+            ))}
+          </ScrollView>
+        </View>
+      );
+  }
   return (
     <View style={styles.main}>
-      <TopBar
-        ScreenName={'Companies'}
-        Press={async () => {
-          await SecureStore.deleteItemAsync('login-token').then(r =>
-            navigate('WelcomeScreen')
-          );
-        }}
-      />
-
-      <ScrollView style={styles.content}>
-        {companies?.map(e => (
-          <Notification
-            title={e.name}
-            message={e.email + (e.approved ? ' (approved)' : ' (unapproved)')}
-            key={e.name}
-            action={async o => {
-              backendFetch('POST', 'company/approve/' + e.id)
-                .then(o => {
-                  e.approved = !e.approved;
-                  setCompanies([...companies]);
-                })
-                .catch(alert);
-            }}
-            buttonMessage={e.approved ? 'unapprove' : 'approve'}
-          />
-        ))}
-      </ScrollView>
+      <Text>loading...</Text>
+      <TopBar ScreenName='Logout' Press={CustomLogout} />
     </View>
   );
 }
