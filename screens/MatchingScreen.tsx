@@ -9,7 +9,7 @@ import { RootStackParamList } from '../types';
 import User from '../types/User';
 import Company from '../types/Company';
 import { SvgUri } from 'react-native-svg';
-import sendFlirt from "../lib/sendFlirt";
+import sendFlirt from '../lib/sendFlirt';
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'MatchingScreen'
