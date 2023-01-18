@@ -16,6 +16,7 @@ import SignUpScreen from './screens/SignUpScreen';
 import CompanyInform from './screens/CompanyInform';
 import CompanyInform2 from './screens/CompanyInform2';
 import MatchingScreen from './screens/MatchingScreen';
+import ChatIndexScreen from './screens/ChatIndexScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -96,6 +97,11 @@ export default function App() {
           <Stack.Screen
             name='MatchingScreen'
             component={MatchingScreen}
+            options={{ headerShown: false, animation: 'none' }}
+          />
+          <Stack.Screen
+            name='ChatIndexScreen'
+            component={ChatIndexScreen}
             options={{ headerShown: false, animation: 'none' }}
           />
         </Stack.Navigator>
