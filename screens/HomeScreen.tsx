@@ -13,6 +13,7 @@ import ModeratorHomeScreen from "./ModeratorHomeScreen";
 import CompanyHomeScreen from "./CompanyHomeScreen";
 import Loading from "../components/Loading";
 import TopBar from "../components/TopBar";
+import NavBar from "../components/NavBar";
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -33,17 +34,18 @@ export default function HomeScreen({
         getLoggedInUser().then(setUser).catch(alert);
     }, [refresh]);
 
-    async function CustomLogout() {
+    async function CustomLogout()  {
         await Logout(navigate);
         setRefresh(Math.random());
     }
-
+    
     switch (user?.role) {
         case 'Student':
             return (
                 <View style={styles.main}>
                     <TopBar ScreenName='Logout' Press={CustomLogout}/>
                     <StudentHomeScreen/>
+                    <NavBar />
                 </View>);
         case 'Moderator':
             return (
@@ -56,6 +58,7 @@ export default function HomeScreen({
                 <View style={styles.main}>
                     <TopBar ScreenName='Logout' Press={CustomLogout}/>
                     <CompanyHomeScreen/>
+                    <NavBar />
                 </View>);
     }
 

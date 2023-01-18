@@ -1,30 +1,31 @@
-import { StyleSheet, Pressable } from 'react-native';
-import { SvgUri } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
 import NavBarItem from './NavBarItem';
 import { View } from './Themed';
 
-export interface NavBarProps {
-  active: string;
-  navigate: (screen: string) => void;
-}
+export default function NavBar() {
+  const navigation = useNavigation();
 
-export default function NavBar({ active, navigate }: NavBarProps) {
+  const activeScreen =
+    navigation.getState().routes[navigation.getState().index].name;
+
   return (
     <View style={styles.main}>
       <NavBarItem
-        active={active === 'HomeScreen'}
+        active={activeScreen === 'HomeScreen'}
         svgUri='https://icons.getbootstrap.com/assets/icons/house.svg'
-        onPress={() => navigate('HomeScreen')}
+        onPress={() => navigation.navigate('HomeScreen')}
       />
       <NavBarItem
-        active={active === 'MatchingScreen'}
+        active={activeScreen === 'MatchingScreen'}
         svgUri='https://icons.getbootstrap.com/assets/icons/search.svg'
-        onPress={() => navigate('MatchingScreen')}
+        onPress={() => navigation.navigate('MatchingScreen')}
       />
       <NavBarItem
-        active={active === 'ChatScreen'}
+        active={activeScreen === 'WelcomeScreen'}
         svgUri='https://icons.getbootstrap.com/assets/icons/envelope.svg'
-        onPress={() => navigate('ChatScreen')}
+        // onPress={() => navigation.navigate('ChatScreen')}
+        onPress={() => navigation.navigate('WelcomeScreen')}
       />
     </View>
   );

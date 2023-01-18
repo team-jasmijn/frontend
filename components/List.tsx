@@ -71,6 +71,7 @@ export default function List({
                     justifyContent: 'space-between',
                     padding: 5,
                   }}
+                  key={`${item.item}`}
                 >
                   <Text>{item.item}</Text>
                   <Pressable style={{}} onPress={() => remove(item.key)}>

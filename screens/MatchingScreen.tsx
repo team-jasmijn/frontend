@@ -9,6 +9,8 @@ import { RootStackParamList } from '../types';
 import User from '../types/User';
 import Company from '../types/Company';
 import { SvgUri } from 'react-native-svg';
+import sendFlirt from '../lib/sendFlirt';
+import Loading from "../components/Loading";
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'MatchingScreen'
@@ -19,14 +21,14 @@ export interface MatchingScreenProps {
 export default function MatchingScreen({
   navigation: { navigate },
 }: MatchingScreenProps) {
-  const [user, setUser] = useState<Company>();
+  const [user, setUser] = useState<Company | null>(null);
 
   const refresh = () => getMatchUser().then(setUser).catch(alert);
   useEffect(() => {
     refresh();
   }, []);
 
-  if (!user) return <></>;
+  if (!user) return <Loading />;
   return (
     <View style={styles.main}>
       <Text></Text>
@@ -55,7 +57,7 @@ export default function MatchingScreen({
             </Pressable>
             <Pressable
               onPress={() => {
-                refresh();
+                sendFlirt(user.id).then(refresh);
               }}
             >
               {/* Accept flirt */}
@@ -77,7 +79,7 @@ export default function MatchingScreen({
           />
         </View>
       </View>
-      <NavBar active='MatchingScreen' navigate={navigate} />
+      <NavBar />
     </View>
   );
 }

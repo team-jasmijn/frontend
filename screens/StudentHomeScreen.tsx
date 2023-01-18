@@ -10,17 +10,22 @@ import Loading from "../components/Loading";
 
 export default function StudentHomeScreen() {
     const [companies, setCompanies] = useState<User[]>();
+
     useEffect(() => {
-        backendFetch<User[]>('GET', 'company')
-            .then(companies => setCompanies(companies as User[]))
-            .catch();
+        backendFetch<User[]>('GET', 'company/match')
+            .then(companies => {
+                    setCompanies(companies as User[] ?? [])
+            })
+            .catch(alert);
     }, []);
-    
+
+    console.log(companies?.length);
+
     if (!companies) {
-        return (<Loading />);
+        return (<Loading/>);
     }
-    
-    return (
+    if (companies.length != 0) {
+        return (
             <View style={styles.content}>
                 <Notification
                     title='Nieuwe stage Plek'
@@ -35,6 +40,16 @@ export default function StudentHomeScreen() {
                     message='Er is heeft zich een nieuwe stage plek bij jou in de buurt aangemeld'
                 />
             </View>
+        );
+    }
+    return (
+        <View style={styles.content}>
+            <Notification
+                title='No interns could be found'
+                message='No internships could be found for you.'
+            />
+
+        </View>
     );
 }
 
