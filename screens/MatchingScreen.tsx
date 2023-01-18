@@ -78,7 +78,7 @@ export default function MatchingScreen({
           />
         </View>
       </View>
-      <NavBar active='MatchingScreen' navigate={navigate} />
+      <NavBar />
     </View>
   );
 }

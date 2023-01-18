@@ -76,7 +76,7 @@ export default function HomeScreen({
             message='Er is heeft zich een nieuwe stage plek bij jou in de buurt aangemeld'
           />
         </View>
-        <NavBar active='HomeScreen' navigate={navigate} />
+        <NavBar />
       </View>
     );
 
