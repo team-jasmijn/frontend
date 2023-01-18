@@ -10,7 +10,12 @@ export default function Chat() {
       />
       <View style={styles.text}>
         <Text style={styles.title}>Test bv</Text>
-        <Text numberOfLines={3} style={styles.description}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus culpa repellendus nostrum necessitatibus voluptate error corrupti quibusdam esse nisi. Deleniti minima obcaecati odit pariatur incidunt assumenda optio accusamus numquam sequi.</Text>
+        <Text numberOfLines={3} style={styles.description}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+          culpa repellendus nostrum necessitatibus voluptate error corrupti
+          quibusdam esse nisi. Deleniti minima obcaecati odit pariatur incidunt
+          assumenda optio accusamus numquam sequi.
+        </Text>
       </View>
     </View>
   );

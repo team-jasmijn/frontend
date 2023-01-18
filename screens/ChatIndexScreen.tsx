@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#FFF',
   },
-  ChatIndex:{
+  ChatIndex: {
     flex: 5,
   },
 });
