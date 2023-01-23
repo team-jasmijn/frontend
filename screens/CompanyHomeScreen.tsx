@@ -13,7 +13,7 @@ export default function CompanyHomeScreen() {
       <Notification
         title={'You received new flirts'}
         key={'flirts'}
-        message={'Een student heeft u een flirt gestuurd!'}
+        message={'Dit is een test (geen data)'}
       />
     </ScrollView>
   );
