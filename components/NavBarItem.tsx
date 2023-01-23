@@ -16,6 +16,7 @@ export default function NavBarItem({
     <Pressable
       style={active ? styles.active : styles.inactive}
       onPress={onPress}
+      disabled={active}
     >
       <SvgUri
         uri={svgUri}
