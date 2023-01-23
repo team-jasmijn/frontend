@@ -11,9 +11,11 @@ export default function ModeratorHomeScreen() {
   useEffect(() => {
     getCompanies().then(setCompanies).catch(alert);
   }, []);
+
   if (!companies) {
     return <Loading />;
   }
+
   return (
     <ScrollView style={styles.content}>
       {companies.map(company => (
