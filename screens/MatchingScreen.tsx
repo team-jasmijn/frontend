@@ -27,55 +27,60 @@ export default function MatchingScreen({
     refresh();
   }, []);
 
-  if (!user) return <></>;
   return (
     <View style={styles.main}>
       <Text></Text>
       <TopBar ScreenName='Matching' Press={() => {}} />
       <View style={styles.content}>
         <View style={styles.container}>
-          <Text style={styles.title}>{user.name}</Text>
-          {/* Skills */}
-          <Text style={styles.mail}>{user.email}</Text>
+          {user ? (
+            <>
+              <Text style={styles.title}>{user.name}</Text>
+              {/* Skills */}
+              <Text style={styles.mail}>{user.email}</Text>
 
-          <View style={styles.buttons}>
-            <Pressable
-              onPress={() => {
-                refresh();
-              }}
-            >
-              {/* Deny Flirt */}
-              <SvgUri
-                style={styles.buttonElemement}
-                height={75}
-                width={75}
-                uri={
-                  'https://cdn.discordapp.com/attachments/1044904535015043082/1064466866132758548/svgviewer-output_1.svg'
-                }
+              <View style={styles.buttons}>
+                <Pressable
+                  onPress={() => {
+                    refresh();
+                  }}
+                >
+                  {/* Deny Flirt */}
+                  <SvgUri
+                    style={styles.buttonElemement}
+                    height={75}
+                    width={75}
+                    uri={
+                      'https://cdn.discordapp.com/attachments/1044904535015043082/1064466866132758548/svgviewer-output_1.svg'
+                    }
+                  />
+                </Pressable>
+                <Pressable
+                  onPress={() => {
+                    sendFlirt(user.id).then(refresh);
+                  }}
+                >
+                  {/* Accept flirt */}
+                  {/* TODO: Write acceptation *here* */}
+                  <SvgUri
+                    style={styles.buttonElemement}
+                    height={75}
+                    width={75}
+                    uri={
+                      'https://cdn.discordapp.com/attachments/1044904535015043082/1064466866434756618/svgviewer-output.svg'
+                    }
+                  />
+                </Pressable>
+              </View>
+              <View
+                style={styles.separator}
+                lightColor='#eee'
+                darkColor='rgba(255,255,255,0.1)'
               />
-            </Pressable>
-            <Pressable
-              onPress={() => {
-                sendFlirt(user.id).then(refresh);
-              }}
-            >
-              {/* Accept flirt */}
-              {/* TODO: Write acceptation *here* */}
-              <SvgUri
-                style={styles.buttonElemement}
-                height={75}
-                width={75}
-                uri={
-                  'https://cdn.discordapp.com/attachments/1044904535015043082/1064466866434756618/svgviewer-output.svg'
-                }
-              />
-            </Pressable>
-          </View>
-          <View
-            style={styles.separator}
-            lightColor='#eee'
-            darkColor='rgba(255,255,255,0.1)'
-          />
+            </>
+          ) : (
+            <Text style={styles.title}>No more matches</Text>
+          )}
         </View>
       </View>
       <NavBar />
