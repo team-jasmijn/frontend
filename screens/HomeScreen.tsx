@@ -14,6 +14,8 @@ import CompanyHomeScreen from './CompanyHomeScreen';
 import Loading from '../components/Loading';
 import TopBar from '../components/TopBar';
 import NavBar from '../components/NavBar';
+import backendFetch from '../lib/backendFetch';
+import Company from '../types/Company';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -32,11 +34,14 @@ export default function HomeScreen({
 
   useEffect(() => {
     getLoggedInUser().then(setUser).catch(alert);
+    // .catch(alert); - Removed because this fires for normal users as well
+    // and they don't have access to the companies endpoint, so it would
+    // always show a confusing error message.
   }, [refresh]);
 
   async function CustomLogout() {
-    await Logout(navigate);
     setRefresh(Math.random());
+    await Logout(navigate);
   }
 
   switch (user?.role) {
