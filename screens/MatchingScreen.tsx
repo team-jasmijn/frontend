@@ -133,6 +133,8 @@ export default function MatchingScreen({
         </View>
       );
   }
+  return <Loading />;
+  
 }
 
 const styles = StyleSheet.create({
