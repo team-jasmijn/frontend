@@ -4,13 +4,12 @@ import backendFetch from '../lib/backendFetch';
 import React, { useEffect, useState } from 'react';
 import User from '../types/User';
 import Loading from '../components/Loading';
+import getCompanies from '../lib/getCompanies';
 
 export default function ModeratorHomeScreen() {
   const [companies, setCompanies] = useState<User[]>();
   useEffect(() => {
-    backendFetch<User[]>('GET', 'company')
-      .then(companies => setCompanies(companies as User[]))
-      .catch();
+    getCompanies().then(setCompanies).catch(alert);
   }, []);
   if (!companies) {
     return <Loading />;

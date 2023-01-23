@@ -16,13 +16,17 @@ import Role from '../types/Role';
 import Notification from '../components/Notification';
 import backendFetch from '../lib/backendFetch';
 import Flirt from '../types/Flirt';
+import getFlirtsForCompany from '../lib/getFlirtsForCompany';
+
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'MatchingScreen'
 >;
+
 export interface MatchingScreenProps {
   navigation: ProfileScreenNavigationProp;
 }
+
 export default function MatchingScreen({
   navigation: { navigate },
 }: MatchingScreenProps) {
@@ -31,15 +35,15 @@ export default function MatchingScreen({
   const [flirts, setFlirts] = useState<Flirt[]>();
 
   const refresh = () => getMatchUser().then(setMatchingCompany).catch(alert);
+
   useEffect(() => {
     refresh();
     getLoggedInUser().then(setUser).catch(alert);
-    backendFetch<Flirt[]>('GET', 'flirts')
-      .then(flirts => setFlirts(flirts as Flirt[]))
-      .catch(alert);
+    getFlirtsForCompany().then(setFlirts).catch(alert);
   }, []);
 
   if (!user) return <Loading />;
+
   switch (user.role) {
     case Role.Company:
       if (!flirts) return <Loading />;
@@ -110,7 +114,6 @@ export default function MatchingScreen({
           <NavBar />
         </View>
       );
-      break;
   }
 
   return <Loading />;

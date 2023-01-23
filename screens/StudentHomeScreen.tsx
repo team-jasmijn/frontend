@@ -6,46 +6,40 @@ import TopBar from '../components/TopBar';
 import Notification from '../components/Notification';
 import { StyleSheet } from 'react-native';
 import Loading from '../components/Loading';
+import getMatchUser from '../lib/getMatchUser';
+import Company from '../types/Company';
 
 export default function StudentHomeScreen() {
-  const [companies, setCompanies] = useState<User[]>();
+  const [company, setCompany] = useState<Company | null>();
 
   useEffect(() => {
-    backendFetch<User[]>('GET', 'company/match')
-      .then(companies => {
-        setCompanies((companies as User[]) ?? []);
-      })
-      .catch(alert);
+    getMatchUser().then(setCompany).catch(alert);
   }, []);
 
-  console.log(companies?.length);
-
-  if (!companies) {
-    return <Loading />;
-  }
-  if (companies.length != 0) {
+  if (!company) {
     return (
       <View style={styles.content}>
         <Notification
-          title='Nieuwe stage Plek'
-          message='Er is heeft zich een nieuwe stage plek bij jou in de buurt aangemeld.'
-        />
-        <Notification
-          title='Tip !'
-          message='Voeg een foto toe aan je profiel om meer kans te krijgen op een stage plek.'
-        />
-        <Notification
-          title='Je hebt een match'
-          message='Er is heeft zich een nieuwe stage plek bij jou in de buurt aangemeld'
+          title='No interns could be found'
+          message='No internships could be found for you.'
         />
       </View>
     );
   }
+
   return (
     <View style={styles.content}>
       <Notification
-        title='No interns could be found'
-        message='No internships could be found for you.'
+        title='Nieuwe stage Plek'
+        message='Er is heeft zich een nieuwe stage plek bij jou in de buurt aangemeld.'
+      />
+      <Notification
+        title='Tip !'
+        message='Voeg een foto toe aan je profiel om meer kans te krijgen op een stage plek.'
+      />
+      <Notification
+        title='Je hebt een match'
+        message='Er is heeft zich een nieuwe stage plek bij jou in de buurt aangemeld'
       />
     </View>
   );

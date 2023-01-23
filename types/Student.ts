@@ -6,6 +6,7 @@ export interface ProfileSetting {
   school: string;
   eductionLevel: string;
 }
+
 export default interface Student {
   name: string;
   profileSettings: ProfileSetting;
