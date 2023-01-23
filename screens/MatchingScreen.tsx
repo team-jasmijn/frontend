@@ -134,7 +134,6 @@ export default function MatchingScreen({
       );
   }
   return <Loading />;
-  
 }
 
 const styles = StyleSheet.create({
