@@ -30,11 +30,12 @@ export default function HomeScreen({
 
   useEffect(() => {
     getLoggedInUser().then(setUser).catch(alert);
-    backendFetch<User[]>('GET', 'company')
-      .then(e => {
-        setCompanies(e as User[]);
-      })
-      .catch(alert);
+    backendFetch<User[]>('GET', 'company').then(e => {
+      setCompanies(e as User[]);
+    });
+    // .catch(alert); - Removed because this fires for normal users as well
+    // and they don't have access to the companies endpoint, so it would
+    // always show a confusing error message.
   }, []);
 
   if (!user)
