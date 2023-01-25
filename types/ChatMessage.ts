@@ -1,5 +1,5 @@
-import Chat from "./Chat";
-import User from "./User";
+import Chat from './Chat';
+import User from './User';
 
 export default interface ChatMessage {
   Id: Number;
