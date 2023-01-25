@@ -8,6 +8,7 @@ import Chat from '../components/Chat';
 
 import ChatType from '../types/Chat';
 import getChats from '../lib/getChats';
+import Loading from '../components/Loading';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -26,9 +27,8 @@ export default function ChatIndexScreen({
   useEffect(() => {
     getChats().then(setChats).catch(alert);
   }, []);
-
-  console.log(chats);
-  if (!chats) return <View></View>;
+  
+  if (!chats) return <Loading/>;
 
   return (
     <View style={styles.main}>
@@ -40,7 +40,7 @@ export default function ChatIndexScreen({
       />
       <ScrollView style={styles.ChatIndex}>
         {chats.map(e => (
-          <Chat Name={e.Company} Image={e.Company} Message={e.ChatMessages} />
+          <Chat Name={e.Company.name} Image={e.Company.name} Message={e.ChatMessages.Message} />
         ))}
       </ScrollView>
     </View>
