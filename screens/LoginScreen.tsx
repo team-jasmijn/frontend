@@ -34,10 +34,10 @@ export default function LoginStudentScreen({
   async function sendLogin() {
     try {
       await signin(email, password);
+      navigate('HomeScreen');
     } catch (e) {
       alert(e);
     }
-    navigate('HomeScreen');
   }
 
   return (
