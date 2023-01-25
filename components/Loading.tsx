@@ -19,7 +19,6 @@ export default function Loading() {
     await Logout(navigation.navigate);
   }
 
-  useEffect(() => {}, [refresh]);
 
   return (
     <View style={styles.main}>
