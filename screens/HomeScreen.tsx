@@ -59,6 +59,7 @@ export default function HomeScreen({
         <View style={styles.main}>
           <TopBar ScreenName='Logout' Press={CustomLogout} />
           <ModeratorHomeScreen />
+          <NavBar />
         </View>
       );
     case 'Company':

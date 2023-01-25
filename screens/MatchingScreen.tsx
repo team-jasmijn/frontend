@@ -145,6 +145,17 @@ export default function MatchingScreen({
           <NavBar />
         </View>
       );
+
+    case Role.Moderator:
+      return (
+          <View style={styles.main}>
+            <TopBar ScreenName='Matching' Press={CustomLogout} />
+            <View style={styles.contenContainer}>
+              <Text>moderators can't flirt!</Text>
+            </View>
+            <NavBar />
+          </View>
+      );
   }
   return <Loading />;
 }
