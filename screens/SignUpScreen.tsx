@@ -90,7 +90,6 @@ export default function SignUpScreen({
 
   return (
     <SetupWrapper>
-      <Text style={styles.or}>of</Text>
       <View>
         <StyledInput value={name} onChangeText={setName} labelText='Name' />
         <StyledInput
@@ -120,13 +119,3 @@ export default function SignUpScreen({
     </SetupWrapper>
   );
 }
-
-const styles = StyleSheet.create({
-  or: {
-    alignSelf: 'center',
-    marginTop: 10,
-    marginBottom: 10,
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
-});
