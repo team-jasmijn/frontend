@@ -21,43 +21,34 @@ export default function WelcomeScreen({
   return (
     <SetupWrapper>
       <View style={styles.main}>
-        <Pressable
-          style={styles.button}
-          onPress={() => navigate('LoginStudentScreen')}
-        >
-          <View style={[{ flex: 1, flexDirection: 'row' }]}>
-            <SvgUri
-              uri={'https://icons.getbootstrap.com/assets/icons/person.svg'}
-              height={25}
-              width={25}
-              fill={'#334155'}
-              style={styles.icon}
-            />
-            <Text style={styles.loginText}>
-              {' '}
-              Login voor<Text style={{ fontWeight: 'bold' }}> studenten</Text>
-            </Text>
-          </View>
-        </Pressable>
+        <View style={styles.createView}>
+          <Pressable
+            style={styles.createButton}
+            onPress={() => navigate('LoginStudentScreen')}
+          >
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                flexDirection: 'row',
+              }}
+            >
+              <SvgUri
+                uri={'https://icons.getbootstrap.com/assets/icons/person.svg'}
+                height={25}
+                width={25}
+                fill={'#334155'}
+                style={styles.icon}
+              />
+              <Text
+                style={{ fontWeight: 'bold', fontSize: 20, color: '#334155' }}
+              >
+                Inloggen
+              </Text>
+            </View>
+          </Pressable>
+        </View>
 
-        <Pressable
-          style={styles.button}
-          onPress={() => Alert.alert('Werkt nog niet!')}
-        >
-          <View style={[{ flex: 1, flexDirection: 'row' }]}>
-            <SvgUri
-              uri={'https://icons.getbootstrap.com/assets/icons/building.svg'}
-              height={25}
-              width={25}
-              fill={'#334155'}
-              style={styles.icon}
-            />
-            <Text style={styles.loginText}>
-              {' '}
-              Login voor<Text style={{ fontWeight: 'bold' }}> bedrijven</Text>
-            </Text>
-          </View>
-        </Pressable>
         <View style={styles.createView}>
           <Text style={styles.createText}>Nog geen account?</Text>
           <Pressable
