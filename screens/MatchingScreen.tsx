@@ -36,7 +36,9 @@ export default function MatchingScreen({
   const [flirts, setFlirts] = useState<Flirt[]>([]);
   const [refresh, setRefresh] = useState(Math.random());
   const refreshMatchingUser = () =>
-    getMatchUser().then(setMatchingCompany).catch();
+    getMatchUser()
+      .then(setMatchingCompany)
+      .catch(() => {});
 
   async function CustomLogout() {
     setRefresh(Math.random());
@@ -45,8 +47,12 @@ export default function MatchingScreen({
 
   useEffect(() => {
     refreshMatchingUser();
-    getLoggedInUser().then(setUser).catch();
-    getFlirtsForCompany().then(setFlirts).catch();
+    getLoggedInUser()
+      .then(setUser)
+      .catch(() => {});
+    getFlirtsForCompany()
+      .then(setFlirts)
+      .catch(() => {});
     console.log('flirts', flirts);
   }, [refresh]);
 
