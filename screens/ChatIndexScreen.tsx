@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { RootStackParamList } from '../types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -8,7 +8,8 @@ import Chat from '../components/Chat';
 
 import ChatType from '../types/Chat';
 import getChats from '../lib/getChats';
-import Loading from '../components/Loading';
+import NavBar from '../components/NavBar';
+import Notification from '../components/Notification';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -28,7 +29,25 @@ export default function ChatIndexScreen({
     getChats().then(setChats).catch(alert);
   }, []);
 
-  if (!chats) return <Loading />;
+  if (!chats?.length) {
+    return (
+      <View style={styles.main}>
+        <TopBar
+          ScreenName='Messages'
+          Press={() => {
+            navigate('HomeScreen');
+          }}
+        />
+        <View style={styles.content}>
+          <Notification
+            title='No chats could be found'
+            message='No chats could be found for you.'
+          />
+        </View>
+        <NavBar />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.main}>
@@ -38,7 +57,7 @@ export default function ChatIndexScreen({
           navigate('HomeScreen');
         }}
       />
-      <ScrollView style={styles.ChatIndex}>
+      <ScrollView style={styles.content}>
         {chats.map(e => (
           <Chat
             Name={e.Company.name}
@@ -47,6 +66,7 @@ export default function ChatIndexScreen({
           />
         ))}
       </ScrollView>
+      <NavBar />
     </View>
   );
 }
@@ -56,9 +76,7 @@ const styles = StyleSheet.create({
     paddingTop: 45,
     alignItems: 'center',
     flexDirection: 'column',
-    backgroundColor: '#FFF',
+    backgroundColor: '#fff',
   },
-  ChatIndex: {
-    flex: 5,
-  },
+  content: { flex: 5 },
 });
