@@ -4,11 +4,11 @@ import User from './User';
 
 export default interface Chat {
   Id: number;
-  CreateDate: Date;
-  ModifyDate?: Date;
-  CompanyId: number;
-  Company: Company;
-  StudentId: number;
-  Student: User;
-  ChatMessages: ChatMessage[];
+  createDate: Date;
+  modifyDate?: Date;
+  companyId: number;
+  company: Company;
+  studentId: number;
+  student: User;
+  chatMessages: ChatMessage[];
 }

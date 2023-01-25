@@ -4,7 +4,7 @@ import React from 'react';
 type ChatProps = {
   Name: string;
   Image: string;
-  Message: string;
+  LastMessage: string;
 };
 
 export default function Chat(props: ChatProps) {
@@ -17,7 +17,7 @@ export default function Chat(props: ChatProps) {
       <View style={styles.text}>
         <Text style={styles.title}>{props.Name}</Text>
         <Text numberOfLines={3} style={styles.description}>
-          {props.Message}
+          {props.LastMessage}
         </Text>
       </View>
     </View>

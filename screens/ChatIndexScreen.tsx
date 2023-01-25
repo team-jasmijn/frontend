@@ -60,9 +60,9 @@ export default function ChatIndexScreen({
       <ScrollView style={styles.content}>
         {chats.map(e => (
           <Chat
-            Name={e.Company.name}
-            Image={e.Company.name}
-            Message={e.ChatMessages.Message}
+            Name={e.company.name}
+            Image={e.company.name}
+            LastMessage={e.chatMessages[e.chatMessages.length - 1].message}
           />
         ))}
       </ScrollView>
