@@ -1,14 +1,13 @@
 import { Text, View } from './Themed';
 import TopBar from './TopBar';
-import React, {useEffect, useState} from 'react';
-import {Button, StyleSheet} from 'react-native';
-import Logout from "../lib/Logout";
-import {useNavigation} from "@react-navigation/native";
-import getLoggedInUser from "../lib/getLoggedInUser";
-import User from "../types/User";
+import React, { useEffect, useState } from 'react';
+import { Button, StyleSheet } from 'react-native';
+import Logout from '../lib/Logout';
+import { useNavigation } from '@react-navigation/native';
+import getLoggedInUser from '../lib/getLoggedInUser';
+import User from '../types/User';
 
 export default function Loading() {
-
   const navigation = useNavigation();
 
   const [user, setUser] = useState<User>();
@@ -27,11 +26,15 @@ export default function Loading() {
     // always show a confusing error message.
   }, [refresh]);
 
-
   return (
     <View style={styles.main}>
       <Text>loading...</Text>
-      <Button title={'Logout'} onPress={() => { CustomLogout() }} />
+      <Button
+        title={'Logout'}
+        onPress={() => {
+          CustomLogout();
+        }}
+      />
     </View>
   );
 }

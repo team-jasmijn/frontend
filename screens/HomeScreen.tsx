@@ -39,10 +39,11 @@ export default function HomeScreen({
     // always show a confusing error message.
   }, [refresh]);
 
-   async function CustomLogout() {
+  async function CustomLogout() {
     setRefresh(Math.random());
     await Logout(navigate);
   }
+  console.log('user', user);
 
   switch (user?.role) {
     case 'Student':

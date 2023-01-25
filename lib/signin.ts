@@ -14,6 +14,7 @@ export default async function signin(email: string, password: string) {
     password: password,
   });
 
+
   await setToken(token);
   return token;
 }

@@ -51,11 +51,11 @@ const styles = StyleSheet.create({
     paddingTop: 45,
     alignItems: 'center',
     flexDirection: 'column',
-    marginVertical: 50
+    marginVertical: 50,
   },
   content: {
     flex: 5,
-    marginVertical: 200
+    marginVertical: 200,
   },
   button: {
     alignSelf: 'center',
