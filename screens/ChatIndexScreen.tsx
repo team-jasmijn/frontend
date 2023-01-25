@@ -23,7 +23,7 @@ export interface ChatIndexScreenProps {
 export default function ChatIndexScreen({
   navigation: { navigate },
 }: ChatIndexScreenProps) {
-  const [chats, setChats] = useState<ChatType[] | null>(null);
+  const [chats, setChats] = useState<ChatType[]>([]);
 
   useEffect(() => {
     getChats().then(setChats).catch(alert);
