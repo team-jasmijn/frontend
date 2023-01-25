@@ -8,7 +8,7 @@ type ChatProps = {
 };
 
 export default function Chat(props: ChatProps) {
-  let pic = {
+  const pic = {
     uri: props.Image,
   };
   return (
