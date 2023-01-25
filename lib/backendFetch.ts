@@ -1,6 +1,8 @@
-import ApiUrl from '../constants/ApiUrl';
+import Constants from 'expo-constants';
 import BackendError from './backendError';
 import getToken from './getToken';
+
+const apiUrl = Constants.expoConfig?.extra?.ApiUrl as string;
 
 export default async function backendFetch<T>(
   method: 'POST' | 'GET' | 'PUT' | 'PATCH' | 'DELETE',
@@ -15,7 +17,7 @@ export default async function backendFetch<T>(
     ...additionalHeaders,
   };
 
-  const res = await fetch(`${ApiUrl}${endpoint}`, {
+  const res = await fetch(`${apiUrl}${endpoint}`, {
     method,
     headers,
     body: JSON.stringify(data),

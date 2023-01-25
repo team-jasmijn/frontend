@@ -1,5 +1,5 @@
 import { ImageBackground, Text, View } from 'react-native';
-import ApiUrl from '../constants/ApiUrl';
+import Constants from 'expo-constants';
 
 const image = require('../assets/images/background.png');
 
@@ -39,7 +39,7 @@ export default function SetupWrapper({ children }: SetupWrapperProps) {
             position: 'absolute',
           }}
         >
-          {ApiUrl}
+          {'' + Constants.expoConfig?.extra?.apiUrl}
         </Text>
       )}
       <View>{children}</View>

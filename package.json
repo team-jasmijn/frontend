@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start -c",
-    "android": "expo start --android -c",
-    "ios": "expo start --ios -c",
-    "web": "expo start --web -c",
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios ",
+    "web": "expo start --web",
     "test": "jest --watchAll",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "prepare": "husky install"
@@ -20,6 +20,7 @@
     "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.9.1",
+    "dotenv": "^16.0.3",
     "expo": "~46.0.9",
     "expo-asset": "~8.6.3",
     "expo-constants": "~13.2.4",
