@@ -39,7 +39,7 @@ export default function LoginStudentScreen({
         return;
       }
     } catch (e) {}
-    alert('Invalid credentials');
+    alert('Email of wachtwoord kloppen niet');
   }
 
   return (
