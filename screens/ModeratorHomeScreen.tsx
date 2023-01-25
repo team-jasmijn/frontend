@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import Notification from '../components/Notification';
 import backendFetch from '../lib/backendFetch';
 import React, { useEffect, useState } from 'react';
@@ -16,6 +16,14 @@ export default function ModeratorHomeScreen() {
     return <Loading />;
   }
 
+  if (companies.length === 0) {
+    return (
+      <ScrollView>
+        <Text>No companies found</Text>
+      </ScrollView>
+    );
+  }
+
   return (
     <ScrollView style={styles.content}>
       {companies.map(company => (
@@ -24,7 +32,7 @@ export default function ModeratorHomeScreen() {
           message={
             company.email + (company.approved ? ' (approved)' : ' (unapproved)')
           }
-          key={company.name}
+          key={company.id}
           action={async () => {
             backendFetch('POST', 'company/approve/' + company.id)
               .then(() => {

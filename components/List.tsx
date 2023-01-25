@@ -63,6 +63,7 @@ export default function List({
                 | null
                 | undefined;
               key: any;
+              id: number;
             }) => {
               return (
                 <View
@@ -71,10 +72,10 @@ export default function List({
                     justifyContent: 'space-between',
                     padding: 5,
                   }}
-                  key={`${item.item}`}
+                  key={`${item.id}`}
                 >
                   <Text>{item.item}</Text>
-                  <Pressable style={{}} onPress={() => remove(item.key)}>
+                  <Pressable style={{}} onPress={() => remove(item.id)}>
                     <SvgUri
                       uri={
                         'https://icons.getbootstrap.com/assets/icons/trash.svg'
