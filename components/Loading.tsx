@@ -21,9 +21,6 @@ export default function Loading() {
 
   useEffect(() => {
     getLoggedInUser().then(setUser).catch(alert);
-    // .catch(alert); - Removed because this fires for normal users as well
-    // and they don't have access to the companies endpoint, so it would
-    // always show a confusing error message.
   }, [refresh]);
 
   return (
