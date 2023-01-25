@@ -90,10 +90,6 @@ export default function SignUpScreen({
 
   return (
     <SetupWrapper>
-      <View>
-        <SocialLogin company='google' />
-        <SocialLogin company='microsoft' />
-      </View>
       <Text style={styles.or}>of</Text>
       <View>
         <StyledInput value={name} onChangeText={setName} labelText='Name' />
