@@ -1,5 +1,10 @@
-//@ts-expect-error
-import { API_URL } from '@env';
+let API_URL: string;
+
+try {
+  API_URL = require('@env').API_URL;
+} catch (e) {
+  API_URL = 'https://oneplace-frontend.roboco.dev/';
+}
 
 if (API_URL.slice(-1) !== '/')
   throw new Error(
