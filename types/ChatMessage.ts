@@ -5,7 +5,7 @@ export default interface ChatMessage {
   id: Number;
   createDate: Date;
   modifyDate?: Date;
-  chatId: Number;
+  chatId: number;
   chat: Chat;
   senderId: number;
   sender: User;
