@@ -26,7 +26,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
   },
-  content: { flex: 5 },
+  content: {
+    flex: 5,
+    marginVertical: 200,
+  },
   button: {
     alignSelf: 'center',
     borderStyle: 'solid',

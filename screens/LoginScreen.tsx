@@ -34,10 +34,10 @@ export default function LoginStudentScreen({
   async function sendLogin() {
     try {
       await signin(email, password);
-    } catch (e) {
-      alert(e);
-    }
-    navigate('HomeScreen');
+      navigate('HomeScreen');
+      return;
+    } catch (e) {}
+    alert('Email of wachtwoord kloppen niet');
   }
 
   return (
@@ -69,17 +69,6 @@ export default function LoginStudentScreen({
               onPress={() => {
                 sendLogin().catch(function (err) {});
               }}
-            />
-            <Text style={styles.UnderText}>OF</Text>
-            <StyledButtonWhite
-              title={'Login with'}
-              titleBold={'Google'}
-              svg={'https://icons.getbootstrap.com/assets/icons/google.svg'}
-            />
-            <StyledButtonWhite
-              title={'Login with'}
-              titleBold={'Microsoft'}
-              svg={'https://icons.getbootstrap.com/assets/icons/microsoft.svg'}
             />
           </View>
         </View>

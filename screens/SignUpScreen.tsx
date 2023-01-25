@@ -41,7 +41,7 @@ export default function SignUpScreen({
     }
 
     setIsSubmitting(true);
-    console.log(Type);
+    console.log('type', Type);
     switch (Type) {
       case 'Student':
         try {
@@ -91,11 +91,6 @@ export default function SignUpScreen({
   return (
     <SetupWrapper>
       <View>
-        <SocialLogin company='google' />
-        <SocialLogin company='microsoft' />
-      </View>
-      <Text style={styles.or}>of</Text>
-      <View>
         <StyledInput value={name} onChangeText={setName} labelText='Name' />
         <StyledInput
           value={email}
@@ -124,13 +119,3 @@ export default function SignUpScreen({
     </SetupWrapper>
   );
 }
-
-const styles = StyleSheet.create({
-  or: {
-    alignSelf: 'center',
-    marginTop: 10,
-    marginBottom: 10,
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
-});

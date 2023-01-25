@@ -11,7 +11,7 @@ export interface TopBarProps {
 export default function TopBar(props: TopBarProps) {
   return (
     <View style={styles.main}>
-      <Text style={styles.Title}>{props.ScreenName}</Text>
+      <Text style={styles.Title}>OnePlace</Text>
       <Pressable style={styles.Button} onPress={props.Press}>
         <SvgUri
           uri='https://icons.getbootstrap.com/assets/icons/person.svg'
@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 50,
     width: '100%',
     height: '10%',
+    position: 'absolute',
+    top: 50,
   },
   Title: {
     fontSize: 50,
