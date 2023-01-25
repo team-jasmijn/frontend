@@ -34,15 +34,13 @@ export default function HomeScreen({
 
   useEffect(() => {
     getLoggedInUser().then(setUser).catch(alert);
-    // .catch(alert); - Removed because this fires for normal users as well
-    // and they don't have access to the companies endpoint, so it would
-    // always show a confusing error message.
   }, [refresh]);
 
   async function CustomLogout() {
     setRefresh(Math.random());
     await Logout(navigate);
   }
+  console.log('user', user);
 
   switch (user?.role) {
     case 'Student':
@@ -58,6 +56,7 @@ export default function HomeScreen({
         <View style={styles.main}>
           <TopBar ScreenName='Logout' Press={CustomLogout} />
           <ModeratorHomeScreen />
+          <NavBar />
         </View>
       );
     case 'Company':
@@ -76,7 +75,7 @@ export default function HomeScreen({
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    paddingTop: 45,
+    paddingTop: 0,
     alignItems: 'center',
     flexDirection: 'column',
   },

@@ -33,10 +33,12 @@ export default function MatchingScreen({
 }: MatchingScreenProps) {
   const [matchingCompany, setMatchingCompany] = useState<Company | null>(null);
   const [user, setUser] = useState<User>();
-  const [flirts, setFlirts] = useState<Flirt[]>();
+  const [flirts, setFlirts] = useState<Flirt[]>([]);
   const [refresh, setRefresh] = useState(Math.random());
   const refreshMatchingUser = () =>
-    getMatchUser().then(setMatchingCompany).catch();
+    getMatchUser()
+      .then(setMatchingCompany)
+      .catch(() => {});
 
   async function CustomLogout() {
     setRefresh(Math.random());
@@ -45,18 +47,34 @@ export default function MatchingScreen({
 
   useEffect(() => {
     refreshMatchingUser();
-    getLoggedInUser().then(setUser).catch(alert);
-    getFlirtsForCompany().then(setFlirts).catch();
+    getLoggedInUser()
+      .then(setUser)
+      .catch(() => {});
+    getFlirtsForCompany()
+      .then(setFlirts)
+      .catch(() => {});
+    console.log('flirts', flirts);
   }, [refresh]);
 
   if (!user) return <Loading />;
+  console.log(user.role);
   switch (user.role) {
     case Role.Company:
-      if (!flirts) return <Loading />;
+      if (flirts.length === 0) {
+        return (
+          <View style={styles.main}>
+            <TopBar ScreenName='Matching' Press={CustomLogout} />
+            <View style={styles.contenContainer}>
+              <Text>No flirts yet :(</Text>
+            </View>
+            <NavBar />
+          </View>
+        );
+      }
       return (
         <View style={styles.main}>
+          <TopBar ScreenName='Logout' Press={CustomLogout} />
           <ScrollView style={styles.content}>
-            <TopBar ScreenName='Logout' Press={CustomLogout} />
             {flirts.map(flirt => (
               <Notification
                 title={flirt.student.name}
@@ -64,8 +82,8 @@ export default function MatchingScreen({
                 message={flirt.student.profileSettings.description}
               />
             ))}
-            <NavBar />
           </ScrollView>
+          <NavBar />
         </View>
       );
     case Role.Student:
@@ -78,7 +96,7 @@ export default function MatchingScreen({
               Logout(navigate);
             }}
           />
-          <View style={styles.content}>
+          <View style={styles.contenContainer}>
             <View style={styles.container}>
               {matchingCompany ? (
                 <>
@@ -130,6 +148,18 @@ export default function MatchingScreen({
               )}
             </View>
           </View>
+          <NavBar />
+        </View>
+      );
+
+    case Role.Moderator:
+      return (
+        <View style={styles.main}>
+          <TopBar ScreenName='Matching' Press={CustomLogout} />
+          <View style={styles.contenContainer}>
+            <Text>moderators can't flirt!</Text>
+          </View>
+          <NavBar />
         </View>
       );
   }
@@ -139,11 +169,16 @@ export default function MatchingScreen({
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    paddingTop: 45,
+    paddingTop: 0,
     alignItems: 'center',
     flexDirection: 'column',
   },
-  content: { flex: 5, flexDirection: 'row' },
+  contenContainer: {
+    marginVertical: 150,
+  },
+  content: {
+    width: 100,
+  },
   button: {
     alignSelf: 'center',
     borderStyle: 'solid',
@@ -163,6 +198,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 10,
     flex: 0.8,
+    width: 300,
   },
   buttonElemement: {
     margin: 10,

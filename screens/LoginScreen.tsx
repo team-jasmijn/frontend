@@ -70,17 +70,6 @@ export default function LoginStudentScreen({
                 sendLogin().catch(function (err) {});
               }}
             />
-            <Text style={styles.UnderText}>OF</Text>
-            <StyledButtonWhite
-              title={'Login with'}
-              titleBold={'Google'}
-              svg={'https://icons.getbootstrap.com/assets/icons/google.svg'}
-            />
-            <StyledButtonWhite
-              title={'Login with'}
-              titleBold={'Microsoft'}
-              svg={'https://icons.getbootstrap.com/assets/icons/microsoft.svg'}
-            />
           </View>
         </View>
         <Button
