@@ -13,7 +13,7 @@ import { View } from './Themed';
 export interface NotificationProps {
   title: string;
   message: string;
-  action?: (event: GestureResponderEvent) => void;
+  action?: () => void;
   buttonMessage?: string;
 }
 
@@ -51,8 +51,13 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   button: {
-    width: 200,
+    width: 90,
     height: 20,
-    backgroundColor: '#0000',
+    borderWidth: 1,
+    borderColor: '#0002',
+    backgroundColor: '#38BDF8',
+    color: '#fff',
+    padding: 1,
+    textAlign: 'center',
   },
 });
