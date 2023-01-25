@@ -2,9 +2,9 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
 
 type ChatProps = {
-  Name: string;
-  Image: string;
-  LastMessage: string;
+  name: string;
+  image: string;
+  lastMessage: string;
 };
 
 export default function Chat(props: ChatProps) {
