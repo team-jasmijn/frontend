@@ -1,8 +1,8 @@
-import Company from "./Company";
-import User from "./User";
+import Company from './Company';
+import User from './User';
 
 export default interface Chat {
-    Company: Company;
-    Student: User;
-    ChatMessages: [];
-  }
+  Company: Company;
+  Student: User;
+  ChatMessages: [];
+}

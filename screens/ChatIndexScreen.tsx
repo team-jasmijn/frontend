@@ -28,7 +28,7 @@ export default function ChatIndexScreen({
   }, []);
 
   console.log(chats);
-  if (!chats) return <View></View>
+  if (!chats) return <View></View>;
 
   return (
     <View style={styles.main}>
@@ -39,13 +39,9 @@ export default function ChatIndexScreen({
         }}
       />
       <ScrollView style={styles.ChatIndex}>
-        {chats.map(e => 
-          <Chat
-            Name={e.Company}
-            Image={e.Company}
-            Message={e.ChatMessages}
-          />
-        )}
+        {chats.map(e => (
+          <Chat Name={e.Company} Image={e.Company} Message={e.ChatMessages} />
+        ))}
       </ScrollView>
     </View>
   );
