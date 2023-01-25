@@ -56,10 +56,6 @@ export default function MatchingScreen({
       .catch(() => {});
   }, [refresh]);
 
-  let uniqueFlirts = flirts.filter((flirt, index, self) => {
-    return self.findIndex(f => f.student.name === flirt.student.name) === index;
-  });
-  // Prevents from showing duplicate flirts
 
   if (!user) return <Loading />;
   switch (user.role) {
@@ -80,7 +76,7 @@ export default function MatchingScreen({
         <View style={styles.main}>
           <TopBar ScreenName='Logout' Press={CustomLogout} />
           <ScrollView style={styles.content}>
-            {uniqueFlirts.map(flirt => (
+            {flirts.map(flirt => (
               <>
                 <Notification
                   title={flirt.student.name}
