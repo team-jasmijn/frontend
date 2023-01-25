@@ -7,10 +7,8 @@ type ChatProps = {
   lastMessage: string;
 };
 
-export default function Chat(props: ChatProps) {
-  const pic = {
-    uri: props.Image,
-  };
+export default function Chat({ Image }: ChatProps) {
+  
   return (
     <View style={styles.main}>
       <Image source={pic} style={styles.image} />
