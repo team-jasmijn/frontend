@@ -29,7 +29,7 @@ export default function WelcomeScreen({
             <View
               style={{
                 display: 'flex',
-                justifyContent: 'flex-start',
+                justifyContent: 'center',
                 flexDirection: 'row',
               }}
             >
