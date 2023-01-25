@@ -1,16 +1,24 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
 
-export default function Chat() {
+type ChatProps = {
+  Name: string;
+  Image: string;
+  Message: string;
+};
+
+export default function Chat(props: ChatProps) {
+  let pic = {
+    uri: props.Image,
+  };
   return (
     <View style={styles.main}>
-      <Image
-        source={require('../assets/images/icon.png')}
-        style={styles.image}
-      />
+      <Image source={pic} style={styles.image} />
       <View style={styles.text}>
-        <Text style={styles.title}>Test bv</Text>
-        <Text numberOfLines={3} style={styles.description}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus culpa repellendus nostrum necessitatibus voluptate error corrupti quibusdam esse nisi. Deleniti minima obcaecati odit pariatur incidunt assumenda optio accusamus numquam sequi.</Text>
+        <Text style={styles.title}>{props.Name}</Text>
+        <Text numberOfLines={3} style={styles.description}>
+          {props.Message}
+        </Text>
       </View>
     </View>
   );

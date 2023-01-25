@@ -1,9 +1,13 @@
-import { View, ScrollView, StyleSheet } from 'react-native';
-import React from 'react';
-import TopBar from '../components/TopBar';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { RootStackParamList } from '../types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+import TopBar from '../components/TopBar';
 import Chat from '../components/Chat';
+
+import ChatType from '../types/Chat';
+import getChats from '../lib/getChats';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -17,6 +21,15 @@ export interface ChatIndexScreenProps {
 export default function ChatIndexScreen({
   navigation: { navigate },
 }: ChatIndexScreenProps) {
+  const [chats, setChats] = useState<ChatType[] | null>(null);
+
+  useEffect(() => {
+    getChats().then(setChats).catch(alert);
+  }, []);
+
+  console.log(chats);
+  if (!chats) return <View></View>
+
   return (
     <View style={styles.main}>
       <TopBar
@@ -26,11 +39,13 @@ export default function ChatIndexScreen({
         }}
       />
       <ScrollView style={styles.ChatIndex}>
-        <Chat />
-        <Chat />
-        <Chat />
-        <Chat />
-        <Chat />
+        {chats.map(e => 
+          <Chat
+            Name={e.Company}
+            Image={e.Company}
+            Message={e.ChatMessages}
+          />
+        )}
       </ScrollView>
     </View>
   );
@@ -43,7 +58,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#FFF',
   },
-  ChatIndex:{
+  ChatIndex: {
     flex: 5,
   },
 });
