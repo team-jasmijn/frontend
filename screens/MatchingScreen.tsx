@@ -76,7 +76,6 @@ export default function MatchingScreen({
           <TopBar ScreenName='Logout' Press={CustomLogout} />
           <ScrollView style={styles.content}>
             {flirts.map(flirt => (
-              <>
                 <Notification
                   title={flirt.student.name}
                   key={flirt.id}
@@ -88,7 +87,6 @@ export default function MatchingScreen({
                       .then(setFlirts)
                   }
                 />
-              </>
             ))}
           </ScrollView>
           <NavBar />
