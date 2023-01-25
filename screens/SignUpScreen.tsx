@@ -41,7 +41,7 @@ export default function SignUpScreen({
     }
 
     setIsSubmitting(true);
-    console.log(Type);
+    console.log('type', Type);
     switch (Type) {
       case 'Student':
         try {
