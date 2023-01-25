@@ -2,7 +2,7 @@ import Chat from './Chat';
 import User from './User';
 
 export default interface ChatMessage {
-  id: Number;
+  id: number;
   createDate: Date;
   modifyDate?: Date;
   chatId: number;
