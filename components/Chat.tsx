@@ -8,7 +8,6 @@ type ChatProps = {
 };
 
 export default function Chat({ Image }: ChatProps) {
-  
   return (
     <View style={styles.main}>
       <Image source={pic} style={styles.image} />
