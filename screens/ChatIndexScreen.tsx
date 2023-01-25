@@ -29,7 +29,7 @@ export default function ChatIndexScreen({
     getChats().then(setChats).catch(alert);
   }, []);
 
-  if (!chats?.length) {
+  if (chats.length === 0) {
     return (
       <View style={styles.main}>
         <TopBar
