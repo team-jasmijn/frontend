@@ -33,11 +33,13 @@ export default function LoginStudentScreen({
 
   async function sendLogin() {
     try {
-      await signin(email, password);
-      navigate('HomeScreen');
-    } catch (e) {
-      alert(e);
-    }
+      const success = await signin(email, password);
+      if (success) {
+        navigate('HomeScreen');
+        return;
+      }
+    } catch (e) {}
+    alert('Invalid credentials');
   }
 
   return (

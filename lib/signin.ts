@@ -9,11 +9,18 @@ export const setToken = async (token: string) => {
 };
 
 export default async function signin(email: string, password: string) {
-  let token = await backendFetch<SignInDTO>('POST', 'account/login', {
-    email: email,
-    password: password,
-  });
-
-  await setToken(token);
-  return token;
+  try {
+    let token = await backendFetch<SignInDTO>('POST', 'account/login', {
+      email: email,
+      password: password,
+    });
+    //dirty fix but it works. The backend doesn't throw
+    if (token.startsWith('{"AuthenticationError')) {
+      return false;
+    }
+    await setToken(token);
+    return true;
+  } catch (e) {
+    return false;
+  }
 }
