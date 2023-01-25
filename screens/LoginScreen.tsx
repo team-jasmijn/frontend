@@ -65,7 +65,7 @@ export default function LoginStudentScreen({
             }}
           >
             <StyledButton
-              title={'Login als student'}
+              title={'Inloggen'}
               onPress={() => {
                 sendLogin().catch(function (err) {});
               }}
