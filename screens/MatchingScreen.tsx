@@ -18,7 +18,7 @@ import backendFetch from '../lib/backendFetch';
 import Flirt from '../types/Flirt';
 import getFlirtsForCompany from '../lib/getFlirtsForCompany';
 import Logout from '../lib/Logout';
-import acceptFlirt from "../lib/acceptFlirt";
+import acceptFlirt from '../lib/acceptFlirt';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -46,7 +46,6 @@ export default function MatchingScreen({
     await Logout(navigate);
   }
 
-
   useEffect(() => {
     refreshMatchingUser();
     getLoggedInUser()
@@ -58,7 +57,7 @@ export default function MatchingScreen({
   }, [refresh]);
 
   let uniqueFlirts = flirts.filter((flirt, index, self) => {
-    return self.findIndex((f) => f.student.name === flirt.student.name) === index;
+    return self.findIndex(f => f.student.name === flirt.student.name) === index;
   });
   // Prevents from showing duplicate flirts
 
@@ -82,15 +81,19 @@ export default function MatchingScreen({
           <TopBar ScreenName='Logout' Press={CustomLogout} />
           <ScrollView style={styles.content}>
             {uniqueFlirts.map(flirt => (
-                <>
-              <Notification
-                title={flirt.student.name}
-                key={flirt.id}
-                message={flirt.student.profileSettings.description}
-                buttonMessage={'Accept Flirt'}
-                action={() => acceptFlirt(flirt.id).then(getFlirtsForCompany).then(setFlirts) }
-              />
-                  </>
+              <>
+                <Notification
+                  title={flirt.student.name}
+                  key={flirt.id}
+                  message={flirt.student.profileSettings.description}
+                  buttonMessage={'Accept Flirt'}
+                  action={() =>
+                    acceptFlirt(flirt.id)
+                      .then(getFlirtsForCompany)
+                      .then(setFlirts)
+                  }
+                />
+              </>
             ))}
           </ScrollView>
           <NavBar />
