@@ -34,10 +34,10 @@ export default function LoginStudentScreen({
   async function sendLogin() {
     try {
       await signin(email, password);
-    } catch (e) {
-      alert(e);
-    }
-    navigate('HomeScreen');
+      navigate('HomeScreen');
+      return;
+    } catch (e) {}
+    alert('Email of wachtwoord kloppen niet');
   }
 
   return (
@@ -65,7 +65,7 @@ export default function LoginStudentScreen({
             }}
           >
             <StyledButton
-              title={'Login als student'}
+              title={'Inloggen'}
               onPress={() => {
                 sendLogin().catch(function (err) {});
               }}
