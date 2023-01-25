@@ -1,3 +1,3 @@
 export default interface ChatMessage {
-    Message: string;
+  Message: string;
 }

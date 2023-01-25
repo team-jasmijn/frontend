@@ -27,8 +27,8 @@ export default function ChatIndexScreen({
   useEffect(() => {
     getChats().then(setChats).catch(alert);
   }, []);
-  
-  if (!chats) return <Loading/>;
+
+  if (!chats) return <Loading />;
 
   return (
     <View style={styles.main}>
@@ -40,7 +40,11 @@ export default function ChatIndexScreen({
       />
       <ScrollView style={styles.ChatIndex}>
         {chats.map(e => (
-          <Chat Name={e.Company.name} Image={e.Company.name} Message={e.ChatMessages.Message} />
+          <Chat
+            Name={e.Company.name}
+            Image={e.Company.name}
+            Message={e.ChatMessages.Message}
+          />
         ))}
       </ScrollView>
     </View>
