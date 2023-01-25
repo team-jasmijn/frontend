@@ -1,7 +1,6 @@
 import useCachedResources from './hooks/useCachedResources';
 import WelcomeScreen from './screens/WelcomeScreen';
 import { useFonts } from 'expo-font';
-import LoginStudentScreen from './screens/LoginStudentScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from './types';
@@ -16,6 +15,7 @@ import SignUpScreen from './screens/SignUpScreen';
 import CompanyInform from './screens/CompanyInform';
 import CompanyInform2 from './screens/CompanyInform2';
 import MatchingScreen from './screens/MatchingScreen';
+import LoginStudentScreen from './screens/LoginScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
