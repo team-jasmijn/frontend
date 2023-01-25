@@ -14,10 +14,6 @@ export default async function signin(email: string, password: string) {
       email: email,
       password: password,
     });
-    //dirty fix but it works. The backend doesn't throw
-    if (token.startsWith('{"AuthenticationError')) {
-      return false;
-    }
     await setToken(token);
     return true;
   } catch (e) {
