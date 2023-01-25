@@ -24,7 +24,6 @@ export default function NavBar() {
       <NavBarItem
         active={activeScreen === 'ChatIndexScreen'}
         svgUri='https://icons.getbootstrap.com/assets/icons/envelope.svg'
-        // onPress={() => navigation.navigate('ChatScreen')}
         onPress={() => navigation.navigate('ChatIndexScreen')}
       />
     </View>
