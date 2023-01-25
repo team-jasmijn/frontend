@@ -65,21 +65,21 @@ export default function MatchingScreen({
           </View>
         );
       }
-        return (
-          <View style={styles.main}>
-            <TopBar ScreenName='Logout' Press={CustomLogout} />
-            <ScrollView style={styles.content}>
-              {flirts.map(flirt => (
-                <Notification
-                  title={flirt.student.name}
-                  key={flirt.id}
-                  message={flirt.student.profileSettings.description}
-                />
-              ))}
-            </ScrollView>
-            <NavBar />
-          </View>
-        );
+      return (
+        <View style={styles.main}>
+          <TopBar ScreenName='Logout' Press={CustomLogout} />
+          <ScrollView style={styles.content}>
+            {flirts.map(flirt => (
+              <Notification
+                title={flirt.student.name}
+                key={flirt.id}
+                message={flirt.student.profileSettings.description}
+              />
+            ))}
+          </ScrollView>
+          <NavBar />
+        </View>
+      );
     case Role.Student:
       return (
         <View style={styles.main}>
@@ -94,7 +94,6 @@ export default function MatchingScreen({
             <View style={styles.container}>
               {matchingCompany ? (
                 <>
-
                   <Text style={styles.title}>{matchingCompany.name}</Text>
                   {/* Skills */}
                   <Text style={styles.mail}>{matchingCompany.email}</Text>
@@ -145,7 +144,6 @@ export default function MatchingScreen({
           </View>
           <NavBar />
         </View>
-
       );
   }
   return <Loading />;
@@ -160,7 +158,6 @@ const styles = StyleSheet.create({
   },
   contenContainer: {
     marginVertical: 150,
-
   },
   content: {
     width: 100,
