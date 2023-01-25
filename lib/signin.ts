@@ -9,14 +9,9 @@ export const setToken = async (token: string) => {
 };
 
 export default async function signin(email: string, password: string) {
-  try {
-    let token = await backendFetch<SignInDTO>('POST', 'account/login', {
-      email: email,
-      password: password,
-    });
-    await setToken(token);
-    return true;
-  } catch (e) {
-    return false;
-  }
+  let token = await backendFetch<SignInDTO>('POST', 'account/login', {
+    email: email,
+    password: password,
+  });
+  await setToken(token);
 }

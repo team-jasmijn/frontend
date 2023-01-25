@@ -33,11 +33,9 @@ export default function LoginStudentScreen({
 
   async function sendLogin() {
     try {
-      const success = await signin(email, password);
-      if (success) {
-        navigate('HomeScreen');
-        return;
-      }
+      await signin(email, password);
+      navigate('HomeScreen');
+      return;
     } catch (e) {}
     alert('Email of wachtwoord kloppen niet');
   }
