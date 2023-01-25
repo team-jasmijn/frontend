@@ -76,17 +76,17 @@ export default function MatchingScreen({
           <TopBar ScreenName='Logout' Press={CustomLogout} />
           <ScrollView style={styles.content}>
             {flirts.map(flirt => (
-                <Notification
-                  title={flirt.student.name}
-                  key={flirt.id}
-                  message={flirt.student.profileSettings.description}
-                  buttonMessage={'Accept Flirt'}
-                  action={() =>
-                    acceptFlirt(flirt.id)
-                      .then(getFlirtsForCompany)
-                      .then(setFlirts)
-                  }
-                />
+              <Notification
+                title={flirt.student.name}
+                key={flirt.id}
+                message={flirt.student.profileSettings.description}
+                buttonMessage={'Accept Flirt'}
+                action={() =>
+                  acceptFlirt(flirt.id)
+                    .then(getFlirtsForCompany)
+                    .then(setFlirts)
+                }
+              />
             ))}
           </ScrollView>
           <NavBar />
