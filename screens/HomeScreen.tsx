@@ -39,7 +39,7 @@ export default function HomeScreen({
     // always show a confusing error message.
   }, [refresh]);
 
-  async function CustomLogout() {
+   async function CustomLogout() {
     setRefresh(Math.random());
     await Logout(navigate);
   }
@@ -76,7 +76,7 @@ export default function HomeScreen({
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    paddingTop: 45,
+    paddingTop: 0,
     alignItems: 'center',
     flexDirection: 'column',
   },

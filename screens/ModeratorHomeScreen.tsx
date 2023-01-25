@@ -41,5 +41,8 @@ export default function ModeratorHomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  content: { flex: 5 },
+  content: {
+    flex: 5,
+    marginVertical: 200
+  },
 });
