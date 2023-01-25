@@ -56,7 +56,6 @@ export default function MatchingScreen({
       .catch(() => {});
   }, [refresh]);
 
-
   if (!user) return <Loading />;
   switch (user.role) {
     case Role.Company:
