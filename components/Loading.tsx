@@ -19,7 +19,6 @@ export default function Loading() {
     await Logout(navigation.navigate);
   }
 
-
   return (
     <View style={styles.main}>
       <Text>loading...</Text>
