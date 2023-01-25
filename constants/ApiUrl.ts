@@ -1,14 +1,16 @@
-let API_URL: string;
+//@ts-expect-error - this is a hack to get the environment variables to work
+import { API_URL } from '@env';
 
-try {
-  API_URL = require('@env').API_URL;
-} catch (e) {
-  API_URL = 'https://oneplace-frontend.roboco.dev/';
+let ApiUrl = API_URL;
+
+if (!ApiUrl) {
+  ApiUrl = 'https://oneplace-frontend.roboco.dev/';
+  console.warn('API_URL environment variable not set. Defaulting to', ApiUrl);
 }
 
-if (API_URL.slice(-1) !== '/')
+if (ApiUrl.slice(-1) !== '/')
   throw new Error(
     'API_URL environment variable must end with a slash. Please update your environment.'
   );
-console.log('fetching from ', API_URL);
-export default API_URL;
+console.log('fetching from ', ApiUrl);
+export default ApiUrl;
