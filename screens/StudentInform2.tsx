@@ -33,7 +33,7 @@ export default function StudentInform2({
     backendFetch('POST', 'account/update', {
       qualities: JSON.stringify(qualities),
       hobbies: JSON.stringify(hobbies),
-    }).then(r => navigate('HomeScreen'));
+    }).then(r => navigate('HomeScreen')).catch(alert);
   }
 
   return (

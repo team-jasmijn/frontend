@@ -65,7 +65,7 @@ export default function CompanyInform({
       workCulture: culture,
       lookingFor: lookingFor,
       workWise: workWise,
-    }).then(() => navigate('CompanyInform2'));
+    }).then(() => navigate('CompanyInform2')).catch(alert);
   }
   return (
     <ImageBackground

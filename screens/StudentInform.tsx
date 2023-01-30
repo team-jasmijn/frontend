@@ -45,7 +45,7 @@ export default function StudentInform({
       education: study,
       goals: JSON.stringify(goals),
       educationLevel: year,
-    }).then(() => navigate('StudentInform2'));
+    }).then(() => navigate('StudentInform2')).catch(alert);
   }
 
   return (
