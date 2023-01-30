@@ -44,7 +44,9 @@ export default function CompanyInform2({
     backendFetch('POST', 'account/update', {
       activeIn: activeIn,
       recap: recap,
-    }).then(r => navigate('HomeScreen')).catch(alert); // dont forget to change this to 'StageOpdrachten' page later down the line
+    })
+      .then(r => navigate('HomeScreen'))
+      .catch(alert); // dont forget to change this to 'StageOpdrachten' page later down the line
   }
 
   return (
