@@ -21,7 +21,33 @@ export default function StudentInform({
     { label: 'Derde jaar', value: 'Derde jaar' },
     { label: 'Vierde jaar', value: 'Vierde jaar' },
   ]);
-  const [year, setYear] = useState(null);
+  const [year, setYear] = useState('');
+
+  function updateProfile() {
+    const missingFields: string[] = [];
+    if (!study.trim()) {
+      missingFields.push('Study is required');
+    }
+
+    if (goals.length < 1) {
+      missingFields.push('You need at least 1 goal');
+    }
+
+    if (!year.trim()) {
+      missingFields.push('Study year is required');
+    }
+
+    if (missingFields.length > 0) {
+      alert(missingFields.join('\n'));
+      return;
+    }
+    backendFetch('POST', 'account/update', {
+      education: study,
+      goals: JSON.stringify(goals),
+      educationLevel: year,
+    }).then(() => navigate('StudentInform2'));
+  }
+
   return (
     <ImageBackground
       source={image}
@@ -55,28 +81,12 @@ export default function StudentInform({
               getter={goals}
             />
 
-            <StyledButton
-              title='Volgende stap'
-              onPress={() => {
-                sendInfo(study, goals, year);
-              }}
-            />
+            <StyledButton title='Volgende stap' onPress={updateProfile} />
           </View>
         </View>
       </View>
     </ImageBackground>
   );
-
-  function sendInfo(studyInfo: any, goalInfo: any, yearInfo: any) {
-    console.log(studyInfo);
-    console.log(goalInfo);
-    backendFetch('POST', 'account/update', {
-      education: studyInfo,
-      goals: JSON.stringify(goalInfo),
-      educationLevel: yearInfo,
-    }).then(r => navigate('StudentInform2'));
-    // navigate('StudentInform2');
-  }
 }
 
 const styles = StyleSheet.create({

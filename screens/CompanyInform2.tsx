@@ -28,6 +28,25 @@ export default function CompanyInform2({
   const [activeIn, setActiveIn] = useState('');
   const [recap, setRecap] = useState('');
 
+  function updateProfile() {
+    const missingFields: string[] = [];
+    if (!activeIn.trim()) {
+      missingFields.push('Active sector(s) are required');
+    }
+    if (!recap.trim()) {
+      missingFields.push('Your recap is required');
+    }
+    if (missingFields.length > 0) {
+      alert(missingFields.join('\n'));
+      return;
+    }
+
+    backendFetch('POST', 'account/update', {
+      activeIn: activeIn,
+      recap: recap,
+    }).then(r => navigate('HomeScreen')); // dont forget to change this to 'StageOpdrachten' page later down the line
+  }
+
   return (
     <ImageBackground
       source={image}
@@ -53,24 +72,12 @@ export default function CompanyInform2({
               labelText={'Kleine samenvatting over ons bedrijf:'}
             />
 
-            <StyledButton
-              title='Volgende stap'
-              onPress={() => {
-                sendInfo(activeIn, recap);
-              }}
-            />
+            <StyledButton title='Volgende stap' onPress={updateProfile} />
           </View>
         </View>
       </View>
     </ImageBackground>
   );
-
-  function sendInfo(activeIn: any, recap: any) {
-    backendFetch('POST', 'account/update', {
-      activeIn: activeIn,
-      recap: recap,
-    }).then(r => navigate('HomeScreen')); // dont forget to change this to 'StageOpdrachten' page later down the line
-  }
 }
 
 const styles = StyleSheet.create({
