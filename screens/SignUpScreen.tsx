@@ -35,13 +35,29 @@ export default function SignUpScreen({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async () => {
+    const missingFields: String[] = [];
+    if (!password.trim() || !passwordConfirm.trim()) {
+      missingFields.push('Password is required');
+    }
+
+    if (!email.trim()) {
+      missingFields.push('Email is required');
+    }
+
+    if (!name.trim() && Type === 'Company') {
+      missingFields.push('Name is required');
+    }
+
     if (password !== passwordConfirm) {
-      alert('Passwords do not match');
+      missingFields.push('Passwords do not match');
+    }
+
+    if (missingFields.length > 0) {
+      alert(missingFields.join('\n'));
       return;
     }
 
     setIsSubmitting(true);
-    console.log('type', Type);
     switch (Type) {
       case 'Student':
         try {
