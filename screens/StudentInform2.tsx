@@ -31,8 +31,8 @@ export default function StudentInform2({
     }
 
     backendFetch('POST', 'account/update', {
-      qualities: JSON.stringify(qualities),
-      hobbies: JSON.stringify(hobbies),
+      qualities: qualitiesArr.join(","),
+      hobbies: hobbiesArr.join(","),
     })
       .then(r => navigate('HomeScreen'))
       .catch(alert);
