@@ -23,13 +23,13 @@ export interface ChatIndexScreenProps {
 export default function ChatIndexScreen({
   navigation: { navigate },
 }: ChatIndexScreenProps) {
-  const [chats, setChats] = useState<ChatType[]>([]);
+  const [chats, setChats] = useState<ChatType[] | null>(null);
 
   useEffect(() => {
     getChats().then(setChats).catch(alert);
   }, []);
 
-  if (chats.length === 0) {
+  if (chats?.length === 0) {
     return (
       <View style={styles.main}>
         <TopBar
@@ -38,12 +38,12 @@ export default function ChatIndexScreen({
             navigate('HomeScreen');
           }}
         />
-        <View style={styles.content}>
+        <ScrollView style={styles.content}>
           <Notification
             title='No chats could be found'
             message='No chats could be found for you.'
           />
-        </View>
+        </ScrollView>
         <NavBar />
       </View>
     );
@@ -58,11 +58,10 @@ export default function ChatIndexScreen({
         }}
       />
       <ScrollView style={styles.content}>
-        {chats.map(e => (
+        {chats?.map(e => (
           <Chat
-            Name={e.company.name}
-            Image={e.company.name}
-            LastMessage={e.chatMessages[e.chatMessages.length - 1].message}
+            name={e.company.name}
+            lastMessage={e.chatMessages[e.chatMessages.length - 1].message}
           />
         ))}
       </ScrollView>

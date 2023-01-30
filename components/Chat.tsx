@@ -3,18 +3,17 @@ import React from 'react';
 
 type ChatProps = {
   name: string;
-  image: string;
   lastMessage: string;
 };
 
-export default function Chat({ Image }: ChatProps) {
+export default function Chat(props: ChatProps) {
   return (
     <View style={styles.main}>
-      <Image source={pic} style={styles.image} />
+      <Text style={styles.image}>{props.name.charAt(0)}</Text>
       <View style={styles.text}>
-        <Text style={styles.title}>{props.Name}</Text>
+        <Text style={styles.title}>{props.name}</Text>
         <Text numberOfLines={3} style={styles.description}>
-          {props.LastMessage}
+          {props.lastMessage}
         </Text>
       </View>
     </View>
@@ -33,10 +32,15 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   image: {
-    margin: 10,
-    width: 80,
-    height: 80,
+    width: 150,
+    height: 150,
     borderRadius: 50,
+    background: '#512DA8',
+    fontSize: 35,
+    color: '#fff',
+    TextAlign: 'center',
+    LineHeight: 150,
+    margin: 20,
   },
   text: {
     display: 'flex',
