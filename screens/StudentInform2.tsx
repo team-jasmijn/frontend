@@ -19,11 +19,19 @@ export default function StudentInform2({
     const missingFields: string[] = [];
     console.log('state: ', { qualities, hobbies });
     //replaceAll doesn't exist, so string.replace with this exact regex works fine
-    if (!qualities.replace(/,/g, '').trim()) {
-      missingFields.push('You have more qualities than this');
+const qualitiesArr = qualities
+      .split(",") // Splits the string into an array
+      .map((q) => q.trim()); // Removes whitespace
+      .filter((q) => q); // Removes empty strings
+    const hobbiesArr = hobbies
+      .split(",") // Splits the string into an array
+      .map((h) => h.trim()); // Removes whitespace
+      .filter((h) => h); // Removes empty strings
+    if (qualitiesArr.length < 1) {
+      missingFields.push("Fill in at least 1 quality");
     }
-    if (!hobbies.replace(/,/g, '').trim()) {
-      missingFields.push('Fill in at least 1 hobby');
+    if (hobbiesArr.length < 1) {
+      missingFields.push("Fill in at least 1 hobby");
     }
     if (missingFields.length > 0) {
       alert(missingFields.join('\n'));
