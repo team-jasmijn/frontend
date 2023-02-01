@@ -14,7 +14,6 @@ import signin from '../lib/signin';
 import signup from '../lib/signup';
 import UserType from '../types/UserType';
 import BackendError from '../lib/backendError';
-import { Use } from 'react-native-svg/lib/typescript';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
