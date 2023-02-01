@@ -38,7 +38,7 @@ export default function ChatIndexScreen({
             navigate('HomeScreen');
           }}
         />
-        <ScrollView style={styles.content}>
+        <ScrollView style={styles.contentNotificatie}>
           <Notification
             title='No chats could be found'
             message='No chats could be found for you.'
@@ -78,4 +78,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   content: { flex: 5 },
+  contentNotificatie: { flex: 5, marginTop: 100 },
 });
