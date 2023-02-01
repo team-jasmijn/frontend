@@ -32,7 +32,20 @@ export default function LoginStudentScreen({
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   async function sendLogin() {
-    setIsSubmitting(true); //TODO: Add setIsSubmitting(false) when 111 is merged in master;
+    setIsSubmitting(true);
+    const missingFields: string[] = [];
+    if (!email) {
+      missingFields.push('Email is required');
+    }
+    if (!password) {
+      missingFields.push('Password is required');
+    }
+    if (missingFields.length > 0) {
+      setIsSubmitting(false);
+      alert(missingFields.join('\n'));
+      return;
+    }
+
     try {
       await signin(email, password);
       navigate('HomeScreen');
