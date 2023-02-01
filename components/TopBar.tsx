@@ -16,7 +16,10 @@ export default function TopBar(props: TopBarProps) {
       <Text style={styles.Title}>{props.title || 'OnePlace'}</Text>
       <Pressable style={styles.Button} onPress={props.Press}>
         <SvgUri
-          uri={props.uri || 'https://icons.getbootstrap.com/assets/icons/person.svg'}
+          uri={
+            props.uri ||
+            'https://icons.getbootstrap.com/assets/icons/person.svg'
+          }
           height={40}
           width={40}
           fill={'#F1F5F9'}
