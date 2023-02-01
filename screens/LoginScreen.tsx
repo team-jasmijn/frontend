@@ -30,8 +30,9 @@ export default function LoginStudentScreen({
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   async function sendLogin() {
+  setIsSubmitting(true);
     const missingFields: string[] = [];
     if (!email) {
       missingFields.push('Email is required');
@@ -40,6 +41,7 @@ export default function LoginStudentScreen({
       missingFields.push('Password is required');
     }
     if (missingFields.length > 0) {
+      setIsSubmitting(false);
       alert(missingFields.join('\n'));
       return;
     }
@@ -50,6 +52,7 @@ export default function LoginStudentScreen({
       return;
     } catch (e) {}
     alert('Email of wachtwoord kloppen niet');
+    setIsSubmitting(false);
   }
 
   return (
@@ -77,6 +80,7 @@ export default function LoginStudentScreen({
             }}
           >
             <StyledButton
+              disabled={isSubmitting}
               title={'Inloggen'}
               onPress={() => {
                 sendLogin().catch(function (err) {});

@@ -34,6 +34,7 @@ export type RootStackParamList = {
   CompanyInform: undefined;
   CompanyInform2: undefined;
   MatchingScreen: undefined;
+  ChatIndexScreen: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

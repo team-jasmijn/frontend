@@ -22,10 +22,9 @@ export default function NavBar() {
         onPress={() => navigation.navigate('MatchingScreen')}
       />
       <NavBarItem
-        active={activeScreen === 'WelcomeScreen'}
+        active={activeScreen === 'ChatIndexScreen'}
         svgUri='https://icons.getbootstrap.com/assets/icons/envelope.svg'
-        // onPress={() => navigation.navigate('ChatScreen')}
-        onPress={() => navigation.navigate('WelcomeScreen')}
+        onPress={() => navigation.navigate('ChatIndexScreen')}
       />
     </View>
   );
