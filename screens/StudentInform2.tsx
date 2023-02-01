@@ -14,18 +14,18 @@ export default function StudentInform2({
 }: HomeScreenProps) {
   const [qualities, setQualities] = useState('');
   const [hobbies, setHobbies] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function updateProfile() {
+    setIsSubmitting(true);
     const missingFields: string[] = [];
-    console.log('state: ', { qualities, hobbies });
-    //replaceAll doesn't exist, so string.replace with this exact regex works fine
     const qualitiesArr = qualities
-      .split(',') // Splits the string into an array
-      .map(q => q.trim()) // Removes whitespace
+      .split(',')
+      .map(q => q.trim())
       .filter(q => q); // Removes empty strings
     const hobbiesArr = hobbies
-      .split(',') // Splits the string into an array
-      .map(h => h.trim()) // Removes whitespace
+      .split(',')
+      .map(h => h.trim())
       .filter(h => h); // Removes empty strings
     if (qualitiesArr.length < 1) {
       missingFields.push('Fill in at least 1 quality');
@@ -35,6 +35,7 @@ export default function StudentInform2({
     }
     if (missingFields.length > 0) {
       alert(missingFields.join('\n'));
+      setIsSubmitting(false);
       return;
     }
 
@@ -44,6 +45,7 @@ export default function StudentInform2({
     })
       .then(r => navigate('HomeScreen'))
       .catch(alert);
+    setIsSubmitting(false);
   }
 
   return (
@@ -76,6 +78,7 @@ export default function StudentInform2({
             <StyledButton
               title='Begin met mijn zoektocht'
               onPress={updateProfile}
+              disabled={isSubmitting}
             />
           </View>
         </View>

@@ -27,9 +27,11 @@ export default function CompanyInform2({
 }: CompanyInformProps) {
   const [activeIn, setActiveIn] = useState('');
   const [recap, setRecap] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function updateProfile() {
     const missingFields: string[] = [];
+    setIsSubmitting(true);
     if (!activeIn.trim()) {
       missingFields.push('Active sector(s) are required');
     }
@@ -38,6 +40,7 @@ export default function CompanyInform2({
     }
     if (missingFields.length > 0) {
       alert(missingFields.join('\n'));
+      setIsSubmitting(false);
       return;
     }
 
@@ -47,6 +50,7 @@ export default function CompanyInform2({
     })
       .then(r => navigate('HomeScreen'))
       .catch(alert); // dont forget to change this to 'StageOpdrachten' page later down the line
+    setIsSubmitting(false);
   }
 
   return (
@@ -74,7 +78,11 @@ export default function CompanyInform2({
               labelText={'Kleine samenvatting over ons bedrijf:'}
             />
 
-            <StyledButton title='Volgende stap' onPress={updateProfile} />
+            <StyledButton
+              title='Volgende stap'
+              onPress={updateProfile}
+              disabled={isSubmitting}
+            />
           </View>
         </View>
       </View>
