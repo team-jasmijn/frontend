@@ -3,18 +3,49 @@ import StyledButton from '../components/StyledButton';
 
 import List from '../components/List';
 import { HomeScreenProps } from './HomeScreen';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import backendFetch from '../lib/backendFetch';
+import StyledAlternativeInput from '../components/StyledAlternativeInput';
 
 const image = require('../assets/images/background.png');
 
 export default function StudentInform2({
   navigation: { navigate },
 }: HomeScreenProps) {
-  const [qualities, setQualities] = useState([
-    { item: 'Example', key: 'Example' },
-  ]);
-  const [hobbies, setHobbies] = useState([{ item: 'Example', key: 'Example' }]);
+  const [qualities, setQualities] = useState('');
+  const [hobbies, setHobbies] = useState('');
+
+  function updateProfile() {
+    const missingFields: string[] = [];
+    console.log('state: ', { qualities, hobbies });
+    //replaceAll doesn't exist, so string.replace with this exact regex works fine
+    const qualitiesArr = qualities
+      .split(',') // Splits the string into an array
+      .map(q => q.trim()) // Removes whitespace
+      .filter(q => q); // Removes empty strings
+    const hobbiesArr = hobbies
+      .split(',') // Splits the string into an array
+      .map(h => h.trim()) // Removes whitespace
+      .filter(h => h); // Removes empty strings
+    if (qualitiesArr.length < 1) {
+      missingFields.push('Fill in at least 1 quality');
+    }
+    if (hobbiesArr.length < 1) {
+      missingFields.push('Fill in at least 1 hobby');
+    }
+    if (missingFields.length > 0) {
+      alert(missingFields.join('\n'));
+      return;
+    }
+
+    backendFetch('POST', 'account/update', {
+      qualities: qualitiesArr.join(','),
+      hobbies: hobbiesArr.join(','),
+    })
+      .then(r => navigate('HomeScreen'))
+      .catch(alert);
+  }
+
   return (
     <ImageBackground
       source={image}
@@ -31,37 +62,26 @@ export default function StudentInform2({
             <Text style={styles.textInputLabel}>
               Dit zijn mijn kwaliteiten:
             </Text>
-            <List
-              getter={qualities}
-              setter={setQualities}
-              placeHoldeText='Vrolijk'
-              height={70}
+            <StyledAlternativeInput
+              value={qualities}
+              onChangeText={setQualities}
+              labelText={'Ik volg de studie:'}
             />
             <Text style={styles.textInputLabel}>Dit zijn mijn Hobbys:</Text>
-            <List
-              getter={hobbies}
-              setter={setHobbies}
-              placeHoldeText='Gamen'
-              height={70}
+            <StyledAlternativeInput
+              value={hobbies}
+              onChangeText={setHobbies}
+              labelText={'Ik volg de studie:'}
             />
             <StyledButton
               title='Begin met mijn zoektocht'
-              onPress={() => {
-                sendInfo(qualities, hobbies);
-              }}
+              onPress={updateProfile}
             />
           </View>
         </View>
       </View>
     </ImageBackground>
   );
-
-  function sendInfo(qualities: any, hobbies: any) {
-    backendFetch('POST', 'account/update', {
-      qualities: JSON.stringify(qualities),
-      hobbies: JSON.stringify(hobbies),
-    }).then(r => navigate('HomeScreen'));
-  }
 }
 
 const styles = StyleSheet.create({

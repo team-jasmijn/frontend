@@ -31,6 +31,44 @@ export default function CompanyInform({
   const [lookingFor, setLookingFor] = useState('');
   const [workWise, setWorkWise] = useState('');
 
+  function updateProfile() {
+    const missingFields: String[] = [];
+    if (!name.trim()) {
+      missingFields.push('Name is required');
+    }
+
+    if (!city.trim()) {
+      missingFields.push('City is required');
+    }
+    if (!culture.trim()) {
+      missingFields.push('Culture is required');
+    }
+
+    if (!lookingFor.trim()) {
+      missingFields.push(
+        'Please specify what type of student you are looking for'
+      );
+    }
+
+    if (!workWise.trim()) {
+      missingFields.push('Please specify your workwise');
+    }
+
+    if (missingFields.length > 0) {
+      alert(missingFields.join('\n'));
+      return;
+    }
+
+    backendFetch('POST', 'account/update', {
+      name: name,
+      city: city,
+      workCulture: culture,
+      lookingFor: lookingFor,
+      workWise: workWise,
+    })
+      .then(() => navigate('CompanyInform2'))
+      .catch(alert);
+  }
   return (
     <ImageBackground
       source={image}
@@ -74,34 +112,12 @@ export default function CompanyInform({
               labelText={'Onze werkwijze is:'}
             />
 
-            <StyledButton
-              title='Volgende stap'
-              onPress={() => {
-                sendInfo(name, city, culture, lookingFor, workWise);
-              }}
-            />
+            <StyledButton title='Volgende stap' onPress={updateProfile} />
           </View>
         </View>
       </View>
     </ImageBackground>
   );
-
-  function sendInfo(
-    name: any,
-    city: any,
-    culture: any,
-    lookingFor: any,
-    workWise: any
-  ) {
-    backendFetch('POST', 'account/update', {
-      name: name,
-      city: city,
-      workCulture: culture,
-      lookingFor: lookingFor,
-      workWise: workWise,
-    }).then(r => navigate('CompanyInform2'));
-    // navigate('StudentInform2');
-  }
 }
 
 const styles = StyleSheet.create({
