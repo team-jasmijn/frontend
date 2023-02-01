@@ -6,15 +6,17 @@ import { View } from './Themed';
 export interface TopBarProps {
   Press: () => void;
   ScreenName: string;
+  title?: string;
+  uri?: string;
 }
 
 export default function TopBar(props: TopBarProps) {
   return (
     <View style={styles.main}>
-      <Text style={styles.Title}>OnePlace</Text>
+      <Text style={styles.Title}>{props.title || 'OnePlace'}</Text>
       <Pressable style={styles.Button} onPress={props.Press}>
         <SvgUri
-          uri='https://icons.getbootstrap.com/assets/icons/person.svg'
+          uri={props.uri || 'https://icons.getbootstrap.com/assets/icons/person.svg'}
           height={40}
           width={40}
           fill={'#F1F5F9'}

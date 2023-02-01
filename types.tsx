@@ -9,6 +9,7 @@ import {
   NavigatorScreenParams,
 } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import Chat from './types/Chat';
 
 declare global {
   namespace ReactNavigation {
@@ -35,6 +36,9 @@ export type RootStackParamList = {
   CompanyInform2: undefined;
   MatchingScreen: undefined;
   ChatIndexScreen: undefined;
+  ChatDetailScreen: {
+    chat: Chat;
+  };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
