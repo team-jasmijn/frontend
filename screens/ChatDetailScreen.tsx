@@ -43,10 +43,8 @@ export default function ChatDetailScreen({ route }: ChatDetailScreenProps) {
     try {
       await getChat(chat.id).then(chat => setChat(chat as Chat));
     } catch (error) {
-      //@ts-expect-error
-      if (error.toString().includes('AuthenticationError')) {
-        //@ts-expect-error
-        clearInterval(refreshInterval);
+      if ((error as Error).toString().includes('AuthenticationError')) {
+        clearInterval(refreshInterval as NodeJS.Timer);
         return;
       }
 
