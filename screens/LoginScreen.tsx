@@ -32,6 +32,18 @@ export default function LoginStudentScreen({
   const [password, setPassword] = useState('');
 
   async function sendLogin() {
+    const missingFields: string[] = [];
+    if (!email) {
+      missingFields.push('Email is required');
+    }
+    if (!password) {
+      missingFields.push('Password is required');
+    }
+    if (missingFields.length > 0) {
+      alert(missingFields.join('\n'));
+      return;
+    }
+
     try {
       await signin(email, password);
       navigate('HomeScreen');
