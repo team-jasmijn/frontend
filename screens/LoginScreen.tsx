@@ -32,7 +32,7 @@ export default function LoginStudentScreen({
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   async function sendLogin() {
-  setIsSubmitting(true);
+    setIsSubmitting(true);
     const missingFields: string[] = [];
     if (!email) {
       missingFields.push('Email is required');
