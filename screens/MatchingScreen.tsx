@@ -18,6 +18,7 @@ import backendFetch from '../lib/backendFetch';
 import Flirt from '../types/Flirt';
 import getFlirtsForCompany from '../lib/getFlirtsForCompany';
 import Logout from '../lib/Logout';
+import acceptFlirt from '../lib/acceptFlirt';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -53,11 +54,9 @@ export default function MatchingScreen({
     getFlirtsForCompany()
       .then(setFlirts)
       .catch(() => {});
-    console.log('flirts', flirts);
   }, [refresh]);
 
   if (!user) return <Loading />;
-  console.log(user.role);
   switch (user.role) {
     case Role.Company:
       if (flirts.length === 0) {
@@ -71,6 +70,7 @@ export default function MatchingScreen({
           </View>
         );
       }
+
       return (
         <View style={styles.main}>
           <TopBar ScreenName='Logout' Press={CustomLogout} />
@@ -80,6 +80,12 @@ export default function MatchingScreen({
                 title={flirt.student.name}
                 key={flirt.id}
                 message={flirt.student.profileSettings.description}
+                buttonMessage={'Accept Flirt'}
+                action={() =>
+                  acceptFlirt(flirt.id)
+                    .then(getFlirtsForCompany)
+                    .then(setFlirts)
+                }
               />
             ))}
           </ScrollView>
@@ -125,8 +131,6 @@ export default function MatchingScreen({
                         sendFlirt(matchingCompany.id).then(refreshMatchingUser);
                       }}
                     >
-                      {/* Accept flirt */}
-                      {/* TODO: Write acceptation *here* */}
                       <SvgUri
                         style={styles.buttonElemement}
                         height={75}
@@ -177,7 +181,8 @@ const styles = StyleSheet.create({
     marginVertical: 150,
   },
   content: {
-    width: 100,
+    marginVertical: 150,
+    alignSelf: 'center',
   },
   button: {
     alignSelf: 'center',
