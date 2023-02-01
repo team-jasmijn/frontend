@@ -17,6 +17,7 @@ import CompanyInform2 from './screens/CompanyInform2';
 import MatchingScreen from './screens/MatchingScreen';
 import LoginStudentScreen from './screens/LoginScreen';
 import ChatIndexScreen from './screens/ChatIndexScreen';
+import ChatDetailScreen from './screens/ChatDetailScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -102,6 +103,11 @@ export default function App() {
           <Stack.Screen
             name='ChatIndexScreen'
             component={ChatIndexScreen}
+            options={{ headerShown: false, animation: 'none' }}
+          />
+          <Stack.Screen
+            name='ChatDetailScreen'
+            component={ChatDetailScreen}
             options={{ headerShown: false, animation: 'none' }}
           />
         </Stack.Navigator>

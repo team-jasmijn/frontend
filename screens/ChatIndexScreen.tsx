@@ -38,7 +38,7 @@ export default function ChatIndexScreen({
             navigate('HomeScreen');
           }}
         />
-        <ScrollView style={styles.contentNotificatie}>
+        <ScrollView style={styles.content}>
           <Notification
             title='No chats could be found'
             message='No chats could be found for you.'
@@ -49,6 +49,8 @@ export default function ChatIndexScreen({
     );
   }
 
+  console.log('chats', chats);
+
   return (
     <View style={styles.main}>
       <TopBar
@@ -58,10 +60,16 @@ export default function ChatIndexScreen({
         }}
       />
       <ScrollView style={styles.content}>
-        {chats?.map(e => (
+        {chats?.map(chat => (
           <Chat
-            name={e.company.name}
-            lastMessage={e.chatMessages[e.chatMessages.length - 1].message}
+            name={chat.company.name}
+            key={chat.id}
+            lastMessage={
+              chat.chatMessages[chat.chatMessages.length - 1]?.message || ''
+            }
+            onPress={() => {
+              navigate('ChatDetailScreen', { chat });
+            }}
           />
         ))}
       </ScrollView>
@@ -77,6 +85,5 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#fff',
   },
-  content: { flex: 5 },
-  contentNotificatie: { flex: 5, marginTop: 100 },
+  content: { flex: 5, marginTop: 100 },
 });

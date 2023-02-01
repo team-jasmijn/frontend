@@ -4,17 +4,21 @@ import React from 'react';
 type ChatProps = {
   name: string;
   lastMessage: string;
+  onPress: () => void;
 };
 
 export default function Chat(props: ChatProps) {
   return (
-    <View style={styles.main}>
-      <Text style={styles.image}>{props.name.charAt(0)}</Text>
+    <View style={styles.main} onTouchEnd={props.onPress}>
+      <Image
+        style={styles.image}
+        source={{
+          uri: 'https://reactnative.dev/img/tiny_logo.png',
+        }}
+      />
       <View style={styles.text}>
-        <Text style={styles.title}>{props.name}</Text>
-        <Text numberOfLines={3} style={styles.description}>
-          {props.lastMessage}
-        </Text>
+        <Text style={styles.name}>{props.name}</Text>
+        <Text style={styles.lastMessage}>{props.lastMessage}</Text>
       </View>
     </View>
   );
@@ -22,35 +26,26 @@ export default function Chat(props: ChatProps) {
 
 const styles = StyleSheet.create({
   main: {
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: '#000',
-    display: 'flex',
     flexDirection: 'row',
-    width: 350,
-    height: 100,
-    marginBottom: 10,
-  },
-  image: {
-    width: 150,
-    height: 150,
-    borderRadius: 50,
-    background: '#512DA8',
-    fontSize: 35,
-    color: '#fff',
-    TextAlign: 'center',
-    LineHeight: 150,
-    margin: 20,
-  },
-  text: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: 200,
-    height: 80,
+    minWidth: '90%',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: 'rgba(70, 70, 70, 0.1)',
+    borderRadius: 10,
     margin: 10,
   },
-  title: {
+  image: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+  text: {
+    marginLeft: 10,
+  },
+  name: {
     fontSize: 20,
   },
-  description: {},
+  lastMessage: {
+    fontSize: 15,
+  },
 });

@@ -3,7 +3,7 @@ import Company from './Company';
 import User from './User';
 
 export default interface Chat {
-  Id: number;
+  id: number;
   createDate: Date;
   modifyDate?: Date;
   companyId: number;
