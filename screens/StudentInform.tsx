@@ -22,8 +22,10 @@ export default function StudentInform({
     { label: 'Vierde jaar', value: 'Vierde jaar' },
   ]);
   const [year, setYear] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function updateProfile() {
+    setIsSubmitting(true);
     const missingFields: string[] = [];
     if (!study.trim()) {
       missingFields.push('Study is required');
@@ -39,8 +41,10 @@ export default function StudentInform({
 
     if (missingFields.length > 0) {
       alert(missingFields.join('\n'));
+      setIsSubmitting(false);
       return;
     }
+
     backendFetch('POST', 'account/update', {
       education: study,
       goals: JSON.stringify(goals),
@@ -48,6 +52,7 @@ export default function StudentInform({
     })
       .then(() => navigate('StudentInform2'))
       .catch(alert);
+    setIsSubmitting(false);
   }
 
   return (
@@ -83,7 +88,11 @@ export default function StudentInform({
               getter={goals}
             />
 
-            <StyledButton title='Volgende stap' onPress={updateProfile} />
+            <StyledButton
+              title='Volgende stap'
+              onPress={updateProfile}
+              disabled={isSubmitting}
+            />
           </View>
         </View>
       </View>

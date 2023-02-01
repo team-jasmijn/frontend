@@ -14,6 +14,7 @@ import signin from '../lib/signin';
 import signup from '../lib/signup';
 import UserType from '../types/UserType';
 import BackendError from '../lib/backendError';
+import { Use } from 'react-native-svg/lib/typescript';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -30,14 +31,16 @@ export default function LoginStudentScreen({
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   async function sendLogin() {
+    setIsSubmitting(true); //TODO: Add setIsSubmitting(false) when 111 is merged in master;
     try {
       await signin(email, password);
       navigate('HomeScreen');
       return;
     } catch (e) {}
     alert('Email of wachtwoord kloppen niet');
+    setIsSubmitting(false);
   }
 
   return (
@@ -65,6 +68,7 @@ export default function LoginStudentScreen({
             }}
           >
             <StyledButton
+              disabled={isSubmitting}
               title={'Inloggen'}
               onPress={() => {
                 sendLogin().catch(function (err) {});

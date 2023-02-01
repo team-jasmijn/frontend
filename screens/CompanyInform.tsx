@@ -30,8 +30,10 @@ export default function CompanyInform({
   const [culture, setCulture] = useState('');
   const [lookingFor, setLookingFor] = useState('');
   const [workWise, setWorkWise] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function updateProfile() {
+    setIsSubmitting(true);
     const missingFields: String[] = [];
     if (!name.trim()) {
       missingFields.push('Name is required');
@@ -56,6 +58,7 @@ export default function CompanyInform({
 
     if (missingFields.length > 0) {
       alert(missingFields.join('\n'));
+      setIsSubmitting(false);
       return;
     }
 
@@ -68,7 +71,9 @@ export default function CompanyInform({
     })
       .then(() => navigate('CompanyInform2'))
       .catch(alert);
+    setIsSubmitting(false);
   }
+
   return (
     <ImageBackground
       source={image}
@@ -112,7 +117,11 @@ export default function CompanyInform({
               labelText={'Onze werkwijze is:'}
             />
 
-            <StyledButton title='Volgende stap' onPress={updateProfile} />
+            <StyledButton
+              title='Volgende stap'
+              onPress={updateProfile}
+              disabled={isSubmitting}
+            />
           </View>
         </View>
       </View>
